@@ -1,0 +1,14 @@
+:root {
+    --primary: purple;
+    --secondary: grey;
+    --light: white;
+    --dark: black;
+    --intermediary: rgb(129, 85, 129);
+
+    --main-font: 'Roboto, Sans-serif';
+    --title-font: 'Nova Oval', cursive;
+}
+
+h1 {
+    color: var(--primary);
+}
