@@ -1,0 +1,13 @@
+.navbar {
+    background: var(--transparent-light);
+}
+
+.navbar .navbar-nav .nav-link {
+    text-decoration: none;
+    text-align: center;
+}
+.navbar-light .navbar-collapse .navbar-nav > .active {
+    text-decoration: none;
+    color: var(--primary);
+    text-align: center;
+}
