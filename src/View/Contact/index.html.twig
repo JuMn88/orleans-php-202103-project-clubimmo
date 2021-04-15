@@ -1,0 +1,126 @@
+
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+<div class="container-contact">
+        <h2 class="contact-title">FORMULAIRE DE CONTACT</h2>
+        <form class="main-contactForm" action="" method="post">
+
+            <div class="row-form">
+                <div class="col-20">
+                    <label for="firstname">Prénom</label>
+                </div>
+                <div class="col-80">
+                    <input type="text" id="firstname" name="firstname" placeholder="Votre prénom.." required>
+                </div>
+            </div>
+            <div class="row-form">
+                <div class="col-20">
+                    <label for="lastname">Nom</label>
+                </div>
+                <div class="col-80">
+                    <input type="text" id="lastname" name="lastname" placeholder="Votre nom.." required>
+                </div>
+            </div>
+            <div class="row-form">
+                <div class="col-20">
+                    <label for="phone">Numéro de téléphone</label>
+                </div>
+                <div class="col-80">
+                    <input type="tel" id="phone" name="phone" placeholder="00 11 22 33 44" required
+                        pattern="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}">
+                </div>
+            </div>
+            <div class="row-form">
+                <div class="col-20">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-80">
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="row-form houseOwner-text">
+                Vous êtes propriétaire et vous voulez deposez un dossier ?
+                <a href="#" id="show-hiddenForm" onclick="myFunction()"><strong>Cliquez ici</strong></a>
+            </div>
+
+            <div class="houseOwner-form" id="form-hidden">
+                <div class="row-form">
+                    <div class="col-20">
+                        <label for="real-estate-type">Type de bien</label>
+                    </div>
+                    <div class="col-80">
+                        <select for="real-estate-type" size="1">
+                            <option>Choissisez un type de bien</option>
+                            <option>Maison</option>
+                            <option>Appartement</option>
+                            <option>Autres</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="col-20">
+                        <label for="text">Adresse</label>
+                    </div>
+                    <div class="col-80">
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="col-20">
+                        <label for="text">Ville</label>
+                    </div>
+                    <div class="col-80">
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                </div>
+                <div class="row-form">
+                    <div class="col-20">
+                        <label for="text">Code postal</label>
+                    </div>
+                    <div class="col-80">
+                        <input type="text" id="postalcode" name="postalcode" required>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="row-form">
+                <div class="col-20">
+                    <label for="sujet">Sujet</label>
+                </div>
+                <div class="col-80 selectParent">
+                    <select name="sujet" size="1">
+                        <option>Choissisez un sujet</option>
+                        <option>Je cherche un bien à acheter</option>
+                        <option>Je cherche un bien à louer</option>
+                        <option>J'ai un bien à vendre</option>
+                        <option>J'ai un bien à louer</option>
+                        <option>Autres
+                    </select>
+                </div>
+            </div>
+            <div class="row-form">
+                <div class="col-20">
+                    <label for="message">Message</label>
+                </div>
+                <div class="col-80">
+                    <textarea id="message" name="message" style="height:200px" required></textarea>
+                </div>
+            </div>
+
+            <div class="button-submit">
+                <input type="submit" value="Envoyer">
+            </div>
+
+        </form>
+    </div>
+
+<script> 
+function myFunction() {
+    document.getElementById("form-hidden").style.display = "block";
+  }
+   
+</script>
+{% endblock %}
