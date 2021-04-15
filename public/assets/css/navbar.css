@@ -1,15 +1,42 @@
+/* La navbar */
 .navbar {
     background: var(--transparent-light);
     padding-left: 20%;
     padding-right: 20%;
 }
 
+/* Les boutons de navbar */
 .navbar .navbar-nav .nav-link {
     text-decoration: none;
     text-align: center;
 }
+
+/* Le bouton active de navbar */
 .navbar-light .navbar-collapse .navbar-nav > .active {
     text-decoration: none;
     color: var(--primary);
     text-align: center;
+}
+
+
+/*** Media Queries ***/ 
+
+@media only screen and (max-width: 375px) {
+
+    /* La navbar */
+    .navbar {
+        padding-bottom: 5%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Les boutons de navbar */
+    .navbar .navbar-nav .nav-link {
+        text-align: start;
+    }
+
+    /* Le bouton active de navbar */
+    .navbar-light .navbar-collapse .navbar-nav > .active {
+        text-align: start;
+    }
 }
