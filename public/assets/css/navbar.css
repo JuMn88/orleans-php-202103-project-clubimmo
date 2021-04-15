@@ -21,7 +21,7 @@
 
 /*** Media Queries ***/ 
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 600px) {
 
     /* La navbar */
     .navbar {
@@ -38,5 +38,11 @@
     /* Le bouton active de navbar */
     .navbar-light .navbar-collapse .navbar-nav > .active {
         text-align: start;
+    }
+
+    /* Titre navbar */
+    .navbar-brand {
+        font-size: medium;
+        font-weight: bolder;
     }
 }

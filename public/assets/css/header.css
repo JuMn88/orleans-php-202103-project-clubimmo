@@ -70,22 +70,9 @@ header {
     color: var(--light);
 }
 
-/* Le lien recherche avancé */
-.advanced_search {
-    color: var(--light);
-    text-decoration: none;
-    text-align: end;
-}
-
-/* Le lien recherche avancé (hover) */
-.advanced_search:hover {
-    color: var(--primary);
-}
-
-
 /*** Media Queries ***/ 
 
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 600px) {
     .advanced_search {
         color: var(--light);
         text-decoration: none;
@@ -98,6 +85,6 @@ header {
 
     /* le lien du bouton de menu dans la partie recherche */
     .nav-item .nav-link {
-        font-size: small;
+        font-size: xx-small;
     }
 }
