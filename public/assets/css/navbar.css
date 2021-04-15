@@ -1,5 +1,7 @@
 .navbar {
     background: var(--transparent-light);
+    padding-left: 20%;
+    padding-right: 20%;
 }
 
 .navbar .navbar-nav .nav-link {
