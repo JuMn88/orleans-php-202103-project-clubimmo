@@ -3,7 +3,7 @@ header{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-image: url('../images/acceuil.jpg');
+    background-image: url('../images/accueil.jpg');
     height: 100vh;
     background-size: cover;
     padding-top: 300px;

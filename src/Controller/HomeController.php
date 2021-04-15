@@ -21,11 +21,11 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig') . $this->acceuil();
+        return $this->twig->render('Home/index.html.twig') . $this->accueil();
     }
 
-    public function acceuil()
+    public function accueil()
     {
-        return $this->twig->render('Home/acceuil.html.twig');
+        return $this->twig->render('Home/accueil.html.twig');
     }
 }
