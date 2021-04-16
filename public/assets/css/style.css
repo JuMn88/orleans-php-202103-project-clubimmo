@@ -1,6 +1,6 @@
 :root {
     --primary: purple;
-    --secondary: grey;
+    --secondary: #DDDDDD;
     --light: white;
     --dark: black;
     --intermediary: rgb(129, 85, 129);
@@ -9,6 +9,9 @@
     --title-font: 'Nova Oval', cursive;
 }
 
-h1 {
-    color: var(--primary);
+
+.footer {
+    background-color: var(--secondary);
 }
+
+
