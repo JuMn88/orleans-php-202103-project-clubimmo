@@ -9,6 +9,10 @@
     --title-font: 'Nova Oval', cursive;
 }
 
-h1 {
-    color: var(--primary);
+
+.footer {
+
+    background-color: rgba(221, 221, 221, 0.55);
+    
 }
+
