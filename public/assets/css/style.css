@@ -1,6 +1,6 @@
 :root {
     --primary: purple;
-    --secondary: grey;
+    --secondary: #DDDDDD;
     --light: white;
     --dark: black;
     --intermediary: rgb(129, 85, 129);
@@ -11,8 +11,7 @@
 
 
 .footer {
-
-    background-color: rgba(221, 221, 221, 0.55);
-    
+    background-color: var(--secondary);
 }
+
 
