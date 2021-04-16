@@ -58,6 +58,11 @@ header {
     border-radius: 4px;
 }
 
+/* Le bouton reference dans le menu de recherche */
+.reference {
+    text-decoration: none;
+}
+
 /* Le bouton de recherche */
 .search_btn{
     background-color: var(--light);
@@ -73,18 +78,17 @@ header {
 /*** Media Queries ***/ 
 
 @media only screen and (max-width: 600px) {
-    .advanced_search {
-        color: var(--light);
-        text-decoration: none;
-        text-align: center;
-    }
-
     .header_title{
         display: none;
     }
 
     /* le lien du bouton de menu dans la partie recherche */
     .nav-item .nav-link {
+        font-size: xx-small;
+    }
+
+    /* le bouton rechercher */
+    .search_btn {
         font-size: xx-small;
     }
 }
