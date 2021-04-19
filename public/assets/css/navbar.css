@@ -4,15 +4,7 @@
 
 }
 
-/* Les boutons de navbar */
-.navbar .navbar-nav .nav-link {
-    text-decoration: none;
-    text-align: center;
-}
-
 /* Le bouton active de navbar */
 .navbar-light .navbar-collapse .navbar-nav > .active {
-    text-decoration: none;
     color: var(--primary);
-    text-align: center;
 }
