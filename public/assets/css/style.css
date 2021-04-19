@@ -1,6 +1,8 @@
 :root {
+
     --primary: #6B36AE;
     --secondary: #DDDDDD55;
+
     --light: white;
     --dark: black;
     --intermediary: #AA9BBE;
@@ -25,4 +27,8 @@ h1 {
     color: var(--primary);
     font-size: var(--title-size);
     font: var(--title-font);
+}
+
+.footer {
+    background-color: var(--secondary);
 }
