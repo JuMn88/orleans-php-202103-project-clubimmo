@@ -43,3 +43,21 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 ## How does URL routing work ?
 
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
+
+
+
+###  Pour tester, voici un exemple de table ### 
+CREATE DATABASE IF NOT EXISTS club_de_l_immo;
+
+/* Creation de la table photo */
+CREATE TABLE club_de_l_immo.test_photo (
+    id INT,
+    nom VARCHAR(255),
+    url VARCHAR(255));
+
+insert into test_photo (id, nom, url) values (1, "advertisement1.jpg", "/assets/images");
+insert into test_photo (id, nom, url) values (2, "advertisement2.jpg", "/assets/images");
+insert into test_photo (id, nom, url) values (3, "advertisement3.jpg", "/assets/images");
+insert into test_photo (id, nom, url) values (4, "advertisement4.jpg", "/assets/images");
+insert into test_photo (id, nom, url) values (5, "advertisement5.jpg", "/assets/images");
+insert into test_photo (id, nom, url) values (6, "advertisement6.jpg", "/assets/images");

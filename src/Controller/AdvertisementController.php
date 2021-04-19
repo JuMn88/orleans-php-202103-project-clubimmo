@@ -8,19 +8,17 @@ class AdvertisementController extends AbstractController
 {
     public function advertisement()
     {
-        $advertisementManager  = new AdvertisementManager();
+        $advertisementManager = new AdvertisementManager();
         $photosTable = $advertisementManager->selectAll('nom');
         $photosAdress = [];
 
-        foreach($photosTable as $photosInformations)
-        {
+        foreach ($photosTable as $photosInformations) {
             $photosAdress[] = "/assets/images/" . $photosInformations['nom'];
         }
 
-        if(empty($photosAdress))
-        {
+        if (empty($photosAdress)) {
             $photosAdress[] = "/assets/images/no_image.png";
         }
-        return $this->twig->render('Advertisement/advertisement.html.twig', ['photosAdress'=>$photosAdress]);
+        return $this->twig->render('Advertisement/advertisement.html.twig', ['photosAdress' => $photosAdress]);
     }
 }
