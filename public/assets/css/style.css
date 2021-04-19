@@ -26,3 +26,7 @@ h1 {
     font-size: var(--title-size);
     font: var(--title-font);
 }
+
+.footer {
+    background-color: var(--secondary);
+}
