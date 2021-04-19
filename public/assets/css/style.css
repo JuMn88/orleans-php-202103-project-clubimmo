@@ -1,12 +1,19 @@
 :root {
-    --primary: purple;
-    --secondary: #DDDDDD;
+    --primary: #6B36AE;
+    --secondary: #DDDDDD55;
     --light: white;
+    --transparent-light: rgba(255, 255, 255, 0.514);
     --dark: black;
-    --intermediary: rgb(129, 85, 129);
+    --intermediary: #AA9BBE;
+    --card-color: #DDDDDD30;
 
     --main-font: 'Roboto, Sans-serif';
-    --title-font: 'Nova Oval', cursive;
+    --title-font: 'Lato';
+
+    --title-size: 64px;
+    --subtitle-size: 36px;
+    --larger-text-size: 24px;
+    --text-size: 20px;
 }
 
 
@@ -15,3 +22,88 @@
 }
 
 
+.map-infoagence {
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    }
+    .map-infoagence iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+    }
+    
+    .presentationAgence {
+        margin-left: 90px;
+    }
+
+    .dpe {  
+    font-size: var(--text-size);
+    font-family: var(--main-font);
+    }
+    
+    .dpe p {
+    font-size: var(--text-size);
+    font-family: var(--main-font);
+    text-align:center;
+    }
+
+    .presentationAgence p, ul, li {
+    font-size: var(--text-size);
+    font-family: var(--main-font);
+    line-height:1.4em;
+    list-style:outside;
+    }
+    
+    .presentationAgenceInfoCouleur {
+    margin-top:0px;
+    margin-left: 40px;
+    width:95%;
+    height:95%;
+    background-color: var(--primary);
+    font-size: var(--text-size);
+    font-family: var(--main-font);
+    }
+    .presentationAgenceInfoCouleur p{
+    margin-top:0px;
+    margin-left: 40px;
+    width:95%;
+    color:var(--light);
+    font-size: var(--text-size);
+    font-family: var(--main-font);
+    }
+
+body {
+    color: var(--dark);
+    font-size: var(--text-size);
+    font: var(--main-font);
+}
+
+h1 {
+    color: var(--primary);
+    font-family: var(--main-font);
+    font-size: var(--title-size);
+    font-weight: bold;
+}
+
+h2 {
+    color: var(--primary);
+    font-weight: bold;
+    font-family: var(--main-font);
+}
+
+
+@media only screen and (max-width: 600px) {
+    .map-infoagene{
+        display: none;
+    }
+    .presentationAgenceInfoCouleur {
+        display: none;
+    }
+    .presentationAgence {
+        margin:5px;   
+        }
+}
