@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="col-12 d-flex justify-content-center">
+        {# col-9 for 75% screen #}
+        <div class="col-9">
+            {% block carousel %}
+                {% include 'Advertisement/_carousel.html.twig' %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
