@@ -1,6 +1,7 @@
 :root {
     --primary: #6B36AE;
     --secondary: #DDDDDD55;
+
     --light: white;
     --transparent-light: rgba(255, 255, 255, 0.514);
     --dark: black;
@@ -27,4 +28,8 @@ h1 {
     font-family: var(--main-font);
     font-size: var(--title-size);
     font-weight: bold;
+}
+
+.footer {
+    background-color: var(--secondary);
 }
