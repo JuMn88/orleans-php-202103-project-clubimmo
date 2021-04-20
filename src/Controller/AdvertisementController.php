@@ -23,24 +23,14 @@ class AdvertisementController extends AbstractController
         return $this->twig->render('Advertisement/advertisement.html.twig', ['photosAdress' => $photosAdress]);
     }
 
-
+/*
     public function energy($id)
     {
-
         $advertisementManager = new AdvertisementManager();
         $bienTable = $advertisementManager->selectOneById('id');
         $classeEnergetique = "";
-
-        $classeEnergetique = $bienTable['classe_energetique'];
-        
-
-
-        return $this->twig->render('Advertisement/advertisement.html.twig', ['classeEnergetique' => $classeEnergetique]);
-
-    }
-
-
+        $classeEnergetique = $bienTable['classe_energetique'];*/
+        //return $this->twig->render('Advertisement/advertisement.html.twig',
+        //['classeEnergetique' => $classeEnergetique]);
+    //}
 }
-
-
-
