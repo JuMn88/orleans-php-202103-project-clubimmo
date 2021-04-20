@@ -1,17 +1,34 @@
 :root {
-    --primary: purple;
-    --secondary: #DDDDDD;
+
+    --primary: #6B36AE;
+    --secondary: #DDDDDD55;
+
     --light: white;
     --dark: black;
-    --intermediary: rgb(129, 85, 129);
+    --intermediary: #AA9BBE;
+    --card-color: #DDDDDD30;
 
     --main-font: 'Roboto, Sans-serif';
-    --title-font: 'Nova Oval', cursive;
+    --title-font: 'Lato';
+
+    --title-size: 64px;
+    --subtitle-size: 36px;
+    --larger-text-size: 24px;
+    --text-size: 18px;
 }
 
+body {
+    color: var(--dark);
+    font-size: var(--text-size);
+    font: var(--main-font);
+}
+
+h1 {
+    color: var(--primary);
+    font-size: var(--title-size);
+    font: var(--title-font);
+}
 
 .footer {
     background-color: var(--secondary);
 }
-
-
