@@ -7,10 +7,10 @@ use App\Model\PhotoManager;
 class AdvertisementController extends AbstractController
 {
 
-    public function advertisement()
+    public function index()
     {
-        echo $this->carousel();
-        return $this->twig->render('Advertisement/advertisement.html.twig');
+        $photosAdress = $this->carousel();
+        return $this->twig->render('Advertisement/advertisement.html.twig', ['photosAdress' => $photosAdress]);
     }
 
     public function carousel()
@@ -26,6 +26,6 @@ class AdvertisementController extends AbstractController
         if (empty($photosAdress)) {
             $photosAdress[] = "/assets/images/no_image.png";
         }
-        return $this->twig->render('Advertisement/advertisement.html.twig', ['photosAdress' => $photosAdress]);
+        return $photosAdress;
     }
 }
