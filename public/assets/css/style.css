@@ -43,12 +43,12 @@
     .dpe {  
     font-size: var(--text-size);
     font-family: var(--main-font);
+    margin-left: 50px;
     }
     
     .dpe p {
     font-size: var(--text-size);
     font-family: var(--main-font);
-    text-align:center;
     }
 
     .presentationAgence p, ul, li {
@@ -60,17 +60,16 @@
     
     .presentationAgenceInfoCouleur {
     margin-top:0px;
-    margin-left: 40px;
-    width:95%;
-    height:95%;
+    margin-left: 25px;
+    margin-right: 20px;
     background-color: var(--primary);
     font-size: var(--text-size);
     font-family: var(--main-font);
     }
     .presentationAgenceInfoCouleur p{
     margin-top:0px;
-    margin-left: 40px;
-    width:95%;
+    margin-left: 25px;
+    margin-right: 20px;
     color:var(--light);
     font-size: var(--text-size);
     font-family: var(--main-font);
@@ -105,5 +104,15 @@ h2 {
     }
     .presentationAgence {
         margin:5px;   
+        }
+
+    .dpe {  
+        font-size: var(--text-size);
+        font-family: var(--main-font);
+        margin-left: 0px;
+            }
+        .dpe img {
+            width:330px;
+            height:160px;
         }
 }
