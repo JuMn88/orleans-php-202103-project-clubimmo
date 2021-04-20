@@ -10,7 +10,7 @@ class AdvertisementController extends AbstractController
     public function index()
     {
         $photosAdress = $this->carousel();
-        return $this->twig->render('Advertisement/advertisement.html.twig', ['photosAdress' => $photosAdress]);
+        return $this->twig->render('Advertisement/index.html.twig', ['photosAdress' => $photosAdress]);
     }
 
     public function carousel()
