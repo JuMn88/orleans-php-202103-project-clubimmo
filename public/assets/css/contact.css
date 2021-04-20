@@ -28,22 +28,25 @@
     border-radius: 5px;
     margin-bottom: var(--spacing-4);
 }
-  
+
 .row-form{
-    width:90%;
+    width:55%;
     margin:auto;
 }
 
-.col-20 {
+.col-label {
     float: left;
-    width: 20%;
-   /* padding-left:5%;*/
+    width: 35%;
+    height:50px;
+    display:flex;
+    justify-content:flex-start;
+    align-items: center;
     margin-top: var(--spacing-2);
 }
   
-.col-80 {
+.col-input {
     float: left;
-    width: 80%;
+    width: 65%;
     margin-top: var(--spacing-2);
 }
   
@@ -55,7 +58,7 @@
 }
 
 label {
-  padding: var(--spacing-2) var(--spacing-2) 5px 0;
+  padding: var(--spacing) 0;
   display: inline-block;
 }
 
@@ -64,33 +67,39 @@ input[type=tel],
 input[type=email],
 select, textarea {
     width: 100%;
+    height:50px;
     font-size: var(--text-size);
     padding: var(--spacing);
     border: 0.5px solid var(--dark);
     border-radius: 4px;
     resize: vertical;
 }
- 
+
+textarea{
+    height: 200px;
+}
+
 .houseOwner-text{
-  padding:var(--spacing-2);
-  color:var(--primary);
-  font-weight: 500;
-  text-align: center;
+    margin-top:var(--spacing-4);
+    padding:var(--spacing-2);
+    color:var(--primary);
+    font-weight: 500;
+    text-align: center;
 }
 .houseOwner-text a{
   color: var(--primary);
   font-style: italic;
 }
-  
+
 .button-submit{
-    width:100%;
-    margin:var(--spacing-4) auto;
     display:flex;
     justify-content: center;
     align-items: center;
-  }
+}
+
+
 input[type=submit] {
-    width:50%;
+    width:200px;
     height:50px;
     background-color: var(--primary);
     color:var(--light);
@@ -107,17 +116,23 @@ input[type=submit]:hover {
     border: 2px solid var(--primary);
 }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-20, .col-80 {
-      width: 100%;
-      margin-top: 0;
-      padding-left: 0;
-  }
-  .contact-title{
+/* Responsive layout - when the screen is less than 768px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1200px) {
+    .row-form{
+        width:70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .col-label, .col-input {
+       width: 100%;
+       margin-top: 0;
+       padding-left: 0;
+    }
+    .contact-title{
         height: 100px;
         font-size: 32px;
-  }
+    }
 }
   
   
