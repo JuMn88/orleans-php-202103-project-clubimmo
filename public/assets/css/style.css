@@ -17,12 +17,6 @@
     --text-size: 18px;
 }
 
-body {
-    color: var(--dark);
-    font-size: var(--text-size);
-    font: var(--main-font);
-}
-
 h1 {
     color: var(--primary);
     font-family: var(--main-font);
@@ -30,6 +24,11 @@ h1 {
     font-weight: bold;
 }
 
+body {
+    color: var(--dark);
+    font-size: var(--text-size);
+    font: var(--main-font);
+}
 
 .footer {
     background-color: var(--secondary);
