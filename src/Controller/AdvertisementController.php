@@ -2,14 +2,21 @@
 
 namespace App\Controller;
 
-use App\Model\AdvertisementManager;
+use App\Model\PhotoManager;
 
 class AdvertisementController extends AbstractController
 {
+
     public function advertisement()
     {
-        $advertisementManager = new AdvertisementManager();
-        $photosTable = $advertisementManager->selectAll('nom');
+        echo $this->carousel();
+        return $this->twig->render('Advertisement/advertisement.html.twig');
+    }
+
+    public function carousel()
+    {
+        $photoManager = new PhotoManager();
+        $photosTable = $photoManager->selectAll();
         $photosAdress = [];
 
         foreach ($photosTable as $photosInformations) {

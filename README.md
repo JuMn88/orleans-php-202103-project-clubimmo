@@ -50,7 +50,7 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 CREATE DATABASE IF NOT EXISTS club_de_l_immo;
 
 /* Creation de la table photo */
-CREATE TABLE club_de_l_immo.test_photo (
+CREATE TABLE club_de_l_immo.photo (
     id INT,
     nom VARCHAR(255),
     url VARCHAR(255));
