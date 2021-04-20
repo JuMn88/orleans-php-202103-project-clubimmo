@@ -55,9 +55,9 @@ CREATE TABLE club_de_l_immo.photo (
     nom VARCHAR(255),
     url VARCHAR(255));
 
-insert into test_photo (id, nom, url) values (1, "advertisement1.jpg", "/assets/images");
-insert into test_photo (id, nom, url) values (2, "advertisement2.jpg", "/assets/images");
-insert into test_photo (id, nom, url) values (3, "advertisement3.jpg", "/assets/images");
-insert into test_photo (id, nom, url) values (4, "advertisement4.jpg", "/assets/images");
-insert into test_photo (id, nom, url) values (5, "advertisement5.jpg", "/assets/images");
-insert into test_photo (id, nom, url) values (6, "advertisement6.jpg", "/assets/images");
+insert into photo (id, nom, url) values (1, "advertisement1.jpg", "/assets/images");
+insert into photo (id, nom, url) values (2, "advertisement2.jpg", "/assets/images");
+insert into photo (id, nom, url) values (3, "advertisement3.jpg", "/assets/images");
+insert into photo (id, nom, url) values (4, "advertisement4.jpg", "/assets/images");
+insert into photo (id, nom, url) values (5, "advertisement5.jpg", "/assets/images");
+insert into photo (id, nom, url) values (6, "advertisement6.jpg", "/assets/images");
