@@ -21,7 +21,6 @@
     background-color: var(--secondary);
 }
 
-
 .map-infoagence {
     overflow:hidden;
     padding-bottom:56.25%;
@@ -36,43 +35,30 @@
     position:absolute;
     }
     
-    .presentationAgence {
-        margin-left: 90px;
-    }
-
-    .dpe {  
+    .performance {  
     font-size: var(--text-size);
     font-family: var(--main-font);
     margin-left: 50px;
     }
     
-    .dpe p {
+    .performance p {
     font-size: var(--text-size);
     font-family: var(--main-font);
     }
 
-    .presentationAgence p, ul, li {
-    font-size: var(--text-size);
-    font-family: var(--main-font);
-    line-height:1.4em;
+    .realtorInfoPage p, ul , li {
+    line-height:1.5em;
     list-style:outside;
     }
     
-    .presentationAgenceInfoCouleur {
-    margin-top:0px;
-    margin-left: 25px;
-    margin-right: 20px;
+    .flashInfoService {
     background-color: var(--primary);
-    font-size: var(--text-size);
     font-family: var(--main-font);
     }
-    .presentationAgenceInfoCouleur p{
-    margin-top:0px;
-    margin-left: 25px;
-    margin-right: 20px;
+    .flashInfoService p{
     color:var(--light);
-    font-size: var(--text-size);
     font-family: var(--main-font);
+    line-height:1.5em;
     }
 
 body {
@@ -94,25 +80,19 @@ h2 {
     font-family: var(--main-font);
 }
 
-
 @media only screen and (max-width: 600px) {
     .map-infoagene{
         display: none;
     }
-    .presentationAgenceInfoCouleur {
+    .flashInfoService {
         display: none;
     }
-    .presentationAgence {
-        margin:5px;   
-        }
-
-    .dpe {  
-        font-size: var(--text-size);
+    .performance {
         font-family: var(--main-font);
         margin-left: 0px;
             }
-        .dpe img {
-            width:330px;
-            height:160px;
+    .performance img {
+            width:310px;
+            height:186px;
         }
 }
