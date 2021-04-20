@@ -43,3 +43,19 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 ## How does URL routing work ?
 
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
+
+
+
+## CREATE TEST DATABASE ##
+
+CREATE DATABASE IF NOT EXISTS club_de_l_immo;
+
+/* Creation de la table bien */
+CREATE TABLE club_de_l_immo.bien (id INT, energy_performance_diagnostic VARCHAR(255), greenhouse_gas VARCHAR(255));
+
+insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (1, "A", "B");
+insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (2, "", "A");
+insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (3, "A", "");
+insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (4, "B", "B");
+insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (5, "H", "B");
+insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (6, "A", "B");

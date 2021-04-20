@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="col-12 d-flex justify-content-center p-0 m-0">
+        {% block energyInformations %}
+            {% include 'Advertisement/energyInformations.html.twig' %}
+        {% endblock %}
+    </div>
+{% endblock %}

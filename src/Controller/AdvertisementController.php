@@ -2,35 +2,45 @@
 
 namespace App\Controller;
 
-use App\Model\AdvertisementManager;
+use App\Model\BienManager;
 
 class AdvertisementController extends AbstractController
 {
+    private int $idBien = 2;
 
-    public function advertisement()
+    public function index()
     {
-        $advertisementManager = new AdvertisementManager();
-        $photosTable = $advertisementManager->selectAll('nom');
-        $photosAdress = [];
-
-        foreach ($photosTable as $photosInformations) {
-            $photosAdress[] = "/assets/images/" . $photosInformations['nom'];
-        }
-
-        if (empty($photosAdress)) {
-            $photosAdress[] = "/assets/images/no_image.png";
-        }
-        return $this->twig->render('Advertisement/advertisement.html.twig', ['photosAdress' => $photosAdress]);
+        $energyInformations = $this->energyInformations();
+        return $this->twig->render('Advertisement/index.html.twig', $energyInformations);
     }
 
-/*
-    public function energy($id)
+    public function energyInformations()
     {
-        $advertisementManager = new AdvertisementManager();
-        $bienTable = $advertisementManager->selectOneById('id');
-        $classeEnergetique = "";
-        $classeEnergetique = $bienTable['classe_energetique'];*/
-        //return $this->twig->render('Advertisement/advertisement.html.twig',
-        //['classeEnergetique' => $classeEnergetique]);
-    //}
+        $bienManager = new BienManager();
+        $bienTable = $bienManager->selectOneById($this->idBien);
+
+        $valueEPD = $bienTable['energy_performance_diagnostic'];
+        $greenhouseGas = $bienTable['greenhouse_gas'];
+
+        if (empty($valueEPD)) {
+            $photoEPD = "/assets/images/DPE_vide.png";
+            $valueEPD = "Vierge";
+        } else {
+            $photoEPD = "/assets/images/DPE.png";
+        }
+
+        if (empty($greenhouseGas)) {
+            $photoGreenhouseGas = "/assets/images/GES_vide.png";
+            $greenhouseGas = "Vierge";
+        } else {
+            $photoGreenhouseGas = "/assets/images/GES.png";
+        }
+
+        $energyInformations = ['photoEPD' => $photoEPD,
+        'photoGreenhouseGas' => $photoGreenhouseGas,
+        'valueEPD' => $valueEPD,
+        'greenhouseGas' => $greenhouseGas];
+
+        return $energyInformations;
+    }
 }
