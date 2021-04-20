@@ -8,6 +8,7 @@
  */
 
 namespace App\Controller;
+
 use App\Model\ContactManager;
 
 class ContactController extends AbstractController
@@ -20,7 +21,7 @@ class ContactController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    
+
     public function index()
     {
         return $this->twig->render('Contact/index.html.twig');

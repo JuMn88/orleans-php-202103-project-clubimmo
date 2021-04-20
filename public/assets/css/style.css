@@ -21,8 +21,15 @@ body {
     font: var(--main-font);
 }
 
+
 h1 {
     color: var(--primary);
     font-size: var(--title-size);
     font: var(--title-font);
 }
+
+.footer {
+    background-color: var(--secondary);
+}
+
+
