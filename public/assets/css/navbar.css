@@ -1,0 +1,10 @@
+/* La navbar */
+.navbar {
+    background: var(--transparent-light);
+
+}
+
+/* Le bouton active de navbar */
+.navbar-light .navbar-collapse .navbar-nav > .active {
+    color: var(--primary);
+}

@@ -29,10 +29,5 @@ h1 {
 
 .footer {
     background-color: var(--secondary);
-}
+} 
 
-h2 {
-    color: var(--primary);
-    font-weight: bold;
-    font-family: var(--main-font);
-}
