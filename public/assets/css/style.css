@@ -1,15 +1,12 @@
 :root {
     --primary: #6B36AE;
     --secondary: #DDDDDD55;
-
     --light: white;
     --dark: black;
     --intermediary: #AA9BBE;
     --card-color: #DDDDDD30;
-
     --main-font: 'Roboto, Sans-serif';
     --title-font: 'Lato';
-
     --title-size: 64px;
     --subtitle-size: 36px;
     --larger-text-size: 24px;
@@ -22,11 +19,10 @@ body {
     font: var(--main-font);
 }
 
-
 h1 {
     color: var(--primary);
     font-size: var(--title-size);
-    font: var(--title-font);
+    font-family: var(--title-font);
 }
 
 .footer {
