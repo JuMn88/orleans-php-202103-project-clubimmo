@@ -3,12 +3,14 @@
     --secondary: #DDDDDD55;
 
     --light: white;
-    --transparent-light: rgba(255, 255, 255, 0.514);
     --dark: black;
+	--transparent-light: rgba(255, 255, 255, 0.514);
+
     --intermediary: #AA9BBE;
     --card-color: #DDDDDD30;
 
     --main-font: 'Roboto, Sans-serif';
+
     --title-font: 'Lato';
 
     --title-size: 64px;
@@ -16,6 +18,7 @@
     --larger-text-size: 24px;
     --text-size: 18px;
 }
+
 
 body {
     color: var(--dark);
@@ -25,12 +28,11 @@ body {
 
 h1 {
     color: var(--primary);
-    font-family: var(--main-font);
     font-size: var(--title-size);
+    font-family: var(--title-font);
     font-weight: bold;
-
 }
 
 .footer {
     background-color: var(--secondary);
-}
+} 
