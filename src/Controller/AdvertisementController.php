@@ -8,10 +8,9 @@ use App\Model\CriterionOfPropretyManager;
 use App\Model\CriterionManager;
 use App\Model\TransactionOfPropretyManager;
 
-
 class AdvertisementController extends AbstractController
-{/*
-    private int $idProperty = 1;
+{
+    /*private int $idProperty = 1;
 
     public function index()
     {
@@ -19,7 +18,6 @@ class AdvertisementController extends AbstractController
         $city = $this->cityByIdProperty();
         $criterions = $this->criterionsByIdProprety();
         $Transaction = $this->transactionByIdProprety();
-               
         return $this->twig->render('Advertisement/index.html.twig',
         ['property' => $property,
         'city' => $city,
@@ -27,7 +25,6 @@ class AdvertisementController extends AbstractController
         'transaction' => $Transaction,
         ]);
     }
-
 
     public function cityByIdProperty()
     {
@@ -41,8 +38,6 @@ class AdvertisementController extends AbstractController
 
         $city = $sector['ville'];
     }
-*/
-/*
 
     public function criterionsByIdProprety()
     {
@@ -61,8 +56,7 @@ class AdvertisementController extends AbstractController
             $criterionsByIdProprety[] = $criterions->selectOneById($criterionOfPropretyByIdProprety);
         }
     }
-*/
-/*
+
     public function transactionByIdProprety()
     {
         $transactionOfPropretyById  = [];
@@ -75,14 +69,10 @@ class AdvertisementController extends AbstractController
         }
     }
 
-
-
     public function property()
     {
         $propertyManager = new PropertyManager();
         $property = $propertyManager->selectOneById($this->idProperty);
         return $property;
-    }
-*/
-
+    }*/
 }
