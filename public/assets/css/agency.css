@@ -1,0 +1,56 @@
+.map-infoagence {
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    }
+    .map-infoagence iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+    }
+    
+    .performance {  
+    font-size: var(--text-size);
+    font-family: var(--main-font);
+    margin-left: 50px;
+    }
+    
+    .performance p {
+    font-size: var(--text-size);
+    font-family: var(--main-font);
+    }
+
+    .realtorInfoPage p, ul , li {
+    line-height:1.5em;
+    list-style:outside;
+    }
+    
+    .flashInfoService {
+    background-color: var(--primary);
+    font-family: var(--main-font);
+    }
+    .flashInfoService p{
+    color:var(--light);
+    font-family: var(--main-font);
+    line-height:1.5em;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .map-infoagene{
+        display: none;
+        }
+        .flashInfoService {
+            display: none;
+        }
+        .performance {
+        font-family: var(--main-font);
+        margin-left: 0px;
+        }
+        .performance img {
+        width:310px;
+        height:186px;
+        }
+    }
