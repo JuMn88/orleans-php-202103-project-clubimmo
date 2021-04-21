@@ -5,10 +5,8 @@
     --dark: black;
     --intermediary: #AA9BBE;
     --card-color: #DDDDDD30;
-
     --main-font: 'Roboto, Sans-serif';
     --title-font: 'Lato';
-
     --title-size: 64px;
     --subtitle-size: 36px;
     --larger-text-size: 24px;
@@ -20,7 +18,6 @@ body {
     font-size: var(--text-size);
     font: var(--main-font);
 }
-
 
 h1 {
     color: var(--primary);
