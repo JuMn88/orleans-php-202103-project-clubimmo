@@ -22,11 +22,11 @@
                 </tr>
             </thead>
             <tbody>
-            {% for advertisement in advertisements %}
+            {% for property in properties %}
                 <tr>
-                    <td><img class="advertisement-image" src="{{ advertisement.image}}" alt="" /></td>
-                    <td>{{ advertisement.reference}}</td>
-                    <td>{{ advertisement.category}}</td>
+                    <td><img class="property-image" src="{{ property.image}}" alt="" /></td>
+                    <td>{{ property.reference}}</td>
+                    <td>{{ property.category}}</td>
                     <td></td>
                 </tr>
             {% endfor %}
