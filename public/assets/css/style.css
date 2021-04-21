@@ -3,7 +3,7 @@
     --secondary: #DDDDDD55;
     --light: white;
     --dark: black;
-	--transparent-light: rgba(255, 255, 255, 0.514);
+    --transparent-light: rgba(255, 255, 255, 0.514);
     --intermediary: #AA9BBE;
     --card-color: #DDDDDD30;
     --main-font: 'Roboto, Sans-serif';
@@ -13,7 +13,6 @@
     --larger-text-size: 24px;
     --text-size: 18px;
 }
-
 
 body {
     color: var(--dark);
