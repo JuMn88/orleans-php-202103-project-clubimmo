@@ -6,6 +6,10 @@ h1 {
     color: var(--primary);
 }
 
+.container {
+    width: 75%;
+}
+
 .property-image {
     --size: 40px;
     width: var(--size);
@@ -15,4 +19,15 @@ h1 {
 
 table td {
     vertical-align: middle;
+}
+
+.btn-purple {
+    color:#fff;
+    background-color: var(--primary);
+    border-color: var(--primary);
+    width: 20%;
+}
+
+.empty:empty {
+    display: none;
 }

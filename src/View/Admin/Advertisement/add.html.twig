@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/assets/css/admin_advertisement.css">
+{% endblock %}
+
+{% block content %}
+
+    <main class="container">
+        <h1 class="mt-5 pb-2">
+            Ajouter une annonce
+        </h1>
+
+        <ul class="alert alert-danger list-unstyled empty">
+            {%- for error in errors -%}
+                <li>{{ error }}</li>
+            {%- endfor -%}
+        </ul>
+
+        <a class="btn btn-purple mb-3" href="/adminAdvertisement/index">Retour</a>
+        <form method="POST" novalidate>
+            <div class="mb-3">
+                <label for="reference" class="form-label">Référence</label>
+                <input type="text" class="form-control" id="reference" 
+                    name="reference" placeholder="#00000"  value="{{property.reference}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="surface" class="form-label">Surface</label>
+                <input type="number" class="form-control" id="surface" 
+                    name="surface" placeholder="Nombre de mètres carrés" value="{{property.surface}}" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="price" 
+                    name="price" placeholder="Montant en euros" value="{{property.price}}" required>
+            </div>
+            <button class="btn btn-purple mb-3">Ajouter</button>
+        </form>
+        
+    </main>
+{% endblock %}
