@@ -2,43 +2,26 @@
 
 namespace App\Controller;
 
-use App\Model\BienManager;
+use App\Model\PropertyManager;
 
 class AdvertisementController extends AbstractController
 {
-    private int $idBien = 2;
-
     public function index()
     {
-        $energyInformations = $this->energyInformations();
+        $energyInformations = $this->energy();
         return $this->twig->render('Advertisement/index.html.twig', $energyInformations);
     }
 
-    public function energyInformations()
+    public function energy()
     {
-        $bienManager = new BienManager();
-        $bienTable = $bienManager->selectOneById($this->idBien);
+        $propertyManager = new PropertyManager();
+        $propertys = $propertyManager->selectAll();
+        foreach($propertys as $property) {
+            $energyPerformanceDiagnostic = $property['energy_performance_diagnostic'];
+            $greenhouseGas = $property['greenhouse_gas'];
 
-        $valueEPD = $bienTable['energy_performance_diagnostic'];
-        $greenhouseGas = $bienTable['greenhouse_gas'];
-
-        if (empty($valueEPD)) {
-            $photoEPD = "/assets/images/DPE_vide.png";
-            $valueEPD = "Vierge";
-        } else {
-            $photoEPD = "/assets/images/DPE.png";
         }
-
-        if (empty($greenhouseGas)) {
-            $photoGreenhouseGas = "/assets/images/GES_vide.png";
-            $greenhouseGas = "Vierge";
-        } else {
-            $photoGreenhouseGas = "/assets/images/GES.png";
-        }
-
-        $energyInformations = ['photoEPD' => $photoEPD,
-        'photoGreenhouseGas' => $photoGreenhouseGas,
-        'valueEPD' => $valueEPD,
+        $energyInformations = ['energyPerformanceDiagnostic' => $energyPerformanceDiagnostic,
         'greenhouseGas' => $greenhouseGas];
 
         return $energyInformations;

@@ -45,17 +45,24 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
 
 
+## Actualy we only can see last add in Database, because I select all energy informations in Table. ##
+## But in futur it will change on addOneById so only one EPD photo will be selected ##
 
 ## CREATE TEST DATABASE ##
 
 CREATE DATABASE IF NOT EXISTS club_de_l_immo;
 
-/* Creation de la table bien */
+CREATE TABLE property (
+    energy_performance_diagnostic VARCHAR(5),
+    greenhouse_gas VARCHAR(5),
+    CONSTRAINT C6 PRIMARY KEY (id));
+
+/* Creation de la table property */
 CREATE TABLE club_de_l_immo.bien (id INT, energy_performance_diagnostic VARCHAR(255), greenhouse_gas VARCHAR(255));
 
-insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (1, "A", "B");
-insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (2, "", "A");
-insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (3, "A", "");
-insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (4, "B", "B");
-insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (5, "H", "B");
-insert into bien (id, energy_performance_diagnostic, greenhouse_gas) values (6, "A", "B");
+insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("A", "B");
+insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("", "A");
+insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("A", "");
+insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("B", "B");
+insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("H", "B");
+insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("A", "B");
