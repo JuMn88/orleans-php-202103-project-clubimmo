@@ -27,6 +27,12 @@ h1 {
     font-weight: bold;
 }
 
+h2 {
+    color: var(--primary);
+    font-family: var(--main-font);
+}
+
+
 .footer {
     background-color: var(--secondary);
 }
