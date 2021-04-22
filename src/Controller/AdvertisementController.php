@@ -21,7 +21,7 @@ class AdvertisementController extends AbstractController
         $photosAdress = [];
 
         foreach ($photosTable as $photosInformations) {
-            if($photosInformations['bien_id'] = $this->idProperty){
+            if ($photosInformations['bien_id'] == $this->idProperty) {
                 $photosAdress[] = $photosInformations['url'];
             }
         }
@@ -31,5 +31,3 @@ class AdvertisementController extends AbstractController
         return $photosAdress;
     }
 }
-
-
