@@ -30,8 +30,7 @@ class AdvertisementController extends AbstractController
                 }
             }
         }
-        
-        if(empty($photosAdress)) {
+        if (empty($photosAdress)) {
             $photosAdress[] = "/assets/images/no_image.png";
         }
         return $photosAdress;
