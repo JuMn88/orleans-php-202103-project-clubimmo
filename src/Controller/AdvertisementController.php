@@ -6,6 +6,7 @@ use App\Model\PhotoManager;
 
 class AdvertisementController extends AbstractController
 {
+    private int $idProperty = 1;
 
     public function index()
     {
@@ -20,12 +21,15 @@ class AdvertisementController extends AbstractController
         $photosAdress = [];
 
         foreach ($photosTable as $photosInformations) {
-            $photosAdress[] = "/assets/images/" . $photosInformations['nom'];
+            if($photosInformations['bien_id'] = $this->idProperty){
+                $photosAdress[] = $photosInformations['url'];
+            }
         }
-
         if (empty($photosAdress)) {
             $photosAdress[] = "/assets/images/no_image.png";
         }
         return $photosAdress;
     }
 }
+
+

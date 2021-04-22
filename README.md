@@ -50,14 +50,19 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 CREATE DATABASE IF NOT EXISTS club_de_l_immo;
 
 /* Creation de la table photo */
-CREATE TABLE club_de_l_immo.photo (
-    id INT,
+CREATE TABLE photo (
+    id INT NOT NULL AUTO_INCREMENT,
     nom VARCHAR(255),
-    url VARCHAR(255));
+    url VARCHAR(255),
+    bien_id INT,
+    CONSTRAINT C8 PRIMARY KEY (id));
 
-insert into photo (id, nom, url) values (1, "advertisement1.jpg", "/assets/images");
-insert into photo (id, nom, url) values (2, "advertisement2.jpg", "/assets/images");
-insert into photo (id, nom, url) values (3, "advertisement3.jpg", "/assets/images");
-insert into photo (id, nom, url) values (4, "advertisement4.jpg", "/assets/images");
-insert into photo (id, nom, url) values (5, "advertisement5.jpg", "/assets/images");
-insert into photo (id, nom, url) values (6, "advertisement6.jpg", "/assets/images");
+insert into photo (nom, url, bien_id) values ("photo1", "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80", 1);
+
+insert into photo (nom, url, bien_id) values ("photo1", "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80", 1);
+
+insert into photo (nom, url, bien_id) values ("photo1", "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80", 1);
+
+insert into photo (nom, url, bien_id) values ("photo1", "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80", 1);
+
+        
