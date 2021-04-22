@@ -1,9 +1,8 @@
-
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-<div class="container-fluid">
+       
+<div class="container-contact container-fluid">
         <h2 class="h2 title-contactform container text-center col-lg-9 col-md-9 col-12 mb-5 shadow-sm p-3 text-light rounded-3">
             CONTACTEZ-NOUS
         </h2>
@@ -41,11 +40,11 @@
 
                 <div class="form-group row text-center mb-2 p-3">
                     <p class="text-collapse">Vous êtes propriétaire et vous voulez déposez un dossier ?</p>
-                    <a href="#form-hidden" class="btn-group-sm btn-default text-collapse" data-toggle="collapse"><p class="font-weight-normal font-italic">Cliquez ici</p></a>                    
+                    <a href="#form-hidden" class="btn-group-sm btn-default text-collapse" data-bs-toggle="collapse" data-bs-target="#form-hidden" aria-expanded="false" aria-controls="#form-hidden"><p class="font-weight-normal font-italic">Cliquez ici</p></a>                    
                 </div>
 
                 <!--This section is only showed when clicking on "cliquez ici"-->
-                
+
                 <div id="form-hidden" class="collapse">
                     <div class="form-group row mb-3">
                         <label class="col-lg-4 col-md-4 col-12 col-form-label" for="immotype">Type de bien</label>
@@ -58,7 +57,7 @@
                             </select>
                         </div>
                     </div>               
-                  
+
                     <div class="form-group row mb-3">
                         <label class="col-lg-4 col-md-4 col-12 col-form-label" for="text">Adresse</label>
                         <div class="col-lg-8 col-md-8 col-12">
@@ -113,4 +112,5 @@
             </form>
         </div>
     </div>
+
 {% endblock %}
