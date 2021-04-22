@@ -1,25 +1,31 @@
-<div class="container col-12 col-sm-9 d-flex justify-content-center p-0">
+<div class="container col-12 col-sm-12 d-flex justify-content-center my-5 px-0">
     <div class="row col-12 col-sm-9 d-flex justify-content-center">
         <div class="col-12 d-flex flex-row justify-content-center px-0">
-            <div class="row col-6 d-flex flex-row px-0">
-                <div class="col-12 text-center">
-                    <h3>DPE - {{ energyPerformanceDiagnostic }}</h3>
+            <div class="row col-12 d-flex flex-row px-0">
+                <div class="col-6 text-center align-self-center p-0">
+                    {%  if energyPerformanceDiagnostic is empty %}
+                        <h3>DPE - No Information </h3>
+                    {% else %}
+                        <h3>DPE - {{ energyPerformanceDiagnostic }}</h3>
+                    {% endif %}
                 </div>
-                <div class="col-12">
-                    <img class="col-12 px-0" src="{{ photoEPD }}" alt="dpe">
+                <div class="col-6 text-center align-self-center p-0">
+                    {%  if greenhouseGas is empty %}
+                        <h3>GES - No Information </h3>
+                    {% else %}
+                        <h3>GES - {{ greenhouseGas }}</h3>
+                    {% endif %}
                 </div>
-            </div>
 
-            <div class="row col-6 d-flex flex-row px-0">
-                <div class="col-12 text-center">
-                    <h3>GES - {{ greenhouseGas }}</h3>
+                <div class="col-6 p-0">
+                    <img class="col-12 px-0" src="\assets\images\DPE.png" alt="dpe">
                 </div>
-                <div class="col-12">
-                    <img class="col-12 px-0"  src="{{ photoGreenhouseGas }}" alt="ges">
+
+                <div class="col-6 p-0">
+                    <img class="col-12 px-0"  src="\assets\images\GES.png" alt="ges">
                 </div>
             </div>
         </div>
-
         <div class="row col-12 d-flex justify-content-center mt-5 px-0">
             <div class ="col-12 text-center px-0">
                 <h3>VOIR SUR LA CARTE</h3>

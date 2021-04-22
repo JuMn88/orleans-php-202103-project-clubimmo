@@ -8,21 +8,13 @@ class AdvertisementController extends AbstractController
 {
     public function index()
     {
-        //$energyInformations = $this->energy();
-        return $this->twig->render('Advertisement/index.html.twig');
-    }
-
-    /*public function energy()
-    {
         $propertyManager = new PropertyManager();
-        $propertys = $propertyManager->selectAll();
-        foreach ($propertys as $property) {
+        $properties = $propertyManager->selectAll();
+
+        foreach ($properties as $property) {
             $energyPerformanceDiagnostic = $property['energy_performance_diagnostic'];
             $greenhouseGas = $property['greenhouse_gas'];
         }
-        $energyInformations = ['energyPerformanceDiagnostic' => $energyPerformanceDiagnostic,
-        'greenhouseGas' => $greenhouseGas];
-
-        return $energyInformations;
-    }*/
+        return $this->twig->render('Advertisement/index.html.twig', ['greenhouseGas' => $greenhouseGas, 'energyPerformanceDiagnostic' => $energyPerformanceDiagnostic]);
+    }
 }
