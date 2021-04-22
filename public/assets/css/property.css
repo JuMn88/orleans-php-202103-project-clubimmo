@@ -1,0 +1,19 @@
+.container-property{
+    --height-card: 250px;
+    margin: calc(var(--height-card)/5) auto;
+}
+
+.card-price-property,
+.card-property-location {
+    color:var(--primary);
+}
+.property-card{
+    min-height: var(--height-card);
+}
+.property-card img{
+    min-height: var(--height-card);
+    object-fit: cover;
+}
+.btn-property{
+    background-color: var(--primary);
+}
