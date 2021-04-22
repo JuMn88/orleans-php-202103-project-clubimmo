@@ -6,7 +6,7 @@ use App\Model\PhotoManager;
 
 class AdvertisementController extends AbstractController
 {
-        public function index()
+    public function index()
     {
         $photosAdress = $this->carousel();
         return $this->twig->render('Advertisement/index.html.twig', ['photosAdress' => $photosAdress]);
