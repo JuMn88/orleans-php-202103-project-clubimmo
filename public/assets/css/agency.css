@@ -1,0 +1,26 @@
+.map-infoagence {
+    overflow:hidden;
+    }
+    
+    .performance {  
+    font-family: var(--main-font);
+    }
+    
+    .performance p {
+    font-family: var(--main-font);
+    }
+
+    .realtorInfoPage p, ul , li {
+    line-height:1.5em;
+    list-style:inside;
+    }
+
+    .flashInfoService {
+    background-color: var(--primary);
+    font-family: var(--main-font);
+    }
+    .flashInfoService p{
+    color:var(--light);
+    font-family: var(--main-font);
+    line-height:1.5em;
+    }
