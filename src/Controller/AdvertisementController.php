@@ -10,22 +10,28 @@ class AdvertisementController extends AbstractController
 
     public function index()
     {
-        $photosAdress = $this->carousel();
+        $photosAdress = $this->carousel($this->idProperty);
         return $this->twig->render('Advertisement/index.html.twig', ['photosAdress' => $photosAdress]);
     }
 
-    public function carousel()
+    public function carousel(int $idProperty)
     {
         $photoManager = new PhotoManager();
-        $photosTable = $photoManager->selectAll();
+        $photos = $photoManager->selectAll();
         $photosAdress = [];
 
-        foreach ($photosTable as $photosInformations) {
-            if ($photosInformations['bien_id'] == $this->idProperty) {
-                $photosAdress[] = $photosInformations['url'];
+        foreach ($photos as $photosInformations) {
+            if ($photosInformations['property_id'] == $idProperty) {
+                if (empty($photosInformations['url'])) {
+                    $photosAdress[] = "/assets/images/no_image.png";
+                    break;
+                } else {
+                    $photosAdress[] = $photosInformations['url'];
+                }
             }
         }
-        if (empty($photosAdress)) {
+        
+        if(empty($photosAdress)) {
             $photosAdress[] = "/assets/images/no_image.png";
         }
         return $photosAdress;
