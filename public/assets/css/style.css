@@ -1,14 +1,32 @@
 :root {
-    --primary: purple;
-    --secondary: grey;
+    --primary: #6B36AE;
+    --secondary: #DDDDDD55;
     --light: white;
     --dark: black;
-    --intermediary: rgb(129, 85, 129);
-
+    --transparent-light: rgba(255, 255, 255, 0.514);
+    --intermediary: #AA9BBE;
+    --card-color: #DDDDDD30;
     --main-font: 'Roboto, Sans-serif';
-    --title-font: 'Nova Oval', cursive;
+    --title-font: 'Lato';
+    --title-size: 64px;
+    --subtitle-size: 36px;
+    --larger-text-size: 24px;
+    --text-size: 18px;
+}
+
+body {
+    color: var(--dark);
+    font-size: var(--text-size);
+    font: var(--main-font);
 }
 
 h1 {
     color: var(--primary);
+    font-size: var(--title-size);
+    font-family: var(--title-font);
+    font-weight: bold;
 }
+
+.footer {
+    background-color: var(--secondary);
+} 
