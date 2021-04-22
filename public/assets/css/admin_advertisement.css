@@ -22,10 +22,10 @@ table td {
 }
 
 .btn-purple {
-    color:#fff;
+    color: var(--light);
     background-color: var(--primary);
     border-color: var(--primary);
-    width: 20%;
+    width:fit-content;
 }
 
 .empty:empty {
