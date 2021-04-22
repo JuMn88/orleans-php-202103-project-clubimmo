@@ -1,5 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
+    {% block header %}
+        {% include 'Home/header.html.twig' %}
+    {% endblock %}
 {% endblock %}

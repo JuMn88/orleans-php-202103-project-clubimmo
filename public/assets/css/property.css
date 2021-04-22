@@ -1,10 +1,10 @@
 .container-property{
-    --height-card: 250px;
-    margin: calc(var(--height-card)/5) auto;
+    --height-card: 300px;
+    margin: calc(var(--height-card)/2.5) auto;
 }
 
 .card-price-property,
-.card-property-location {
+.card-property-type {
     color:var(--primary);
 }
 .property-card{

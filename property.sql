@@ -1,51 +1,35 @@
 --
--- Create property table 
+-- Base de données :  `club_de_l_immo`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `property`
 --
 
 CREATE TABLE property(
   id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
   property_type varchar(255),
-  prix varchar(255),
+  price int,
   surface int,
   nb_pieces int,
   sector varchar(255),
   city varchar(255),
   photo varchar(255));
 
-INSERT INTO property (property_type, prix, surface, nb_pieces, photo, sector, city) VALUES ("Maison", "200 000",100,4,"/assets/images/advertisement1.jpg",'Cigogne','Orleans'), 
-("Maison","260 000",120,5,"/assets/images/advertisement2.jpg",'Moulière','Olivet'), ("Appartement","370 000",140,6,"/assets/images/advertisement3.jpg",'Ardon','Olivet'),
-("Appartement","220 000",110,4,"/assets/images/advertisement4.jpg",'Vilpot','Saran'), ("Vila","500 000",240,7,"/assets/images/advertisement5.jpg",'Orée de Sologne','Orleans Sud'),
-("Maison","170 000",80,4,"/assets/images/advertisement6.jpg",'Cigogne','Olivet'),("Maison","370 000",140,6,"/assets/images/advertisement3.jpg",'Moulière','Olivet'),
-("Maison","220 000",110,4,"/assets/images/advertisement4.jpg",'Les Sablonnières','Saran'),("Maison","370 000",140,6,"/assets/images/advertisement3.jpg",'Moulière','Olivet'),
-("Maison","220 000",110,4,"/assets/images/advertisement4.jpg",'Vilpot','Saran'); 
+--
+-- Contenu de la table `property`
+--
 
-
-
-
-/*!40101
-
-CREATE TABLE `sector`(
-  `id` int PRIMARY KEY NOT NULL,
-  `district` VARCHAR(255),
-  `city` VARCHAR(255),
-  `code postal` VARCHAR(255));
-
-
-CREATE TABLE property(
-  id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  prix int,
-  surface int,
-  nb_pieces int,
-  sector_id int,
-  CONSTRAINT fk_property_sector
-  FOREIGN KEY (sector_id)            
-  REFERENCES sector(id));
----
-CREATE TABLE `photo`(
-   `id` int PRIMARY KEY AUTO_INCREMENT NOT NULL, 
-    `nom` varchar(255), 
-    `url` varchar(255), 
-    `property_id` int, 
-    CONSTRAINT fk_property_photo 
-    FOREIGN KEY (property_id)
-    REFERENCES property(id)); 
+INSERT INTO property (property_type, price, surface, nb_pieces, photo, sector, city) VALUES 
+("Maison", 200000, 100, 4,"https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",'Cigogne','Orleans'), 
+("Maison", 260000, 120, 5,"https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Moulière','Olivet'), 
+("Appartement", 370000, 140, 6,"https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Ardon','Olivet'),
+("Appartement", 220000, 110, 4,"https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",'Vilpot','Saran'), 
+("Vila", 500000, 240, 7,"https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Orée de Sologne','Orleans Sud'),
+("Maison", 170000, 80, 4,"https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Ardon','Olivet'),
+("Maison", 370000, 140, 6,"https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Moulière','Olivet'),
+("Maison", 220000, 110, 4,"https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Les Sablonnières','Saran'),
+("Maison", 370000, 140, 6,"https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",'Moulière','Olivet'),
+("Maison", 220000, 110, 4,"https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Vilpot','Saran'); 
