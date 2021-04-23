@@ -1,59 +1,86 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-       
+
 <div class="container-contact container-fluid">
         <h2 class="h2 title-contactform container text-center col-lg-9 col-md-9 col-12 mb-5 shadow-sm p-3 text-light rounded-3">
             CONTACTEZ-NOUS
         </h2>
 
+        {% if errors is empty %} 
+                
+        {#  Show the message if all the input fields are filled  #} 
+            
+            <h5 class = "success-message container text-center mb-5 col-lg-9 col-md-9 col-12">{{success}}</h5>
+        
+        {% else %} 
+
+        {#  Show the errors #}
+
+            <ul class ="alert alert-danger text-danger container text-center mb-5 col-lg-9 col-md-9 col-12 list-unstyled">
+                {% for error in errors %} 
+                    <li> {{ error }} </li>
+                {% endfor %}
+            </ul>
+
+        {% endif %} 
+        {#  Showing the errors ends here  #}
+
         <div class="container col-lg-5 col-md-9 col-12">
-            <form>
+            <form method ="post" action ="submitForm" novalidate>
+             {# Test <input type="hidden" id="isCollapse" value="true" /> #}
 
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="firstname">Prénom</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Votre prénom" required />
+                        <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Votre prénom" value="{{ client.firstname }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="lastname">Nom</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Votre nom" required/>
+                        <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Votre nom" value="{{ client.lastname }}" required/>
                     </div>
                 </div>
 
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="phone">Numéro de téléphone</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <input class="form-control" type="tel" id="phone" name="phone" placeholder="00 11 22 33 44" required />
+                        <input class="form-control" type="text" id="phone" name="phone" placeholder="00 11 22 33 44" value="{{ client.phone }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row mb-3">
                     <label for="email" class="col-lg-4 col-md-4 col-12 col-form-label">Email</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ client.email }}" required />
                     </div>
                 </div>
 
                 <div class="form-group row text-center mb-2 p-3">
                     <p class="text-collapse">Vous êtes propriétaire et vous voulez déposez un dossier ?</p>
-                    <a href="#form-hidden" class="btn-group-sm btn-default text-collapse" data-bs-toggle="collapse" data-bs-target="#form-hidden" aria-expanded="false" aria-controls="#form-hidden"><p class="font-weight-normal font-italic">Cliquez ici</p></a>                    
+                    <a href="#form-hidden" onclick="collapseForm()" class="btn-group-sm btn-default text-collapse" data-bs-toggle="collapse" data-bs-target="#form-hidden" aria-expanded="false" aria-controls="#form-hidden"><p class="font-weight-normal font-italic">Cliquez ici</p></a>                    
                 </div>
 
                 <!--This section is only showed when clicking on "cliquez ici"-->
 
                 <div id="form-hidden" class="collapse">
                     <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="immotype">Type de bien</label>
+                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="propertyType">Type de bien</label>
                         <div class="col-lg-8 col-md-8 col-12">
-                            <select name="immo-type" id="immo-type" class="form-control custom-select" size="1">
+                            <select name="propertyType" id="propertyType" class="form-control custom-select" size="1">
                                 <option value="">Choisissez un type de bien</option>
-                                <option value="">Maison</option>
-                                <option value="">Appartement</option>
-                                <option value="">Autres</option>
+                               
+                             
+                                {% for propertyType in propertyTypes %}
+                                <option {% if client.propertyType == propertyType %} selected 
+                                        {% endif %}
+                                  value="{{ propertyType }}">
+                                    {{ propertyType }}
+                                </option>
+                                {% endfor %}
+                              
                             </select>
                         </div>
                     </div>               
@@ -61,43 +88,46 @@
                     <div class="form-group row mb-3">
                         <label class="col-lg-4 col-md-4 col-12 col-form-label" for="text">Adresse</label>
                         <div class="col-lg-8 col-md-8 col-12">
-                            <input class="form-control" type="text" id="address" name="address" placeholder="Votre adresse" required />
+                            <input class="form-control" type="text" id="residence" name="residence" placeholder="Votre adresse" value="{{ client.residence }}" required />
                         </div>
                     </div>
 
                     <div class="form-group row mb-3">
                         <label class="col-lg-4 col-md-4 col-12 col-form-label" for="text">Ville</label>
                         <div class="col-lg-8 col-md-8 col-12">
-                            <input class="form-control" type="text" id="city" name="city" placeholder="Votre ville" required />
+                            <input class="form-control" type="text" id="city" name="city" placeholder="Votre ville" value="{{ client.city }}" required />
                         </div>
                     </div>
 
                     <div class="form-group row mb-3">
                         <label class="col-lg-4 col-md-4 col-12 col-form-label" for="text">Code postal</label>
                         <div class="col-lg-8 col-md-8 col-12">
-                            <input class="form-control" type="text" id="postalcode" name="postalcode" placeholder="Code postal" required />
+                            <input class="form-control" type="text" id="postalcode" name="postalcode" placeholder="Code postal" value="{{ client.postalcode }}" required />
                         </div>
                     </div>
                 </div>
                 <!--The hidden section by default ends here-->
 
                 <div class="form-group row mb-3">
-                    <label class="col-lg-4 col-md-4 col-12 col-form-label" for="immotype">Type de bien</label>
+                    <label class="col-lg-4 col-md-4 col-12 col-form-label" for="topic">Sujet</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <select name="immo-type" id="immo-type" class="form-control custom-select" size="1">
-                            <option value="">Choisissez un sujet</option>
-                            <option value="">Je cherche un bien à acheter</option>
-                            <option value="">Je cherche un bien à louer</option>
-                            <option value="">J'ai un bien à louer</option>
-                            <option value="">Autres</option>
+                        <select name="topic" id="topic" class="form-control custom-select" size="1">
+                            <option>Choisissez un sujet</option>
+                            {% for topic in topics %}
+                                <option {% if client.topic == topic %} selected 
+                                        {% endif %}
+                                  value="{{ topic }}">
+                                    {{ topic }}
+                                </option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>       
 
                 <div class="form-group row mb-3">
-                    <label class="col-lg-4 col-md-4 col-12 col-form-label" for="message">Message</label>
+                    <label class="col-lg-4 col-md-4 col-12 col-form-label" for="message_client">Message</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <textarea class="form-control" id="message" rows="5" name="message" placeholder="Écrivez votre message" required></textarea>
+                        <textarea class="form-control" id="message_client" rows="5" name="message_client" placeholder="Écrivez votre message" value="{{ client.message_client }}" required></textarea>
                     </div>
                 </div>
 
@@ -113,4 +143,17 @@
         </div>
     </div>
 
+    {#    <script>
+            function collapseForm(){
+                var val = document.getElementById("isCollapse").value;
+                if(val === "true")
+                {
+                    document.getElementById("isCollapse").value = "false";
+                }
+                else { 
+                    document.getElementById("isCollapse").value = "true";
+                }
+            };
+       </script>
+    #}
 {% endblock %}
