@@ -6,19 +6,11 @@ h1 {
     color: var(--primary);
 }
 
-.container {
-    width: 75%;
-}
-
 .property-image {
     --size: 40px;
     width: var(--size);
     height: var(--size);
     object-fit: contain;
-}
-
-table td {
-    vertical-align: middle;
 }
 
 .btn-purple {
