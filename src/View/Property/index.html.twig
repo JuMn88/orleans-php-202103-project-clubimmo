@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/property.css">
+{% endblock %}
+
+{% block content %}
+<div class="container-property container col-lg-9 col-md-9 col-12 mb-3">
+      <div class="row">
+        {% for property in properties %}
+        <div class="col-md-6 col-12">
+          <div class="property-card card mb-5">
+            <div class="row g-0">
+              <div class="col-lg-6 col-sm-12 col-12">
+                <img
+                  class="w-100"
+                  src="{{ property.photo }}"
+                  alt="{{ property.property_type }}"
+                />
+              </div>
+              <div class="col-lg-6 col-sm-12 col-12 d-flex align-items-center">
+                <div class="card-body">
+                  
+                  <h5 class="card-title col-lg-7 col-sm-12 col-6 card-property-type">
+                    <strong>{{ property.property_type }}</strong>
+                  </h5>
+
+                  <h6 class="card-text">
+                    {{ property.city }} ({{ property.sector }})
+                  </h6>
+
+                  <h6 class="col-lg-5 col-sm-12 card-price-property font-weight-bold font-italic">
+                    <strong><i>{{ property.price|number_format(0, '.', ' ')  }} € </i></strong>
+                  </h6>
+                  
+                  <p class="card-text">
+                    {{ property.nb_pieces }} pièces {{ property.surface }} m2
+                  </p>
+                  <a href="#" class="btn-property btn text-light">Voir l'annonce</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock %}
