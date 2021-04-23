@@ -63,7 +63,7 @@ class ContactController extends AbstractController
                 $errors[] = 'Votre nom ne doit pas dépasser ' . $lastnameLength . '  characters';
             }
 
-            $errors = $this->validatePhoneEmail($client,$errors);
+            $errors = $this->validatePhoneEmail($client, $errors);
 
             if (!in_array($client['topic'], self::TOPIC)) {
                 $errors[] = 'Veuillez choisir un sujet';

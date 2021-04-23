@@ -8,11 +8,11 @@ class ContactManager extends AbstractManager
 
     public function insert(array $client): void
     {
-       // $query = "INSERT INTO " . self::TABLE . " (`firstname`, `lastname`, `phone`, `email`, `residence`,`propertyType`, `topic`, `city`, `postalcode`, `message_client`) 
-       // VALUES (:firstname, :lastname, :phone, :email, :residence, :propertyType, :topic, :city, :postalcode,:message_client)";
-        $query1 = "(`firstname`, `lastname`, `phone`, `email`, `residence`,`propertyType`, `topic`, `city`, `postalcode`, `message_client`)";
-        $query2 = " VALUES (:firstname, :lastname, :phone, :email, :residence, :propertyType, :topic, :city, :postalcode,:message_client)";
-        $query = "INSERT INTO " . self::TABLE . $query1 . $query2;
+        $query1 = "(`firstname`, `lastname`, `phone`, `email`, `residence`,";
+        $query2 = "`propertyType`, `topic`, `city`, `postalcode`, `message_client`)";
+        $query3 = " VALUES (:firstname, :lastname, :phone, :email, :residence, ";
+        $query4 = ":propertyType, :topic, :city, :postalcode,:message_client)";
+        $query = "INSERT INTO " . self::TABLE . $query1 . $query2 . $query3 . $query4;
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('firstname', $client['firstname'], \PDO::PARAM_STR);
         $statement->bindValue('lastname', $client['lastname'], \PDO::PARAM_STR);
