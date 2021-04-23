@@ -2,10 +2,6 @@ body {
     padding-top: 70px;
 }
 
-h1 {
-    color: var(--primary);
-}
-
 .container {
     width: 75%;
 }
