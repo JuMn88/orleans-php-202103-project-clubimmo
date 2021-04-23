@@ -44,5 +44,9 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
 
+### method carousel will be used in 3 pages ###
+### In database.sql file you can find SQL requests, for add photos and test carousel ###
 
-## Import the sql document: client.sql
+## Import the sql file: property.sql to be able to see the photos displayed in the /property/index or (page Recherche from the navbar)
+
+## Import the sql file: client.sql to be able to verify the insertion of datas entered into the input fields by visiters (page Contact from the navbar)

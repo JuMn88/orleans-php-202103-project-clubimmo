@@ -98,10 +98,9 @@ class ContactController extends AbstractController
         }
         return $errors;
     }
-
+    // Create a method to validate the input fields of phone number and email
     public function validatePhoneEmail($client, $errors)
     {
-        // Verify the telephone number
         if (empty($client['phone'])) {
             $errors[] = 'Veuillez entrer votre numéro de téléphone';
         } else {
