@@ -9,7 +9,7 @@
 
 namespace App\Controller;
 
-use App\Model\ContactManager;
+use App\Model\ClientManager;
 
 class ContactController extends AbstractController
 {
@@ -114,8 +114,8 @@ class ContactController extends AbstractController
             ]);
         } else {
             // insert data in database
-            $contactManager = new ContactManager();
-            $contactManager->insert($client);
+            $clientManager = new ClientManager();
+            $clientManager->insert($client);
             // redirect the page
             //header('Location:/contact/index');
             return $this->twig->render('Contact/index.html.twig', [

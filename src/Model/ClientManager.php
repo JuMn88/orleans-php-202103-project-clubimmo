@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class ContactManager extends AbstractManager
+class ClientManager extends AbstractManager
 {
     public const TABLE = 'client';
 
