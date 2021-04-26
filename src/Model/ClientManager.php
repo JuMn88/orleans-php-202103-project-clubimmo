@@ -8,11 +8,11 @@ class ClientManager extends AbstractManager
 
     public function insert(array $client): void
     {
-        $query1 = "(`firstname`, `lastname`, `phone`, `email`, `address`,";
-        $query2 = "`propertyType`, `topic`, `city`, `postalcode`, `message`)";
-        $query3 = " VALUES (:firstname, :lastname, :phone, :email, :address, ";
-        $query4 = ":propertyType, :topic, :city, :postalcode,:message)";
-        $query = "INSERT INTO " . self::TABLE . $query1 . $query2 . $query3 . $query4;
+        $queryPart1 = "(`firstname`, `lastname`, `phone`, `email`, `address`,";
+        $queryPart2 = "`propertyType`, `topic`, `city`, `postalcode`, `message`)";
+        $queryPart3 = " VALUES (:firstname, :lastname, :phone, :email, :address, ";
+        $queryPart4 = ":propertyType, :topic, :city, :postalcode,:message)";
+        $query = "INSERT INTO " . self::TABLE . $queryPart1 . $queryPart2 . $queryPart3 . $queryPart4;
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('firstname', $client['firstname'], \PDO::PARAM_STR);
         $statement->bindValue('lastname', $client['lastname'], \PDO::PARAM_STR);
