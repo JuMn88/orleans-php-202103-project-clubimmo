@@ -6,8 +6,8 @@
 {% block content %}
     <main class="col-12 d-flex justify-content-center">
         <div class="container col-9 mx-0 px-0 d-flex justify-content-center">
-            <div class="row col-12 d-flex justify-content-center">
-                <h2 class="mt-5 pb-2 col-12">
+            <div class="mt-2 row col-12 d-flex justify-content-center">
+                <h2 class="mt-5 pb-2 col-12 text-center">
                     Liste des annonces
                 </h2>
 
@@ -23,9 +23,9 @@
                     <tbody>
                         {% for property in properties %}
                             <tr>
-                                <td>{{ property.reference}}</td>
-                                <td>{{ property.surface}}</td>
-                                <td>{{ property.price}}</td>
+                                <td>{{ property.reference }}</td>
+                                <td>{{ property.surface }}</td>
+                                <td>{{ property.price }}</td>
                                 <td><!-- TO DO Edit and Delete buttons--></td>
                             </tr>
                         {% endfor %}

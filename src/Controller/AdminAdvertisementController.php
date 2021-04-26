@@ -6,7 +6,6 @@ use App\Model\PropertyManager;
 
 class AdminAdvertisementController extends AbstractController
 {
-    public const MAX_FIELD_LENGTH = 100;
 
     public function index(): string
     {
