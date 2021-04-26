@@ -44,25 +44,7 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
 
+### method carousel will be used in 3 pages ###
+### In database.sql file you can find SQL requests, for add proprety (GES, EPD) ###
 
-## Actualy we only can see last add in Database, because I select all energy informations in Table. ##
-## But in futur it will change on addOneById so only one EPD photo will be selected ##
-
-## CREATE TEST DATABASE ##
-
-CREATE DATABASE IF NOT EXISTS club_de_l_immo;
-
-CREATE TABLE property (
-    energy_performance_diagnostic VARCHAR(5),
-    greenhouse_gas VARCHAR(5),
-    CONSTRAINT C6 PRIMARY KEY (id));
-
-/* Creation de la table property */
-CREATE TABLE club_de_l_immo.bien (id INT, energy_performance_diagnostic VARCHAR(255), greenhouse_gas VARCHAR(255));
-
-insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("A", "B");
-insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("", "A");
-insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("A", "");
-insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("B", "B");
-insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("H", "B");
-insert into bien (energy_performance_diagnostic, greenhouse_gas) values ("A", "B");
+## Import the sql file: property.sql

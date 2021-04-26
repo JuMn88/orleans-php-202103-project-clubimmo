@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\PropertyManager;
+use App\Model\PhotoManager;
 
 class AdvertisementController extends AbstractController
 {
@@ -18,5 +19,10 @@ class AdvertisementController extends AbstractController
         return $this->twig->render('Advertisement/index.html.twig',
         ['greenhouseGas' => $greenhouseGas,
         'energyPerformanceDiagnostic' => $energyPerformanceDiagnostic]);*/
+
+        $photoManager = new PhotoManager();
+        $photos = $photoManager->selectAll();
+
+        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos]);
     }
 }
