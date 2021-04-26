@@ -75,7 +75,6 @@ class ContactController extends AbstractController
             }
 
             $errors = $this->validatePhoneEmail($client, $errors);
-            
         }
         return $errors;
     }
@@ -107,7 +106,6 @@ class ContactController extends AbstractController
         $client = array_map('trim', $_POST);
         $errors = $this->validateForm($client);
         if (!empty($errors)) {
-            
             return $this->twig->render('Contact/index.html.twig', [
                 'topics' => self::TOPIC,
                 'propertyTypes' => self::PROPERTY_TYPE,

@@ -6,7 +6,6 @@ class ContactManager extends AbstractManager
 {
     public const TABLE = 'client';
 
-    
     public function insert(array $client): void
     {
         $query1 = "(`firstname`, `lastname`, `phone`, `email`, `address`,";
@@ -27,5 +26,4 @@ class ContactManager extends AbstractManager
         $statement->bindValue('message', $client['message'], \PDO::PARAM_STR);
         $statement->execute();
     }
-
 }
