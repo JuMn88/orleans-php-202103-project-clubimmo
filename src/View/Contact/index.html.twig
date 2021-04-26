@@ -11,7 +11,7 @@
                 
         {#  Show the message if all the input fields are filled  #} 
             
-            <h5 class = "success-message container text-center mb-5 col-lg-9 col-md-9 col-12">{{success}}</h5>
+            <h5 class = "success-message container text-center font-weight-bold font-italic mb-5 col-lg-9 col-md-9 col-12"><strong><i>{{success}}</i></strong></h5>
         
         {% else %} 
 
@@ -28,7 +28,6 @@
 
         <div class="container col-lg-5 col-md-9 col-12">
             <form method ="post" action ="submitForm" novalidate>
-             {# Test <input type="hidden" id="isCollapse" value="true" /> #}
 
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="firstname">Prénom</label>
@@ -59,7 +58,7 @@
                 </div>
 
                 <div class="form-group row text-center mb-2 p-3">
-                    <p class="text-collapse">Vous êtes propriétaire et vous voulez déposez un dossier ?</p>
+                    <p class="text-collapse">Vous êtes propriétaire et vous voulez déposer un dossier ?</p>
                     <a href="#form-hidden" onclick="collapseForm()" class="btn-group-sm btn-default text-collapse" data-bs-toggle="collapse" data-bs-target="#form-hidden" aria-expanded="false" aria-controls="#form-hidden"><p class="font-weight-normal font-italic">Cliquez ici</p></a>                    
                 </div>
 
@@ -86,21 +85,21 @@
                     </div>               
 
                     <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="text">Adresse</label>
+                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="address">Adresse</label>
                         <div class="col-lg-8 col-md-8 col-12">
-                            <input class="form-control" type="text" id="residence" name="residence" placeholder="Votre adresse" value="{{ client.residence }}" required />
+                            <input class="form-control" type="text" id="address" name="address" placeholder="Votre adresse" value="{{ client.address }}" required />
                         </div>
                     </div>
 
                     <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="text">Ville</label>
+                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="city">Ville</label>
                         <div class="col-lg-8 col-md-8 col-12">
                             <input class="form-control" type="text" id="city" name="city" placeholder="Votre ville" value="{{ client.city }}" required />
                         </div>
                     </div>
 
                     <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="text">Code postal</label>
+                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="postalcode">Code postal</label>
                         <div class="col-lg-8 col-md-8 col-12">
                             <input class="form-control" type="text" id="postalcode" name="postalcode" placeholder="Code postal" value="{{ client.postalcode }}" required />
                         </div>
@@ -125,9 +124,9 @@
                 </div>       
 
                 <div class="form-group row mb-3">
-                    <label class="col-lg-4 col-md-4 col-12 col-form-label" for="message_client">Message</label>
+                    <label class="col-lg-4 col-md-4 col-12 col-form-label" for="message">Message</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <textarea class="form-control" id="message_client" rows="5" name="message_client" placeholder="Écrivez votre message" value="{{ client.message_client }}" required></textarea>
+                        <textarea class="form-control" id="message" rows="5" name="message" placeholder="Écrivez votre message" value="{{ client.message }}" required></textarea>
                     </div>
                 </div>
 
@@ -143,17 +142,4 @@
         </div>
     </div>
 
-    {#    <script>
-            function collapseForm(){
-                var val = document.getElementById("isCollapse").value;
-                if(val === "true")
-                {
-                    document.getElementById("isCollapse").value = "false";
-                }
-                else { 
-                    document.getElementById("isCollapse").value = "true";
-                }
-            };
-       </script>
-    #}
 {% endblock %}
