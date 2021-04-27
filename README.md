@@ -44,7 +44,6 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
 
-### method carousel will be used in 3 pages ###
-### In database.sql file you can find SQL requests, for add proprety (GES, EPD) ###
 
-## Import the sql file: property.sql
+### In database.sql file you can find SQL requests, for add proprety (GES, EPD) ###
+### Import the sql file: property.sql ###
