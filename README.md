@@ -45,12 +45,6 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
 
 
-insert into bien (reference, prix, surface, adresse, classe_energetique, nb_chambre, nb_piece, description, role) values ("toto", 50000, 100, "rue toto", "A", 3, 5, "xxxxxxxxxxxxxxxx", "toto");
-
-
-insert into secteur (quartier, ville, cp) values ("quartier", "Orleans", "45000");
-
-### method carousel will be used in 3 pages ###
 ### In database.sql file you can find SQL requests, for add photos and test carousel ###
 
 ## Import the sql file: property.sql
