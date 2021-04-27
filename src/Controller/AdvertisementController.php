@@ -9,10 +9,13 @@ class AdvertisementController extends AbstractController
 {
     public function index()
     {
-        $idProperty = $_GET['id'];
-
-        $propertyManager = new PropertyManager();
-        $property = $propertyManager->selectOneById($idProperty);
+        if (!empty($_GET)) {
+            $idProperty = $_GET['id'];
+            $propertyManager = new PropertyManager();
+            $property = $propertyManager->selectOneById($idProperty);
+        } else {
+            $property = Null;
+        }
 
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectAll();
