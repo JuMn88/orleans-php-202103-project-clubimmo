@@ -1,20 +1,16 @@
-<div class="container col-12 col-sm-9 d-flex justify-content-center p-0">
+<div class="container col-12 p-0">
     <div class="row col-12">
-        {% block headcont %}
-            <div class="col-12">
-                <a href="/Property/index">Revenir en arriere</a>
-            </div>
-            <div class="col-12">
 
-            </div>
+        <div class="col-12">
+            <a class='link-dark fw-bold back'href="/Property/index">Revenir en arriere</a>
+        </div>
+        <div class="col-12 px-5 mt-5">
             <div class="col-12">
-                <div>
-                    <h2>{{ property.property_type }}, {{ property.city }}</h2>
-                </div>
-                <div>
-                    {{ property.transaction }} {{ property.property_type }}, {{ property.nb_pieces }} pièces, {{ property.nb_room }} chambres, surface : {{ property.surface }}m2
-                </div>
+                <h2 class="fw-bold">{{ property.property_type }}, {{ property.city }}</h2>
             </div>
-        {% endblock %}
+            <div>
+                <p>{{ property.transaction }} {{ property.property_type }}, {{ property.nb_pieces }} pièces, {{ property.nb_room }} chambres, surface : {{ property.surface }}m² </p>
+            </div>
+        </div>
     </div>
 </div>
