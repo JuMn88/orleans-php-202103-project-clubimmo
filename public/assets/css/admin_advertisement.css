@@ -16,6 +16,13 @@ table td {
     width:fit-content;
 }
 
+.btn-lightpurple {
+    color: var(--light);
+    background-color: var(--intermediary);
+    border-color: var(--intermediary);
+    width:fit-content;
+}
+
 .empty:empty {
     display: none;
 }
