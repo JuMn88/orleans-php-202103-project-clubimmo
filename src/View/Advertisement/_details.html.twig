@@ -1,10 +1,16 @@
-<div class="container col-12 d-flex justify-content-center my-5 px-0">
+<div class="container col-12 d-flex justify-content-center px-0">
     <div class="row col-12 d-flex justify-content-center mt-5 px-0">
         <div class ="col-12 px-0">
-            <h3>Description de l'offre :</h3>
-        </div>
-        <div class ="col-12 px-0">
-            <p>{{ property.detail }}</p>
+            <label for="checkbox">
+                <input type="checkbox" id="checkbox" class="checkbox">
+                <h3 class="px-2">Description de l'offre : {{ property.property_type }} - {{ property.nb_pieces }} pièces - {{ property.surface }}m² - {{ property.city }}</h3>
+                <div class="detail">
+                    <p class="px-2">{{ property.detail }}</p>
+                    <p class="fw-bold px-2">Référence de l'offre : {{ property.reference }}</p>
+                </div>
+                <div class="show text-center">Lire la suite</div>
+                <div class="hide text-center">Voir moins</div>
+            </label>
         </div>
    </div>
 </div>
