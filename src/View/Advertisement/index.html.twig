@@ -1,4 +1,3 @@
-
 {% extends 'layout.html.twig' %}
 
 {% block content %}
@@ -7,6 +6,10 @@
         <div class="col-sm-9 p-0">
             {% block header %}
                 {% include 'Advertisement/_header.html.twig' %}
+            {% endblock %}
+
+            {% block carousel %}
+                {% include 'Advertisement/_carousel.html.twig' %}
             {% endblock %}
         </div>
     </div>

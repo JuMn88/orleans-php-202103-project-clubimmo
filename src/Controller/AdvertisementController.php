@@ -8,9 +8,9 @@ use App\Model\CriterionOfPropretyManager;
 use App\Model\CriterionManager;
 use App\Model\TransactionOfPropretyManager;
 
-class AdvertisementController extends AbstractController
+/*class AdvertisementController extends AbstractController
 {
-    /*private int $idProperty = 1;
+   private int $idProperty = 1;
 
     public function index()
     {
@@ -75,4 +75,16 @@ class AdvertisementController extends AbstractController
         $property = $propertyManager->selectOneById($this->idProperty);
         return $property;
     }*/
+
+use App\Model\PhotoManager;
+
+class AdvertisementController extends AbstractController
+{
+    public function index()
+    {
+        $photoManager = new PhotoManager();
+        $photos = $photoManager->selectAll();
+
+        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos]);
+    }
 }
