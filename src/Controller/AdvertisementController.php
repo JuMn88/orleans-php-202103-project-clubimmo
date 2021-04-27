@@ -14,7 +14,7 @@ class AdvertisementController extends AbstractController
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectOneById($idProperty);
         } else {
-            $property = Null;
+            $property = null;
         }
 
         $photoManager = new PhotoManager();
