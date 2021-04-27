@@ -14,11 +14,9 @@ class AdvertisementController extends AbstractController
         $propertyManager = new PropertyManager();
         $property = $propertyManager->selectOneById($idProperty);
 
-
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectAll();
 
         return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos, 'property' => $property]);
     }
-    
 }
