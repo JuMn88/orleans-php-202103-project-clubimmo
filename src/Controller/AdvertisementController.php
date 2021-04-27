@@ -81,10 +81,10 @@ class AdvertisementController extends AbstractController
 {
     public function index()
     {
-
+/*
         $properties = new PhotoManager();
         $property = $photoManager->selectOneById($id);
-
+*/
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectAll();
 
