@@ -46,4 +46,5 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 
 
 ### In database.sql file you can find SQL requests, for add proprety (GES, EPD) ###
-### Import the sql file: property.sql ###
+
+## Import the sql file: property.sql 
