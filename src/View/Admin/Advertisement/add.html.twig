@@ -28,7 +28,47 @@
             <div class="mb-3">
                 <label for="price" class="form-label">Prix</label>
                 <input type="text" class="form-control" id="price" 
-                    name="price" placeholder="0" value="{{ advertisement. price }}" required>
+                    name="price" placeholder="0" value="{{ advertisement.price }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="propertyType" class="form-label">Type de propriété</label>
+                <input type="text" class="form-control" id="propertyType" 
+                    name="propertyType" placeholder="Maison" value="{{ advertisement.propertyType }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="transaction" class="form-label">Type de transaction</label>
+                <input type="text" class="form-control" id="transaction" 
+                    name="transaction" placeholder="A vendre" value="{{ advertisement.transaction }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">Ville</label>
+                <input type="text" class="form-control" id="city" 
+                    name="city" placeholder="Orléans" value="{{ advertisement.city }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="sector" class="form-label">Secteur</label>
+                <input type="text" class="form-control" id="sector" 
+                    name="sector" placeholder="Centre" value="{{ advertisement.sector }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="rooms" class="form-label">Nombre de pièces</label>
+                <input type="text" class="form-control" id="rooms" 
+                    name="rooms" placeholder="0" value="{{ advertisement.rooms }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="bedrooms" class="form-label">Nombre de chambres</label>
+                <input type="text" class="form-control" id="bedrooms" 
+                    name="bedrooms" placeholder="0" value="{{ advertisement.bedrooms }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="energyPerformance" class="form-label">Performances énergétiques</label>
+                <input type="text" class="form-control" id="energyPerformance" 
+                    name="energyPerformance" placeholder="A" value="{{ advertisement.energyPerformance }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="greenhouseGases" class="form-label">GES</label>
+                <input type="text" class="form-control" id="greenhouseGases" 
+                    name="greenhouseGases" placeholder="A" value="{{ advertisement.greenhouseGases }}" required>
             </div>
             <button class="btn btn-purple">Ajouter</button>
             <a class="mx-2 btn btn-lightpurple" href="/adminAdvertisement/index">Retour</a>
