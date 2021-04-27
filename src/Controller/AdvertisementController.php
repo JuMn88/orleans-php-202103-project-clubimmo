@@ -7,7 +7,6 @@ use App\Model\SectorManager;
 use App\Model\CriterionOfPropretyManager;
 use App\Model\CriterionManager;
 use App\Model\TransactionOfPropretyManager;
-
 /*class AdvertisementController extends AbstractController
 {
    private int $idProperty = 1;
