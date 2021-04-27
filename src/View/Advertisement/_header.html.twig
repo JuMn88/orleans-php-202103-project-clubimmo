@@ -2,16 +2,18 @@
     <div class="row col-12">
         {% block headcont %}
             <div class="col-12">
-            Voir les biens similaires
+                <a href="/Property/index">Revenir en arriere</a>
             </div>
             <div class="col-12">
 
-                
-
-
             </div>
             <div class="col-12">
-                Vente maison, {{ property.nb_piece }} pièces, {{ property.nb_chambre }} chambres, surface : {{ property.surface }}m2
+                <div>
+                    <h2>{{ property.property_type }}, {{ property.city }}</h2>
+                </div>
+                <div>
+                    {{ property.transaction }} {{ property.property_type }}, {{ property.nb_pieces }} pièces, {{ property.nb_room }} chambres, surface : {{ property.surface }}m2
+                </div>
             </div>
         {% endblock %}
     </div>
