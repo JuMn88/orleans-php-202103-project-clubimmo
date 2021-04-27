@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/admin_advertisement.css">
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <h2 class="mt-5 pb-2 text-center">
+            Ajout d'une annonce
+        </h2>
+        <ul class="alert alert-danger list-unstyled empty">
+            {%- for error in errors -%}
+                <li>{{ error }}</li>
+            {%- endfor -%}
+        </ul>
+        <form method="POST" class="mb-5" novalidate>
+            <div class="mb-3">
+                <label for="reference" class="form-label">Référence</label>
+                <input type="text" class="form-control" id="reference" 
+                    name="reference" placeholder="#00000" value="{{ advertisement.reference }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="surface" class="form-label">Surface en mètres carrés</label>
+                <input type="text" class="form-control" id="surface" 
+                    name="surface" placeholder="0" value="{{ advertisement.surface }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Prix</label>
+                <input type="text" class="form-control" id="price" 
+                    name="price" placeholder="0" value="{{ advertisement. price }}" required>
+            </div>
+            <button class="btn btn-purple">Ajouter</button>
+        </form>
+    </main>
+{% endblock %}
