@@ -3,20 +3,19 @@
 namespace App\Controller;
 
 use App\Model\PropertyManager;
-use App\Model\SectorManager;
-use App\Model\CriterionOfPropretyManager;
-use App\Model\CriterionManager;
-use App\Model\TransactionOfPropretyManager;
 use App\Model\PhotoManager;
 
 class AdvertisementController extends AbstractController
 {
     public function index()
     {
-        $idProperty = $_GET['id'];
-
-        $properties = new PropertyManager();
-        $property = $properties->selectOneById($idProperty);
+        if (!empty($_GET)) {
+            $idProperty = $_GET['id'];
+            $properties = new PropertyManager();
+            $property = $properties->selectOneById($idProperty);
+        } else {
+            $property = null;
+        }
 
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectAll();
