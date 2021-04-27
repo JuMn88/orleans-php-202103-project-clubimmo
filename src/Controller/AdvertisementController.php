@@ -7,7 +7,6 @@ use App\Model\SectorManager;
 use App\Model\CriterionOfPropretyManager;
 use App\Model\CriterionManager;
 use App\Model\TransactionOfPropretyManager;
-
 use App\Model\PhotoManager;
 
 class AdvertisementController extends AbstractController
@@ -15,7 +14,7 @@ class AdvertisementController extends AbstractController
     public function index()
     {
         $idProperty = $_GET['id'];
-        
+
         $properties = new PropertyManager();
         $property = $properties->selectOneById($idProperty);
 
