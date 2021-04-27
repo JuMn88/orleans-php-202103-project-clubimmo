@@ -1,9 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-   <!-- <div class="col-12 d-flex justify-content-center p-0 m-0"> -->
-
-
     <div class="col-12 d-flex justify-content-center p-0 mt-5">
         {# col-9 for 75% screen #}
         <div class="col-sm-9 p-0 mt-5">
@@ -11,6 +8,8 @@
                 {% include 'Advertisement/_carousel.html.twig' %}
             {% endblock %}
         </div>
+    </div>
+    <div class="col-12 d-flex justify-content-center p-0 m-0">
         {% block energyInformations %}
             {% include 'Advertisement/energyInformations.html.twig' %}
         {% endblock %}

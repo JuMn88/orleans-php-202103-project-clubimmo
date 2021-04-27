@@ -9,20 +9,16 @@ class AdvertisementController extends AbstractController
 {
     public function index()
     {
-        /*$propertyManager = new PropertyManager();
-        $properties = $propertyManager->selectAll();
+        $idProperty = $_GET['id'];
 
-        foreach ($properties as $property) {
-            $energyPerformanceDiagnostic = $property['energy_performance_diagnostic'];
-            $greenhouseGas = $property['greenhouse_gas'];
-        }
-        return $this->twig->render('Advertisement/index.html.twig',
-        ['greenhouseGas' => $greenhouseGas,
-        'energyPerformanceDiagnostic' => $energyPerformanceDiagnostic]);*/
+        $propertyManager = new PropertyManager();
+        $property = $propertyManager->selectOneById($idProperty);
+
 
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectAll();
 
-        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos]);
+        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos, 'property' => $property]);
     }
+    
 }

@@ -3,17 +3,17 @@
         <div class="col-12 d-flex flex-row justify-content-center px-0">
             <div class="row col-12 d-flex flex-row px-0">
                 <div class="col-6 text-center align-self-center p-0">
-                    {%  if energyPerformanceDiagnostic is empty %}
-                        <h3>DPE - No Information </h3>
+                    {%  if property.energy_performance_diagnostic is empty %}
+                        <h3>EPD - Pas d'information</h3>
                     {% else %}
-                        <h3>DPE - {{ energyPerformanceDiagnostic }}</h3>
+                        <h3>EPD - {{ property.energy_performance_diagnostic }}</h3>
                     {% endif %}
                 </div>
                 <div class="col-6 text-center align-self-center p-0">
-                    {%  if greenhouseGas is empty %}
-                        <h3>GES - No Information </h3>
+                    {%  if property.greenhouse_gas is empty %}
+                        <h3>GES - Pas d'information</h3>
                     {% else %}
-                        <h3>GES - {{ greenhouseGas }}</h3>
+                        <h3>GES - {{ property.greenhouse_gas }}</h3>
                     {% endif %}
                 </div>
 
