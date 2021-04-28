@@ -43,7 +43,6 @@ class ContactController extends AbstractController
     {
         $client = array_map('trim', $_POST);
         $errors = $this->validateForm($client);
-        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($errors)) {
                 return $this->twig->render('Contact/index.html.twig', [
