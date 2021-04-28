@@ -40,11 +40,11 @@ class ContactController extends AbstractController
     public const MAX_MESSAGE_LENGTH = 255;
 
     public function index()
-    {          
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors = [];
             $client = array_map('trim', $_POST);
-            $errors = $this->validateForm($client,$errors);
+            $errors = $this->validateForm($client, $errors);
             if (empty($errors)) {
                 header('Location: /contact/index/');
             } else {
@@ -55,14 +55,14 @@ class ContactController extends AbstractController
                 'client' => $client,
                 ]);
             }
-        }  
+        }
         return $this->twig->render('Contact/index.html.twig', [
         'topics' => self::TOPICS,
         'propertyTypes' => self::PROPERTY_TYPES,
-        ]);   
+        ]);
     }
 
-    private function validateForm($client,$errors): array
+    private function validateForm($client, $errors): array
     {
         // TODO validations (length, format...)
         if (empty($client['firstname'])) {
@@ -86,7 +86,6 @@ class ContactController extends AbstractController
         } elseif (strlen($client['message']) > self::MAX_MESSAGE_LENGTH) {
             $errors[] = 'Votre message ne doit pas dépasser' . self::MAX_MESSAGE_LENGTH . ' characters';
         }
-        
         $errors = $this->validatePhoneEmail($client, $errors);
         return $errors;
     }
