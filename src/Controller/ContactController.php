@@ -41,16 +41,38 @@ class ContactController extends AbstractController
 
     public function index()
     {
-        return $this->twig->render('Contact/index.html.twig', [
-            'topics' => self::TOPIC,
-            'propertyTypes' => self::PROPERTY_TYPE,
-        ]);
+        $client = array_map('trim', $_POST);
+        $errors = $this->validateForm($client);
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!empty($errors)) {
+                return $this->twig->render('Contact/index.html.twig', [
+                    'topics' => self::TOPIC,
+                    'propertyTypes' => self::PROPERTY_TYPE,
+                    'errors' => $errors,
+                    'client' => $client,
+                ]);
+            } else {
+                // redirect the page
+                return $this->twig->render('Contact/index.html.twig', [
+                    'success' => true,
+                    'topics' => self::TOPIC,
+                    'propertyTypes' => self::PROPERTY_TYPE,
+                ]);
+            }
+        } else {
+            return $this->twig->render('Contact/index.html.twig', [
+                'topics' => self::TOPIC,
+                'propertyTypes' => self::PROPERTY_TYPE,
+            ]);
+        }
     }
 
     private function validateForm($client): array
     {
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $client = array_map('trim', $_POST);
         // TODO validations (length, format...)
             if (empty($client['firstname'])) {
                 $errors[] = 'Veuillez entrer votre prénom.';
@@ -98,32 +120,5 @@ class ContactController extends AbstractController
             $errors[] = 'Veuillez entrer un email valide.';
         }
         return $errors;
-    }
-
-    // Create a method that redirect the page after submitting the form
-    public function submitForm()
-    {
-        $client = array_map('trim', $_POST);
-        $errors = $this->validateForm($client);
-        if (!empty($errors)) {
-            return $this->twig->render('Contact/index.html.twig', [
-                'topics' => self::TOPIC,
-                'propertyTypes' => self::PROPERTY_TYPE,
-                'errors' => $errors,
-                'client' => $client,
-            ]);
-        } else {
-            // insert data in database
-            $clientManager = new ClientManager();
-            $clientManager->insert($client);
-            // redirect the page
-            //header('Location:/contact/index');
-            return $this->twig->render('Contact/index.html.twig', [
-                'success' => 'Merci pour votre message. Nous vous contacterons dès que possible.',
-                'client' => $client,
-                'topics' => self::TOPIC,
-                'propertyTypes' => self::PROPERTY_TYPE,
-            ]);
-        }
     }
 }

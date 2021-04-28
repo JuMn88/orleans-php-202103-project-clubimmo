@@ -11,12 +11,11 @@
             CONTACTEZ-NOUS
         </h2>
 
-        {% if errors is empty %} 
-                
+        {% if errors is empty %}             
         {#  Show the message if all the input fields are filled  #} 
-            
-            <h5 class = "success-message container text-center font-weight-bold font-italic mb-5 col-lg-9 col-md-9 col-12"><strong><i>{{success}}</i></strong></h5>
-        
+            {% if success == true %} 
+            <h5 class = "success-message container text-center alert mb-5 col-lg-9 col-md-9 col-12"><strong><i>Merci pour votre message. Nous vous contacterons dès que possible.</i></strong></h5>
+            {% endif %} 
         {% else %} 
 
         {#  Show the errors #}
@@ -31,7 +30,7 @@
         {#  Showing the errors ends here  #}
 
         <div class="container col-lg-5 col-md-9 col-12">
-            <form method ="post" action ="submitForm" novalidate>
+            <form method ="post" action ="" novalidate>
 
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="firstname">Prénom</label>
@@ -130,7 +129,7 @@
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="message">Message</label>
                     <div class="col-lg-8 col-md-8 col-12">
-                        <textarea class="form-control" id="message" rows="5" name="message" placeholder="Écrivez votre message" value="{{ client.message }}" required>{{ client.message }}</textarea>
+                        <textarea class="form-control" id="message" rows="5" name="message" placeholder="Écrivez votre message" required>{{ client.message }}</textarea>
                     </div>
                 </div>
 
@@ -147,3 +146,5 @@
     </div>
 
 {% endblock %}
+
+   

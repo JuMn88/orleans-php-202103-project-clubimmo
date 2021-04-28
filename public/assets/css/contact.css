@@ -1,12 +1,17 @@
 .container-contact {
-  margin: 100px auto;
-}
-
-.title-contactform,
-.btn-contactForm {
-  background-color: var(--primary);
-}
-.text-collapse,
-.success-message {
-  color: var(--primary);
-}
+    margin: 100px auto;
+  }
+  
+  .title-contactform,
+  .btn-contactForm {
+    background-color: var(--primary);
+  }
+  .text-collapse,
+  .success-message {
+    color: var(--primary);
+  }
+  
+  .success-message {
+    background-color: var(--secondary);
+  }
+  
