@@ -72,7 +72,10 @@ class AdminAdvertisementController extends AbstractController
         ];
         foreach ($advertisement as $adKey => $adValue) {
             if (empty($adValue)) {
-                $errors[] = 'Le champ ' . $fieldsList[$adKey] . ' est requis.';
+                //since empty(0) = true, another condition is necessary for properties with no room or bedroom
+                if ($adValue != '0' || $adKey != 'rooms' && $adKey != 'bedrooms') {
+                    $errors[] = 'Le champ ' . $fieldsList[$adKey] . ' est requis.';
+                }
             }
         }
         return $errors;
