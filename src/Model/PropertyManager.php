@@ -21,6 +21,9 @@ class PropertyManager extends AbstractManager
     {
         $query = 'SELECT p.*, pt.name AS property_type FROM ' . self::TABLE . ' p INNER JOIN ';
         $query .= PropertyTypeManager::TABLE . ' pt ON pt.id = p.propertyType_id';
+        if ($orderBy) {
+            $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
+        }
         return $this->pdo->query($query)->fetchAll();
     }
 

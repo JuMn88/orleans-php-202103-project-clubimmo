@@ -24,7 +24,7 @@ class PropertyController extends AbstractController
                 $properties = $propertyManager->selectAll();
             }
         } else {
-            $properties = $propertyManager->selectAll();
+            $properties = $propertyManager->selectAll('price', 'ASC');
         }
         return $this->twig->render('Property/index.html.twig', [
             'properties' => $properties,
