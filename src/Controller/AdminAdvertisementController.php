@@ -23,9 +23,8 @@ class AdminAdvertisementController extends AbstractController
         $errors = $advertisement = [];
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $advertisement = array_map('trim', $_POST);
-            $errors = $this->validateTextInput($advertisement, $errors);
+            $errors = $this->validateInput($advertisement, $errors);
             $errors = $this->validateTextSizeInput($advertisement, $errors);
-            $errors = $this->validateIntInput($advertisement, $errors);
             $errors = $this->validatePositiveInput($advertisement, $errors);
             $errors = $this->validateGradeInput($advertisement, $errors);
             if (empty($errors)) {
@@ -41,25 +40,30 @@ class AdminAdvertisementController extends AbstractController
             'advertisement' => $advertisement,
         ]);
     }
-    public function validateTextInput($advertisement, $errors): array
+    //Method to ensure every fields had been filled
+    public function validateInput($advertisement, $errors): array
     {
-        if (empty($advertisement['reference'])) {
-            $errors[] = 'Le champ Référence est requis';
-        }
-        if (empty($advertisement['propertyType'])) {
-            $errors[] = 'Le champ Type de propriété est requis';
-        }
-        if (empty($advertisement['city'])) {
-            $errors[] = 'Le champ Ville est requis';
-        }
-        if (empty($advertisement['sector'])) {
-            $errors[] = 'Le champ Secteur est requis';
-        }
-        if (empty($advertisement['transaction'])) {
-            $errors[] = 'Le champ Transaction est requis';
+        $fieldsList = [
+            'reference' => 'Référence',
+            'surface' => 'Surface',
+            'price' => 'Prix',
+            'propertyType' => 'Type de propriété',
+            'transaction' => 'Type de transaction',
+            'city' => 'Ville',
+            'sector' => 'Secteur',
+            'rooms' => 'Nombre de pièces',
+            'bedrooms' => 'Nombre de chambres',
+            'energyPerformance' => 'Performances énergétiques',
+            'greenhouseGases' => 'GES',
+        ];
+        foreach ($advertisement as $adKey => $adValue) {
+            if (empty($adValue)) {
+                $errors[] = 'Le champ ' . $fieldsList[$adKey] . ' est requis.';
+            }
         }
         return $errors;
     }
+    //Method to check strings' length
     public function validateTextSizeInput($advertisement, $errors): array
     {
         if (strlen($advertisement['reference']) > self::MAX_TEXT_LENGTH) {
@@ -79,49 +83,28 @@ class AdminAdvertisementController extends AbstractController
         }
         return $errors;
     }
-    public function validateIntInput($advertisement, $errors): array
-    {
-        if (empty($advertisement['surface'])) {
-            $errors[] = 'Le champ Surface est requis';
-        }
-        if (empty($advertisement['price'])) {
-            $errors[] = 'Le champ Prix est requis';
-        }
-        if (empty($advertisement['rooms'])) {
-            $errors[] = 'Le champ Nombre de pièces est requis';
-        }
-        if (empty($advertisement['bedrooms'])) {
-            $errors[] = 'Le champ Nombre de chambres est requis';
-        }
-        return $errors;
-    }
+    //Method to ensure positive values had been filled in the proper fields
     public function validatePositiveInput($advertisement, $errors): array
     {
-        if ($advertisement['surface'] < 0) {
-            $errors[] = 'La surface doit être positive';
-        }
-        if ($advertisement['price'] < 0) {
-            $errors[] = 'Le prix doit être positif';
-        }
-        if ($advertisement['rooms'] < 0) {
-            $errors[] = 'Le nombre de pièces doit être positif';
-        }
-        if ($advertisement['bedrooms'] < 0) {
-            $errors[] = 'Le nombre de chambres doit être positif';
+        $integerFieldsList = [
+            'surface' => 'Surface',
+            'price' => 'Prix',
+            'rooms' => 'Nombre de pièces',
+            'bedrooms' => 'Nombre de chambres',
+        ];
+        foreach ($advertisement as $adKey => $adValue) {
+            if ($adValue < 0) {
+                $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être positive.';
+            }
         }
         return $errors;
     }
+    //Method to validate the "grades inputs" (energy performance and greenhouse gases)
     public function validateGradeInput($advertisement, $errors): array
     {
         $diagnostic = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-        if (empty($advertisement['energyPerformance'])) {
-            $errors[] = 'Le champ Performances énergétiques est requis';
-        }
         if (!in_array($advertisement['energyPerformance'], $diagnostic)) {
             $errors[] = 'Les Performances énergétiques doivent être comprises entre A et G.';
-        }
-        if (empty($advertisement['greenhouseGases'])) {
-            $errors[] = 'Le champ GES est requis';
         }
         if (!in_array($advertisement['greenhouseGases'], $diagnostic)) {
             $errors[] = 'L\'indice GES doit être compris entre A et G';
