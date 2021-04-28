@@ -22,7 +22,7 @@ class ContactController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
-    public const TOPIC = [
+    public const TOPICS = [
         "Je cherche un bien à acheter",
         "Je cherche un bien à louer",
         "J'ai un bien à vendre",
@@ -30,7 +30,7 @@ class ContactController extends AbstractController
         "Autre"
         ];
 
-    public const PROPERTY_TYPE = [
+    public const PROPERTY_TYPES = [
         "Maison",
         "Appartement",
         "Autre"
@@ -40,42 +40,54 @@ class ContactController extends AbstractController
     public const MAX_MESSAGE_LENGTH = 255;
 
     public function index()
-    {
+    {          
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $errors = [];
+            $client = array_map('trim', $_POST);
+            $errors = $this->validateForm($client,$errors);
+            if (empty($errors)) {
+                header('Location: /contact/index/');
+            } else {
+                return $this->twig->render('Contact/index.html.twig', [
+                'topics' => self::TOPICS,
+                'propertyTypes' => self::PROPERTY_TYPES,
+                'errors' => $errors,
+                'client' => $client,
+                ]);
+            }
+        }  
         return $this->twig->render('Contact/index.html.twig', [
-            'topics' => self::TOPIC,
-            'propertyTypes' => self::PROPERTY_TYPE,
-        ]);
+        'topics' => self::TOPICS,
+        'propertyTypes' => self::PROPERTY_TYPES,
+        ]);   
     }
 
-    private function validateForm($client): array
+    private function validateForm($client,$errors): array
     {
-        $errors = [];
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // TODO validations (length, format...)
-            if (empty($client['firstname'])) {
-                $errors[] = 'Veuillez entrer votre prénom.';
-            } elseif (strlen($client['firstname']) > self::MAX_NAME_LENGTH) {
-                $errors[] = 'Votre prénom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . ' characters';
-            }
-
-            if (empty($client['lastname'])) {
-                $errors[] = 'Veuillez entrer votre nom.';
-            } elseif (strlen($client['lastname']) > self::MAX_NAME_LENGTH) {
-                $errors[] = 'Votre nom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . '  characters';
-            }
-
-            if (!in_array($client['topic'], self::TOPIC)) {
-                $errors[] = 'Veuillez choisir un sujet';
-            }
-
-            if (empty($client['message'])) {
-                $errors[] = 'Veuillez écrire votre message.';
-            } elseif (strlen($client['message']) > self::MAX_MESSAGE_LENGTH) {
-                $errors[] = 'Votre message ne doit pas dépasser' . self::MAX_MESSAGE_LENGTH . ' characters';
-            }
-
-            $errors = $this->validatePhoneEmail($client, $errors);
+        if (empty($client['firstname'])) {
+            $errors[] = 'Veuillez entrer votre prénom.';
+        } elseif (strlen($client['firstname']) > self::MAX_NAME_LENGTH) {
+            $errors[] = 'Votre prénom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . ' characters';
         }
+
+        if (empty($client['lastname'])) {
+            $errors[] = 'Veuillez entrer votre nom.';
+        } elseif (strlen($client['lastname']) > self::MAX_NAME_LENGTH) {
+            $errors[] = 'Votre nom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . '  characters';
+        }
+
+        if (!in_array($client['topic'], self::TOPICS)) {
+            $errors[] = 'Veuillez choisir un sujet';
+        }
+
+        if (empty($client['message'])) {
+            $errors[] = 'Veuillez écrire votre message.';
+        } elseif (strlen($client['message']) > self::MAX_MESSAGE_LENGTH) {
+            $errors[] = 'Votre message ne doit pas dépasser' . self::MAX_MESSAGE_LENGTH . ' characters';
+        }
+        
+        $errors = $this->validatePhoneEmail($client, $errors);
         return $errors;
     }
 
@@ -98,32 +110,5 @@ class ContactController extends AbstractController
             $errors[] = 'Veuillez entrer un email valide.';
         }
         return $errors;
-    }
-
-    // Create a method that redirect the page after submitting the form
-    public function submitForm()
-    {
-        $client = array_map('trim', $_POST);
-        $errors = $this->validateForm($client);
-        if (!empty($errors)) {
-            return $this->twig->render('Contact/index.html.twig', [
-                'topics' => self::TOPIC,
-                'propertyTypes' => self::PROPERTY_TYPE,
-                'errors' => $errors,
-                'client' => $client,
-            ]);
-        } else {
-            // insert data in database
-            $clientManager = new ClientManager();
-            $clientManager->insert($client);
-            // redirect the page
-            //header('Location:/contact/index');
-            return $this->twig->render('Contact/index.html.twig', [
-                'success' => 'Merci pour votre message. Nous vous contacterons dès que possible.',
-                'client' => $client,
-                'topics' => self::TOPIC,
-                'propertyTypes' => self::PROPERTY_TYPE,
-            ]);
-        }
     }
 }
