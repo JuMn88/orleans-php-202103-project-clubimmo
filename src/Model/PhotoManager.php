@@ -16,3 +16,4 @@ class PhotoManager extends AbstractManager
         return $statement->fetchAll();
     }
 }
+
