@@ -21,12 +21,13 @@ class AdminAdvertisementController extends AbstractController
     public function add(): string
     {
         $errors = $advertisement = [];
+        $diagnostic = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $advertisement = array_map('trim', $_POST);
             $errors = $this->validateInput($advertisement, $errors);
             $errors = $this->validateTextSizeInput($advertisement, $errors);
             $errors = $this->validatePositiveInput($advertisement, $errors);
-            $errors = $this->validateGradeInput($advertisement, $errors);
+            $errors = $this->validateGradeInput($advertisement, $errors, $diagnostic);
             if (empty($errors)) {
                 //insert in database
                 $advertisementManager = new PropertyManager();
@@ -38,6 +39,7 @@ class AdminAdvertisementController extends AbstractController
         return $this->twig->render('Admin/Advertisement/add.html.twig', [
             'errors' => $errors,
             'advertisement' => $advertisement,
+            'diagnostic' => $diagnostic,
         ]);
     }
     //Method to ensure every fields had been filled
@@ -100,9 +102,8 @@ class AdminAdvertisementController extends AbstractController
         return $errors;
     }
     //Method to validate the "grades inputs" (energy performance and greenhouse gases)
-    public function validateGradeInput($advertisement, $errors): array
+    public function validateGradeInput($advertisement, $errors, $diagnostic): array
     {
-        $diagnostic = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
         if (!in_array($advertisement['energyPerformance'], $diagnostic)) {
             $errors[] = 'Les Performances énergétiques doivent être comprises entre A et G.';
         }

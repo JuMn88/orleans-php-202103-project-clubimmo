@@ -62,13 +62,33 @@
             </div>
             <div class="mb-3">
                 <label for="energyPerformance" class="form-label">Performances énergétiques</label>
-                <input type="text" class="form-control" id="energyPerformance" 
-                    name="energyPerformance" placeholder="A" value="{{ advertisement.energyPerformance }}" required>
+                <select class="form-control" id="energyPerformance" name="energyPerformance" required>
+                    {% for grade in diagnostic %}
+                        <option
+                            {% if advertisement.energyPerformance == grade %}
+                                selected
+                            {% endif %}
+                            value="{{ grade }}"
+                        >
+                            {{ grade }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="mb-3">
                 <label for="greenhouseGases" class="form-label">GES</label>
-                <input type="text" class="form-control" id="greenhouseGases" 
-                    name="greenhouseGases" placeholder="A" value="{{ advertisement.greenhouseGases }}" required>
+                <select class="form-control" id="greenhouseGases" name="greenhouseGases" required>
+                    {% for grade in diagnostic %}
+                        <option
+                            {% if advertisement.greenhouseGases == grade %}
+                                selected
+                            {% endif %}
+                            value="{{ grade }}"
+                        >
+                            {{ grade }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <button class="btn btn-purple">Ajouter</button>
             <a class="mx-2 btn btn-lightpurple" href="/adminAdvertisement/index">Retour</a>
