@@ -1,9 +1,12 @@
 <div class="container col-12 d-flex justify-content-center px-0">
     <div class="row col-12 d-flex justify-content-center mt-5 px-0">
         <div class ="col-12 px-0">
+            <div class="px-2">
+                <h3 class="pt-3 fw-bold d-sm-block d-md-none">{{ property.transaction }} - Prix : {{ property.price }}€ {{ property.transaction == 'A Louer' ? '/ mois' }}</h3>
+            </div>
             <label for="checkbox">
                 <input type="checkbox" id="checkbox" class="checkbox">
-                <h3 class="px-2">Description de l'offre : {{ property.property_type }} - {{ property.rooms }} pièces - {{ property.bedrooms }} chambres - {{ property.surface }}m² - {{ property.city }}</h3>
+                <h5 class="px-2">Description de l'offre : {{ property.property_type }} - {{ property.rooms }} pièces - {{ property.bedrooms }} chambres - {{ property.surface }}m² - {{ property.city }}</h5>
                 <div class="detail">
                     <p class="px-2">{{ property.description }}</p>
                     <p class="fw-bold px-2">Référence de l'offre : {{ property.reference }}</p>
