@@ -1,0 +1,71 @@
+
+<div class="col-12">
+    {% block test %}
+        <div>
+            <div class=" d-none d-md-block">
+                {{ dump(property.nb_room) }}
+                <h3>{{ property.transaction }}</h3>
+                {{ property.reference }}
+            </div>
+
+            <h4 class="pt-3 pb-2 fw-bold d-none d-md-block">Prix : {{ property.price }}€</h4>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-4 text-center p-0">
+                {% if property.nb_room is not null %}
+                    <div>
+                        <i class="flaticon-room"></i>
+                    </div>
+                    <h6 class="small">
+                        {{ property.nb_room }} chambres
+                    </h6>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-4 text-center text-sm p-0">
+                {% if property.nb_pieces is not null %}
+                    <div>
+                        <i class="flaticon-piece"></i>
+                    </div>
+                    <h6 class="small">
+                        {{ property.nb_pieces }} pièces
+                    </h6>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-4 text-center p-0">
+                {% if property.surface is not null %}
+                    <div>
+                        <i class="flaticon-surface"></i>
+                    </div>
+                    <h6 class="small">
+                        {{ property.surface }} m²
+                    </h6>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-4 text-center p-0">
+                {% if property.property_type == "Maison" %}
+                    <div>
+                        <i class="flaticon-home"></i>
+                    </div>
+                    <h6 class="small">
+                        {{ property.property_type }}
+                    </h6>
+                {% elseif property.property_type == "Appartement" %}
+                    <div>
+                        <i class="flaticon-building"></i>
+                    </div>
+                    <h6 class="small">
+                        {{ property.property_type }}
+                    </h6>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row justify-content-center mt-0 mt-md-5">
+            <a href="#" class="btn btn_advert_contact" role="button" aria-pressed="true">Envoyez un Mail</a>
+        </div>
+
+    {% endblock %}
+</div>

@@ -1,0 +1,8 @@
+
+
+.btn_advert_contact {
+    color: var(--light);
+    background-color: var(--primary);
+    border-color: var(--primary);
+    width:fit-content;
+}
