@@ -23,7 +23,7 @@ class PropertyController extends AbstractController
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectOneById($idProperty);
         } else {
-            $property = null;
+            return '404 - Page not found';
         }
 
         $photoManager = new PhotoManager();
