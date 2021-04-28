@@ -1,3 +1,11 @@
+.bg-purple{
+    background-color: var(--primary);
+    }
+    
+.text-purple{
+        color:var(--primary);
+    }
+
 .container-property{
     --height-card: 300px;
     margin: calc(var(--height-card)/5) auto;

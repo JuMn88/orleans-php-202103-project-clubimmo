@@ -35,12 +35,3 @@ h2 {
 .footer {
     background-color: var(--secondary);
 }
-
-/* Add new class */
-.bg-purple{
-background-color: var(--primary);
-}
-
-.text-purple{
-    color:var(--primary);
-}

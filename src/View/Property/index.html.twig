@@ -5,15 +5,12 @@
 {% endblock %}
 
 {% block content %}
-
 {# Search bar #}
-
 <div class="container-fluid container-searchBar">
   <form class="container col-9 form-inline pl-0 py-4 my-5" action="" method="post">
     <fieldset>    
       <div class="input-group">
       <!-- Search by property types -->
-        
         <div class="input-group-prepend">
           <select id="propertyType" name="propertyType" class="form-control custom-select text-purple">
             <option value="">Type de bien</option>   
@@ -33,20 +30,17 @@
   </form>
 </div>
 
-
 {# Showing list of properties #}
 <div class="container-property container col-lg-9 col-md-9 col-12 mb-3">
       <div class="row">
 
         {% if properties is empty %}
 
-            <h5 class = "empty-page container text-center alert mb-5 col-lg-9 col-md-9 col-12"><strong><i>Nous sommes désolés. Les annonces correspondent au type de bien que vous cherchez ne sont pas encore déposées sur la page.</i></strong></h5>
-  
+        <h5 class = "empty-page container text-center alert mb-5 col-lg-9 col-md-9 col-12"><strong><i>Nous sommes désolés. Les annonces correspondent au type de bien que vous cherchez ne sont pas encore déposées sur la page.</i></strong></h5>
 
         {% else %}
 
-        {% for property in properties %}
-         
+        {% for property in properties %}   
         <div class="col-md-6 col-12">
           <div class="property-card card mb-5">
             <div class="row g-0">
