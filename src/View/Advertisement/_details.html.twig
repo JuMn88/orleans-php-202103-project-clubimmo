@@ -3,9 +3,9 @@
         <div class ="col-12 px-0">
             <label for="checkbox">
                 <input type="checkbox" id="checkbox" class="checkbox">
-                <h3 class="px-2">Description de l'offre : {{ property.property_type }} - {{ property.nb_pieces }} pièces - {{ property.surface }}m² - {{ property.city }}</h3>
+                <h3 class="px-2">Description de l'offre : {{ property.property_type }} - {{ property.rooms }} pièces - {{ property.bedrooms }} chambres - {{ property.surface }}m² - {{ property.city }}</h3>
                 <div class="detail">
-                    <p class="px-2">{{ property.detail }}</p>
+                    <p class="px-2">{{ property.description }}</p>
                     <p class="fw-bold px-2">Référence de l'offre : {{ property.reference }}</p>
                 </div>
                 <div class="show text-center">Lire la suite</div>
