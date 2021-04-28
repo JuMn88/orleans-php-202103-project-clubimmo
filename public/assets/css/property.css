@@ -1,8 +1,15 @@
 .container-property{
     --height-card: 300px;
-    margin: calc(var(--height-card)/2.5) auto;
+    margin: calc(var(--height-card)/5) auto;
 }
 
+.container-searchBar{
+    height: calc(var(--height-card)/2);
+    background-color: var(--secondary);
+}
+.empty-page{
+    color:var(--primary);
+}
 .card-price-property,
 .card-property-type {
     color:var(--primary);

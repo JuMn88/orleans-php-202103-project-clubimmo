@@ -5,9 +5,48 @@
 {% endblock %}
 
 {% block content %}
+
+{# Search bar #}
+
+<div class="container-fluid container-searchBar">
+  <form class="container col-9 form-inline pl-0 py-4 my-5" action="" method="post">
+    <fieldset>    
+      <div class="input-group">
+      <!-- Search by property types -->
+        
+        <div class="input-group-prepend">
+          <select id="propertyType" name="propertyType" class="form-control custom-select text-purple">
+            <option value="">Type de bien</option>   
+            {% for propertyType in propertyTypes %}
+            <option  value="{{ propertyType.id }}">
+              {{ propertyType.name }}
+              </option> 
+            {% endfor %}    
+          </select>
+        </div> 
+
+        <div class="input-group-append">
+          <button class="btn bg-purple text-light" type="submit">Recherche</button>
+        </div>
+      </div>
+    </fieldset> 
+  </form>
+</div>
+
+
+{# Showing list of properties #}
 <div class="container-property container col-lg-9 col-md-9 col-12 mb-3">
       <div class="row">
+
+        {% if properties is empty %}
+
+            <h5 class = "empty-page container text-center alert mb-5 col-lg-9 col-md-9 col-12"><strong><i>Nous sommes désolés. Les annonces correspondent au type de bien que vous cherchez ne sont pas encore déposées sur la page.</i></strong></h5>
+  
+
+        {% else %}
+
         {% for property in properties %}
+         
         <div class="col-md-6 col-12">
           <div class="property-card card mb-5">
             <div class="row g-0">
@@ -19,17 +58,19 @@
                 />
               </div>
               <div class="col-lg-6 col-sm-12 col-12 d-flex align-items-center">
-                <div class="card-body">
-                  
-                  <h5 class="card-title col-lg-7 col-sm-12 col-6 card-property-type">
-                    <strong>{{ property.property_type }}</strong>
+                <div class="card-body col-lg-12 col-sm-12 col-12 px-sm-5">
+                
+                  <h5 class="card-title col-lg-12 col-sm-12 col-12 card-property-type">
+                    <strong> 
+                    {{  property.property_type }}
+                    </strong>
                   </h5>
-
+              
                   <h6 class="card-text">
                     {{ property.city }} ({{ property.sector }})
                   </h6>
 
-                  <h6 class="col-lg-5 col-sm-12 card-price-property font-weight-bold font-italic">
+                  <h6 class="card-price-property col-lg-12 col-sm-12 col-12 font-weight-bold font-italic">
                     <strong><i>{{ property.price|number_format(0, '.', ' ')  }} € </i></strong>
                   </h6>
                   
@@ -43,6 +84,7 @@
           </div>
         </div>
         {% endfor %}
+        {% endif %}
       </div>
 </div>
 {% endblock %}
