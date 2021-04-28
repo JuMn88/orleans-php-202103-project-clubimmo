@@ -8,6 +8,17 @@ class AdminAdvertisementController extends AbstractController
 {
     public const MAX_TEXT_LENGTH = 50;
     public const MAX_TRANSACTION_LENGTH = 25;
+    public const PROPERTY_TYPES = [
+        "Maison",
+        "Appartement",
+        "Autre",
+    ];
+    public const TRANSACTION_TYPES = [
+        "A vendre",
+        "A louer",
+        "Autre",
+    ];
+    public const DIAGNOSTIC_GRADES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
     public function index(): string
     {
@@ -21,13 +32,13 @@ class AdminAdvertisementController extends AbstractController
     public function add(): string
     {
         $errors = $advertisement = [];
-        $diagnostic = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $advertisement = array_map('trim', $_POST);
+            $advertisement['reference'] = uniqid();
             $errors = $this->validateInput($advertisement, $errors);
             $errors = $this->validateTextSizeInput($advertisement, $errors);
             $errors = $this->validatePositiveInput($advertisement, $errors);
-            $errors = $this->validateGradeInput($advertisement, $errors, $diagnostic);
+            $errors = $this->validateGradeInput($advertisement, $errors);
             if (empty($errors)) {
                 //insert in database
                 $advertisementManager = new PropertyManager();
@@ -39,14 +50,15 @@ class AdminAdvertisementController extends AbstractController
         return $this->twig->render('Admin/Advertisement/add.html.twig', [
             'errors' => $errors,
             'advertisement' => $advertisement,
-            'diagnostic' => $diagnostic,
+            'propertyTypes' => self::PROPERTY_TYPES,
+            'transactionTypes' => self::TRANSACTION_TYPES,
+            'diagnosticGrades' => self::DIAGNOSTIC_GRADES,
         ]);
     }
     //Method to ensure every fields had been filled
     public function validateInput($advertisement, $errors): array
     {
         $fieldsList = [
-            'reference' => 'Référence',
             'surface' => 'Surface',
             'price' => 'Prix',
             'propertyType' => 'Type de propriété',
@@ -102,12 +114,12 @@ class AdminAdvertisementController extends AbstractController
         return $errors;
     }
     //Method to validate the "grades inputs" (energy performance and greenhouse gases)
-    public function validateGradeInput($advertisement, $errors, $diagnostic): array
+    public function validateGradeInput($advertisement, $errors): array
     {
-        if (!in_array($advertisement['energyPerformance'], $diagnostic)) {
+        if (!in_array($advertisement['energyPerformance'], self::DIAGNOSTIC_GRADES)) {
             $errors[] = 'Les Performances énergétiques doivent être comprises entre A et G.';
         }
-        if (!in_array($advertisement['greenhouseGases'], $diagnostic)) {
+        if (!in_array($advertisement['greenhouseGases'], self::DIAGNOSTIC_GRADES)) {
             $errors[] = 'L\'indice GES doit être compris entre A et G';
         }
         return $errors;
