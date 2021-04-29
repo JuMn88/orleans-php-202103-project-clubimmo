@@ -45,6 +45,6 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 ![Simple MVC.png](https://raw.githubusercontent.com/WildCodeSchool/simple-mvc/master/Simple%20-%20MVC.png)
 
 
-### In database.sql file you can find SQL requests, for add photos and test carousel ###
+### In database.sql file you can find SQL requests ###
 
-## Import the sql file: property.sql
+## Import the sql file: property.sql 
