@@ -7,6 +7,11 @@ use App\Model\PhotoManager;
 
 class PropertyController extends AbstractController
 {
+    const FEATURES = [
+        ["flaticon-bedroom", "chambres", "bedrooms"],
+        ["flaticon-room", "pièces", "rooms"],
+        ["flaticon-surface", "m²", "surface"]];
+
     /**
      * this will list the photo
      */
@@ -19,6 +24,8 @@ class PropertyController extends AbstractController
 
     public function show($idProperty)
     {
+        $features = [];
+
         if (!empty($idProperty) && is_numeric($idProperty)) {
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectOneById($idProperty);
@@ -28,7 +35,19 @@ class PropertyController extends AbstractController
 
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectAll();
-
-        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos, 'property' => $property]);
+        
+        foreach($property as $key => $value)
+        {
+            for($i=0; $i<count(self::FEATURES); $i++)
+            {
+                if ($key == self::FEATURES[$i][2])
+                {
+                    $features[$i] = self::FEATURES[$i];
+                    $features[$i][] = $value;
+                }
+            }
+        }
+    
+        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos, 'property' => $property, 'features' => $features]);
     }
 }

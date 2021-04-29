@@ -1,45 +1,13 @@
 
-<div class="col-12">
+<div class="col-12 pt-5">
     <div>
         <div class=" d-none d-md-block">
-            <h3>{{ property.transaction }}</h3>
+            <h3 class="fw-bold">{{ property.transaction }}</h3>
             {{ property.reference }}
         </div>
-        <h4 class="pt-3 pb-2 fw-bold d-none d-md-block">{{ property.price }}€ {{ property.transaction == 'A Louer' ? '/ mois' }}</h4>
+        <h4 class="pt-3 pb-2 fw-bold d-none d-md-block pt-5">{{ property.price }}€ {{ property.transaction == 'A Louer' ? '/ mois' }}</h4>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6 col-4 text-center p-0">
-            {% if property.bedrooms is not null %}
-                <div>
-                    <i class="flaticon-bedroom"></i>
-                </div>
-                <h6 class="small">
-                    {{ property.bedrooms }} chambres
-                </h6>
-            {% endif %}
-        </div>
-
-        <div class="col-lg-4 col-md-6 col-4 text-center p-0">
-            {% if property.rooms is not null %}
-                <div>
-                    <i class="flaticon-room"></i>
-                </div>
-                <h6 class="small">
-                    {{ property.rooms }} pièces
-                </h6>
-            {% endif %}
-        </div>
-
-        <div class="col-lg-4 col-md-6 col-4 text-center p-0">
-            {% if property.surface is not null %}
-                <div>
-                    <i class="flaticon-surface"></i>
-                </div>
-                <h6 class="small">
-                    {{ property.surface }} m²
-                </h6>
-            {% endif %}
-        </div>
+    <div class="row justify-content-center pt-5">
 
         <div class="col-lg-4 col-md-6 col-4 text-center p-0">
             {% if property.property_type == "Maison" %}
@@ -58,6 +26,18 @@
                 </h6>
             {% endif %}
         </div>
+        {% for feature in features %}
+            <div class="col-lg-4 col-md-6 col-4 text-center p-0">
+                {% if property.rooms is not null %}
+                    <div>
+                        <i class={{ feature[0] }}></i>
+                    </div>
+                    <h6 class="small">
+                        {{ feature[3] }} {{ feature[1] }}
+                    </h6>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
 
     <!-- Button trigger modal -->
