@@ -6,4 +6,3 @@ class HomeCarouselManager extends AbstractManager
 {
     public const TABLE = 'homeCarouselView';
 }
-

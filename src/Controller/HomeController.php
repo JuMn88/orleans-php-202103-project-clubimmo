@@ -35,9 +35,10 @@ class HomeController extends AbstractController
 
     private function getPics(HomeCarouselManager $myPics): array
     {
-        foreach($myPics->selectAll() as $key => $value) {
-          $picsCollection[] = $value["id"];
-         }
+        $picsCollection = [];
+        foreach ($myPics->selectAll() as $value) {
+            $picsCollection[] = $value["id"];
+        }
         return $picsCollection;
     }
 }
