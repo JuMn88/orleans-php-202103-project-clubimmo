@@ -1,7 +1,10 @@
 /* La navbar */
 .navbar {
-    background: var(--transparent-light);
-
+    background: var(--light);
+}
+.navbar-brand p{
+   font-family: var(--main-font);
+   font-weight: bold;
 }
 
 /* Le bouton active de navbar */
