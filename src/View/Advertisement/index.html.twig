@@ -2,11 +2,9 @@
 
 {% block content %}
     <div class="col-12 d-flex justify-content-center p-0 mt-5">
-        {# col-9 for 75% screen #}
-        <div class="col-sm-9 p-0 mt-5">
-            {% block carousel %}
-                {% include 'Advertisement/_carousel.html.twig' %}
-            {% endblock %}
+        <div class="row col-sm-9 p-0 mt-5">
+            {% include 'Advertisement/_carousel.html.twig' %}
+            {% include 'Advertisement/_energyInformations.html.twig' %}
         </div>
     </div>
 {% endblock %}
