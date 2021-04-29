@@ -48,7 +48,7 @@ class ContactController extends AbstractController
             $errors =  $this->validateForm($client, $errors);
             if (empty($errors)) {
                 header('Location: /contact/index/');
-            } 
+            }
         }
         return $this->twig->render('Contact/index.html.twig', [
             'topics' => self::TOPICS,
