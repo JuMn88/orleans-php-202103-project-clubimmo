@@ -17,13 +17,13 @@ class PropertyController extends AbstractController
         return $this->twig->render('Property/index.html.twig', ['properties' => $properties]);
     }
 
-    public function show($idProperty)
+    public function show(int $idProperty)
     {
-        if (!empty($idProperty) && is_numeric($idProperty)) {
+        if (!empty($idProperty) && $idProperty) {
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectOneById($idProperty);
         } else {
-            return '404 - Page not found';
+            $property = null;
         }
 
         $photoManager = new PhotoManager();
