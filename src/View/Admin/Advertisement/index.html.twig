@@ -1,37 +1,37 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/admin_advertisement.css">
 {% endblock %}
 
 {% block content %}
-    <main class="col-12 d-flex justify-content-center">
-        <div class="container col-9 mx-0 px-0 d-flex justify-content-center">
-            <div class="mt-2 row col-12 d-flex justify-content-center">
-                <h2 class="mt-5 pb-2 col-12 text-center">
-                    Liste des annonces
-                </h2>
+    <main class="container">
+        <h2 class="mt-5 pb-2 text-center">
+            Liste des annonces
+        </h2>
 
-                <table class="table table-hover col-12 align-middle">
-                    <thead>
-                        <tr>
-                            <th>Référence</th>
-                            <th>Surface</th>
-                            <th>Prix</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for property in properties %}
-                            <tr>
-                                <td>{{ property.reference }}</td>
-                                <td>{{ property.surface }}</td>
-                                <td>{{ property.price }}</td>
-                                <td><!-- TO DO Edit and Delete buttons--></td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+        <div class="mb-3 d-flex justify-content-center justify-content-md-start">
+            <a class="btn btn-purple" href="/adminAdvertisement/add">Ajouter une annonce</a>
         </div>
+        <table class="mb-5 table table-hover">
+            <thead>
+                <tr>
+                    <th>Référence</th>
+                    <th>Surface</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for property in properties %}
+                    <tr>
+                        <td>{{ property.reference }}</td>
+                        <td>{{ property.surface }}</td>
+                        <td>{{ property.price }}</td>
+                        <td><!-- TO DO Edit and Delete buttons--></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </main>
 {% endblock %}

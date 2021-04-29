@@ -1,0 +1,36 @@
+<div class="container col-12 col-sm-12 d-flex justify-content-center my-5 px-0">
+    <div class="row col-12 col-sm-9 d-flex justify-content-center">
+        <div class="col-12 d-flex flex-row justify-content-center px-0">
+            <div class="row col-9 d-flex flex-row px-0">
+                <div class="col-6 text-center align-self-center p-0">
+                    {%  if property.energy_performance is empty %}
+                        <h3>DPE - Pas d'information</h3>
+                    {% else %}
+                        <h3>DPE - {{ property.energy_performance }}</h3>
+                    {% endif %}
+                </div>
+                <div class="col-6 text-center align-self-center p-0">
+                    {%  if property.greenhouse_gases is empty %}
+                        <h3>GES - Pas d'information</h3>
+                    {% else %}
+                        <h3>GES - {{ property.greenhouse_gases }}</h3>
+                    {% endif %}
+                </div>
+
+                <div class="col-6 p-0">
+                    <img class="col-12 px-0" src="/assets/images/DPE.png" alt="dpe">
+                </div>
+
+                <div class="col-6 p-0">
+                    <img class="col-12 px-0"  src="/assets/images/GES.png" alt="ges">
+                </div>
+            </div>
+        </div>
+        <div class="row col-11 col-sm-12 d-flex justify-content-center mt-5 px-0">
+            <div class ="col-12 text-center px-0">
+                <h3>VOIR SUR LA CARTE</h3>
+            </div>
+            <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=1.9006723165512087%2C47.902902812019065%2C1.9039767980575564%2C47.90435207926523&amp;layer=mapnik&amp;marker=47.903627450714154%2C1.9023245573043823" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=47.90363&amp;mlon=1.90232#map=19/47.90363/1.90232&amp;layers=N">Afficher une carte plus grande</a></small>
+        </div>
+    </div>
+</div>
