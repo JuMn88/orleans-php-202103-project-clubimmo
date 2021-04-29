@@ -41,24 +41,20 @@ class ContactController extends AbstractController
 
     public function index()
     {
+        $errors = [];
+        $client = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $errors = [];
             $client = array_map('trim', $_POST);
-            $errors = $this->validateForm($client, $errors);
+            $errors =  $this->validateForm($client, $errors);
             if (empty($errors)) {
                 header('Location: /contact/index/');
-            } else {
-                return $this->twig->render('Contact/index.html.twig', [
-                'topics' => self::TOPICS,
-                'propertyTypes' => self::PROPERTY_TYPES,
-                'errors' => $errors,
-                'client' => $client,
-                ]);
-            }
+            } 
         }
         return $this->twig->render('Contact/index.html.twig', [
-        'topics' => self::TOPICS,
-        'propertyTypes' => self::PROPERTY_TYPES,
+            'topics' => self::TOPICS,
+            'propertyTypes' => self::PROPERTY_TYPES,
+            'errors' => $errors,
+            'client' => $client,
         ]);
     }
 
