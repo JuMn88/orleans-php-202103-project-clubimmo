@@ -4,23 +4,27 @@ namespace App\Controller;
 
 use App\Model\PhotoManager;
 use App\Model\PropertyManager;
+use App\Model\HomeCarouselManager;
 
 class HomeController extends AbstractController
 {
     public function index()
     {
-        //Special 3-fold eye-catcher slider in home page:
-        //Focus is set on a select few appartments or houses for rental or sale
+        define('LEFT', 0); //left-most slider
+        define('MIDDLE', 1); //middle slider
+        define('RIGHT', 2); //right-most slider
+
+        // retrieve last 3 houses for sale to be displayed on homepage based 3-fold eye-catcher slider
         $photoManager = new PhotoManager();
-        $photos = $photoManager->selectByPropertyId($this->getPicsLeftSlider()); //leftmost carousels pics
-        $photos2 = $photoManager->selectByPropertyId($this->getPicsMidSlider()); //middle carousel pics
-        $photos3 = $photoManager->selectByPropertyId($this->getPicRightSlider()); //rightmost carousel pics
+        $photos = $photoManager->selectByPropertyId($this->getPics(new HomeCarouselManager())[LEFT]);
+        $photos2 = $photoManager->selectByPropertyId($this->getPics(new HomeCarouselManager())[MIDDLE]);
+        $photos3 = $photoManager->selectByPropertyId($this->getPics(new HomeCarouselManager())[RIGHT]);
 
         //retrieve slider card information data
         $propertyManager = new PropertyManager();
-        $property1 = $propertyManager->selectOneById($this->getPicsLeftSlider());
-        $property2 = $propertyManager->selectOneById($this->getPicsMidSlider());
-        $property3 = $propertyManager->selectOneById($this->getPicRightSlider());
+        $property1 = $propertyManager->selectOneById($this->getPics(new HomeCarouselManager())[LEFT]);
+        $property2 = $propertyManager->selectOneById($this->getPics(new HomeCarouselManager())[MIDDLE]);
+        $property3 = $propertyManager->selectOneById($this->getPics(new HomeCarouselManager())[RIGHT]);
 
         //render page settings
         $page = 'Home/index.html.twig';
@@ -29,20 +33,11 @@ class HomeController extends AbstractController
         return $this->twig->render($page, array_merge($paramPhotos, $paramsProperty));
     }
 
-
-    public function getPicsLeftSlider(): int
+    private function getPics(HomeCarouselManager $myPics): array
     {
-       //TO DO:aller chercher dans base de données
-        return 1;
-    }
-    public function getPicsMidSlider(): int
-    {
-       //TO DO:aller chercher dans base de données
-        return 2;
-    }
-    public function getPicRightSlider(): int
-    {
-        //TO DO:aller chercher dans base de données
-        return 3;
+        foreach($myPics->selectAll() as $key => $value) {
+          $picsCollection[] = $value["id"];
+         }
+        return $picsCollection;
     }
 }
