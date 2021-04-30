@@ -19,7 +19,7 @@ class PropertyController extends AbstractController
 
     public function show(int $idProperty)
     {
-        if (!empty($idProperty) && $idProperty) {
+        if (!empty($idProperty)) {
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectOneById($idProperty);
         } else {
