@@ -43,6 +43,10 @@ class AdminAdvertisementController extends AbstractController
                 //insert in database
                 $advertisementManager = new PropertyManager();
                 $advertisementManager->insert($advertisement);
+                move_uploaded_file(
+                    $_FILES['image']['tmp_name'],
+                    __DIR__ . '/../../uploads/' . $_FILES['image']['name']
+                );
                 //redirection
                 header('Location: /adminAdvertisement/index');
             }

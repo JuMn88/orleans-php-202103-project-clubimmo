@@ -14,21 +14,26 @@
                 <li>{{ error }}</li>
             {%- endfor -%}
         </ul>
-        <form method="POST" class="mb-5" novalidate>
+        <form method="POST" class="mb-5" enctype="multipart/form-data" novalidate>
             <div class="mb-3">
                 <label for="reference" class="form-label">Référence</label>
                 <input type="text" readonly class="form-control" id="reference" 
                     name="reference" placeholder="Généré automatiquement" value="{{ advertisement.reference }}">
             </div>
             <div class="mb-3">
-                <label for="surface" class="form-label">Surface en mètres carrés</label>
-                <input type="text" class="form-control" id="surface" 
-                    name="surface" placeholder="0" value="{{ advertisement.surface }}" required>
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Prix</label>
-                <input type="text" class="form-control" id="price" 
-                    name="price" placeholder="0" value="{{ advertisement.price }}" required>
+                <label for="transaction" class="form-label">Type de transaction</label>
+                <select class="form-control" id="transaction" name="transaction" required>
+                    {% for transactionType in transactionTypes %}
+                        <option
+                            {% if advertisement.transaction == transactionType %}
+                                selected
+                            {% endif %}
+                            value="{{ transactionType }}"
+                        >
+                            {{ transactionType }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="mb-3">
                 <label for="propertyType" class="form-label">Type de propriété</label>
@@ -46,19 +51,14 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="transaction" class="form-label">Type de transaction</label>
-                <select class="form-control" id="transaction" name="transaction" required>
-                    {% for transactionType in transactionTypes %}
-                        <option
-                            {% if advertisement.transaction == transactionType %}
-                                selected
-                            {% endif %}
-                            value="{{ transactionType }}"
-                        >
-                            {{ transactionType }}
-                        </option>
-                    {% endfor %}
-                </select>
+                <label for="surface" class="form-label">Surface en mètres carrés</label>
+                <input type="text" class="form-control" id="surface" 
+                    name="surface" placeholder="0" value="{{ advertisement.surface }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Prix</label>
+                <input type="text" class="form-control" id="price" 
+                    name="price" placeholder="0" value="{{ advertisement.price }}" required>
             </div>
             <div class="mb-3">
                 <label for="city" class="form-label">Ville</label>
@@ -109,6 +109,10 @@
                         </option>
                     {% endfor %}
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="image" name="image" required>
             </div>
             <button class="btn btn-purple">Ajouter</button>
             <a class="mx-2 btn btn-lightpurple" href="/adminAdvertisement/index">Retour</a>
