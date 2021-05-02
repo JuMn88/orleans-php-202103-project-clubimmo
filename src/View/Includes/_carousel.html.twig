@@ -1,0 +1,39 @@
+<section>
+  <h2 class="font-weight-bold text-center m-4">Nos biens</h2>
+  <div class="container">
+    <div class="row mx-lg-n5">
+      {% for sliderCount in 0..2 %}
+        {% if sliderCount > 0 %}
+          <div class="col-lg-4 p-3 card d-none d-md-block text-center">
+          {% else %}
+          <div class="col-lg-4 p-3 card d-md-block text-center">
+        {% endif %}
+          <div id= "carouselExampleControls{{ sliderCount }}" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              {% block carouselImages1 %}
+                {% for photo in photos[sliderCount] %}
+                  <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                    <img src="{{ photo.url }}" class="d-block w-100" alt="First slide">
+                  </div>
+                {% else %}
+                  <img src="/assets/images/no_image.png" class="d-block w-100" alt="No image">
+                {% endfor %}
+              {% endblock %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target = "#carouselExampleControls{{ sliderCount }}"  data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">PRECEDENT</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target = "#carouselExampleControls{{ sliderCount }}" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">SUIVANT</span>
+            </button>
+          </div>
+          <h5 class="card-titl"><strong>{{ properties[sliderCount].property_type }}</strong></h5>
+          <h6 class="card-subtitle mb-2">{{ properties[i].city }} Secteur {{ properties[sliderCount].sector }} </h6>
+          <p class="card-text badge text-wrap">{{ properties[sliderCount].price |number_format(2, '.', ' ')  }} &euro;</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
