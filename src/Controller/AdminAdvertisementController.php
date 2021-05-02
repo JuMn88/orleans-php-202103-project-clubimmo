@@ -69,6 +69,7 @@ class AdminAdvertisementController extends AbstractController
             'bedrooms' => 'Nombre de chambres',
             'energyPerformance' => 'Performances énergétiques',
             'greenhouseGases' => 'GES',
+            'description' => 'Description',
         ];
         foreach ($advertisement as $adKey => $adValue) {
             if (empty($adValue)) {
