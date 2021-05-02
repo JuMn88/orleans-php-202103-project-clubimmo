@@ -16,7 +16,7 @@ class HomeController extends AbstractController
         $photoManager = new PhotoManager();
         $propertyManager = new PropertyManager();
 
-        /*Retrieve the last 3 houses for sale opr rent fed into the database 
+        /*Retrieve the last 3 houses for sale opr rent fed into the database
         to be displayed on homepage-based 3-fold eye-catcher slider */
         foreach ($photoManager->selectLastProperties() as $value) {
             $photos[$recordCounter] = $photoManager->selectByPropertyId($value["ID"]);
@@ -24,5 +24,5 @@ class HomeController extends AbstractController
             $recordCounter++;
         }
         return $this->twig->render('Home/index.html.twig', ['photos' => $photos, 'properties' => $properties]);
-    } 
+    }
 }
