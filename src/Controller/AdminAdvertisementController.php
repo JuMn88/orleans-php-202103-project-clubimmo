@@ -40,12 +40,14 @@ class AdminAdvertisementController extends AbstractController
             $errors = $this->validatePositiveInput($advertisement, $errors);
             $errors = $this->validateGradeInput($advertisement, $errors);
             if (empty($errors)) {
+                $fileName = $_FILES['photo']['name'];
+                $advertisement['photo'] = $fileName;
                 //insert in database
                 $advertisementManager = new PropertyManager();
                 $advertisementManager->insert($advertisement);
                 move_uploaded_file(
-                    $_FILES['image']['tmp_name'],
-                    __DIR__ . '/../../uploads/' . $_FILES['image']['name']
+                    $_FILES['photo']['tmp_name'],
+                    __DIR__ . '/../../public/uploads/' . $fileName
                 );
                 //redirection
                 header('Location: /adminAdvertisement/index');
