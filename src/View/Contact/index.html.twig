@@ -49,71 +49,78 @@
                     </div>
                 </div>
 
-                <div class="form-group row text-center mb-2 p-3">
-                    <p class="text-collapse">Vous êtes propriétaire et vous voulez déposer un dossier ?</p>
-                    <a href="#form-hidden" onclick="collapseForm()" class="btn-group-sm btn-default text-collapse" data-bs-toggle="collapse" data-bs-target="#form-hidden" aria-expanded="false" aria-controls="#form-hidden"><p class="font-weight-normal font-italic">Cliquez ici</p></a>                    
-                </div>
 
-                <!--This section is only showed when clicking on "cliquez ici"-->
-
-                <div id="form-hidden" class="collapse">
-                    <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="propertyType">Type de bien</label>
-                        <div class="col-lg-8 col-md-8 col-12">
-                            <select name="propertyType" id="propertyType" class="form-control custom-select" size="1">
-                                <option value="">Choisissez un type de bien</option>
-                               
-                             
-                                {% for propertyType in propertyTypes %}
-                                <option {% if client.propertyType == propertyType %} selected 
-                                        {% endif %}
-                                  value="{{ propertyType }}">
-                                    {{ propertyType }}
-                                </option>
-                                {% endfor %}
-                              
-                            </select>
-                        </div>
-                    </div>               
-
-                    <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="address">Adresse</label>
-                        <div class="col-lg-8 col-md-8 col-12">
-                            <input class="form-control" type="text" id="address" name="address" placeholder="Votre adresse" value="{{ client.address }}" required />
-                        </div>
+                {% if idProperty is null %}
+                    <div class="form-group row text-center mb-2 p-3">
+                        <p class="text-collapse">Vous êtes propriétaire et vous voulez déposer un dossier ?</p>
+                        <a href="#form-hidden" onclick="collapseForm()" class="btn-group-sm btn-default text-collapse" data-bs-toggle="collapse" data-bs-target="#form-hidden" aria-expanded="false" aria-controls="#form-hidden"><p class="font-weight-normal font-italic">Cliquez ici</p></a>                    
                     </div>
 
-                    <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="city">Ville</label>
-                        <div class="col-lg-8 col-md-8 col-12">
-                            <input class="form-control" type="text" id="city" name="city" placeholder="Votre ville" value="{{ client.city }}" required />
-                        </div>
-                    </div>
+                    <!--This section is only showed when clicking on "cliquez ici"-->
 
-                    <div class="form-group row mb-3">
-                        <label class="col-lg-4 col-md-4 col-12 col-form-label" for="postalcode">Code postal</label>
-                        <div class="col-lg-8 col-md-8 col-12">
-                            <input class="form-control" type="text" id="postalcode" name="postalcode" placeholder="Code postal" value="{{ client.postalcode }}" required />
+                    <div id="form-hidden" class="collapse">
+                        <div class="form-group row mb-3">
+                            <label class="col-lg-4 col-md-4 col-12 col-form-label" for="propertyType">Type de bien</label>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <select name="propertyType" id="propertyType" class="form-control custom-select" size="1">
+                                    <option value="">Choisissez un type de bien</option>
+                                
+                                
+                                    {% for propertyType in propertyTypes %}
+                                    <option {% if client.propertyType == propertyType %} selected 
+                                            {% endif %}
+                                    value="{{ propertyType }}">
+                                        {{ propertyType }}
+                                    </option>
+                                    {% endfor %}
+                                
+                                </select>
+                            </div>
+                        </div>               
+
+                        <div class="form-group row mb-3">
+                            <label class="col-lg-4 col-md-4 col-12 col-form-label" for="address">Adresse</label>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <input class="form-control" type="text" id="address" name="address" placeholder="Votre adresse" value="{{ client.address }}" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label class="col-lg-4 col-md-4 col-12 col-form-label" for="city">Ville</label>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <input class="form-control" type="text" id="city" name="city" placeholder="Votre ville" value="{{ client.city }}" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label class="col-lg-4 col-md-4 col-12 col-form-label" for="postalcode">Code postal</label>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <input class="form-control" type="text" id="postalcode" name="postalcode" placeholder="Code postal" value="{{ client.postalcode }}" required />
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--The hidden section by default ends here-->
+                    <!--The hidden section by default ends here-->
+                {% endif %}
 
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="topic">Sujet</label>
                     <div class="col-lg-8 col-md-8 col-12">
                         <select name="topic" id="topic" class="form-control custom-select" size="1">
-                            <option>Choisissez un sujet</option>
-                            {% for topic in topics %}
-                                <option {% if client.topic == topic %} selected 
-                                        {% endif %}
-                                  value="{{ topic }}">
-                                    {{ topic }}
-                                </option>
-                            {% endfor %}
+                            {% if idProperty is not null %}
+                                <option value="{{ topics[2] }}">{{ topics[2] }}</option>
+                                <option value="{{ topics[3] }}">{{ topics[3] }}</option>
+                            {% else %}
+                                <option>Choisissez un sujet</option>
+                                {% for topic in topics %}
+                                    <option {% if client.topic == topic %} selected
+                                    {% endif %}
+                                        value="{{ topic }}">{{ topic }}
+                                    </option>
+                                {% endfor %}
+                            {% endif %}
                         </select>
                     </div>
-                </div>       
+                </div>
 
                 <div class="form-group row mb-3">
                     <label class="col-lg-4 col-md-4 col-12 col-form-label" for="message">Message</label>

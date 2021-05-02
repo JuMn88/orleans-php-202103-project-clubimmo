@@ -10,6 +10,12 @@
 namespace App\Controller;
 
 use App\Model\ClientManager;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
+
+//require_once __DIR__ . '/../../config/mail.php';
 
 class ContactController extends AbstractController
 {
@@ -39,7 +45,7 @@ class ContactController extends AbstractController
     public const MAX_NAME_LENGTH = 100;
     public const MAX_MESSAGE_LENGTH = 255;
 
-    public function index()
+    public function index($idProperty = null)
     {
         $errors = [];
         $client = [];
@@ -47,6 +53,32 @@ class ContactController extends AbstractController
             $client = array_map('trim', $_POST);
             $errors =  $this->validateForm($client, $errors);
             if (empty($errors)) {
+                $name = "Je me presente " . $client['firstname'] . " " . $client['lastname'] . "<br/>";
+                $mailPart1 = "";
+                $mailPart2 = "";
+                $mailPart3 = "";
+                $mailPart4 = "";
+                if ($client['topic'] != self::TOPICS[0] || $client['topic'] != self::TOPICS[1]) {
+                    if (!empty($client['propertyType'])) {
+                        $mailPart1 = "Je voudrais déposer un dossier pour un bien, de type : ";
+                        $mailPart2 = $client['propertyType'];
+                        $mailPart3 = " qui se situe au " . $client['address'] . ", ";
+                        $mailPart4 = $client['city'] . " " . $client['postalcode'] . "<br/>";
+                    }
+                }
+                $message = $client['message'] . "<br/>";
+                $contact = "Vous pouvez me contacter par mail " . $client['email'] . " ou par téléphone ";
+                $mailBody = "";
+                $mailBody = $name . $mailPart1 . $mailPart2 . $mailPart3 . $mailPart4 . $message . $contact;
+                $transport = new GmailSmtpTransport(MAIL_LOGIN, MAIL_PASS);
+                $mailer = new Mailer($transport);
+
+                $email = (new Email())
+                    ->from('grialazurabi222@gmail.com')
+                    ->to('grialazurabi222@gmail.com')
+                    ->subject($client['topic'])
+                    ->html($mailBody);
+                $mailer->send($email);
                 header('Location: /contact/index/');
             }
         }
@@ -55,6 +87,7 @@ class ContactController extends AbstractController
             'propertyTypes' => self::PROPERTY_TYPES,
             'errors' => $errors,
             'client' => $client,
+            'idProperty' => $idProperty,
         ]);
     }
 
