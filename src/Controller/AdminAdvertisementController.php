@@ -139,7 +139,6 @@ class AdminAdvertisementController extends AbstractController
     //Method to validate files MIME
     public function validateImageFormat(array $file, array $errors): array
     {
-        //var_dump($_FILES); die;
         if ($file['error'] != 0) {
             $errors[] = 'Problème dans l\'envoi de fichier.';
         } else {
