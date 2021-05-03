@@ -14,36 +14,11 @@
                 <li>{{ error }}</li>
             {%- endfor -%}
         </ul>
-        <form method="POST" class="mb-5" novalidate>
+        <form method="POST" class="mb-5" enctype="multipart/form-data" novalidate>
             <div class="mb-3">
                 <label for="reference" class="form-label">Référence</label>
                 <input type="text" readonly class="form-control" id="reference" 
                     name="reference" placeholder="Généré automatiquement" value="{{ advertisement.reference }}">
-            </div>
-            <div class="mb-3">
-                <label for="surface" class="form-label">Surface en mètres carrés</label>
-                <input type="text" class="form-control" id="surface" 
-                    name="surface" placeholder="0" value="{{ advertisement.surface }}" required>
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Prix</label>
-                <input type="text" class="form-control" id="price" 
-                    name="price" placeholder="0" value="{{ advertisement.price }}" required>
-            </div>
-            <div class="mb-3">
-                <label for="propertyType" class="form-label">Type de propriété</label>
-                <select class="form-control" id="propertyType" name="propertyType" required>
-                    {% for propertyType in propertyTypes %}
-                        <option
-                            {% if advertisement.propertyType == propertyType %}
-                                selected
-                            {% endif %}
-                            value="{{ propertyType }}"
-                        >
-                            {{ propertyType }}
-                        </option>
-                    {% endfor %}
-                </select>
             </div>
             <div class="mb-3">
                 <label for="transaction" class="form-label">Type de transaction</label>
@@ -60,16 +35,41 @@
                     {% endfor %}
                 </select>
             </div>
+            <!--<div class="mb-3">
+                <label for="propertyType" class="form-label">Type de propriété</label>
+                <select class="form-control" id="propertyType" name="propertyType" required>
+                    {% for propertyType in propertyTypes %}
+                        <option
+                            {% if advertisement.propertyType == propertyType %}
+                                selected
+                            {% endif %}
+                            value="{{ propertyType }}"
+                        >
+                            {{ propertyType }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>-->
             <div class="mb-3">
-                <label for="city" class="form-label">Ville</label>
-                <input type="text" class="form-control" id="city" 
-                    name="city" placeholder="Orléans" value="{{ advertisement.city }}" required>
+                <label for="surface" class="form-label">Surface en mètres carrés</label>
+                <input type="text" class="form-control" id="surface" 
+                    name="surface" placeholder="0" value="{{ advertisement.surface }}" required>
             </div>
             <div class="mb-3">
+                <label for="price" class="form-label">Prix</label>
+                <input type="text" class="form-control" id="price" 
+                    name="price" placeholder="0" value="{{ advertisement.price }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="address" 
+                    name="address" placeholder="1 rue de Bellevue" value="{{ advertisement.address }}">
+            </div>
+            <!--<div class="mb-3">
                 <label for="sector" class="form-label">Secteur</label>
                 <input type="text" class="form-control" id="sector" 
                     name="sector" placeholder="Centre" value="{{ advertisement.sector }}" required>
-            </div>
+            </div>-->
             <div class="mb-3">
                 <label for="rooms" class="form-label">Nombre de pièces</label>
                 <input type="text" class="form-control" id="rooms" 
@@ -79,6 +79,51 @@
                 <label for="bedrooms" class="form-label">Nombre de chambres</label>
                 <input type="text" class="form-control" id="bedrooms" 
                     name="bedrooms" placeholder="0" value="{{ advertisement.bedrooms }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="bathrooms" class="form-label">Nombre de salles de bain</label>
+                <input type="text" class="form-control" id="bathrooms" 
+                    name="bathrooms" placeholder="0" value="{{ advertisement.bathrooms }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="toilets" class="form-label">Nombre de toilettes</label>
+                <input type="text" class="form-control" id="toilets" 
+                    name="toilets" placeholder="0" value="{{ advertisement.toilets }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="parkingSpace" class="form-label">Nombre de places de stationnement</label>
+                <input type="text" class="form-control" id="parkingSpace" 
+                    name="parkingSpace" placeholder="0" value="{{ advertisement.parkingSpace }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="kitchen" class="form-label">Cuisine</label>
+                <select class="form-control" id="kitchen" name="kitchen" required>
+                    {% for answer in yesNoAnswers %}
+                        <option
+                            {% if advertisement.kitchen == answer %}
+                                selected
+                            {% endif %}
+                            value="{{ answer }}"
+                        >
+                            {{ answer }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="lift" class="form-label">Ascenseur</label>
+                <select class="form-control" id="lift" name="lift" required>
+                    {% for answer in yesNoAnswers %}
+                        <option
+                            {% if advertisement.lift == answer %}
+                                selected
+                            {% endif %}
+                            value="{{ answer }}"
+                        >
+                            {{ answer }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="mb-3">
                 <label for="energyPerformance" class="form-label">Performances énergétiques</label>
@@ -109,6 +154,20 @@
                         </option>
                     {% endfor %}
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="photo" class="form-label">Photo</label>
+                <input type="file" class="form-control" id="photo" name="photo" aria-describedby="photoHelpBlock" required>
+                <small id="photoHelpBlock" class="form-text text-muted">
+                    Fichier de type .jpeg, .jpg, .png inférieur à 1Mo.
+                </small>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="description"
+                    cols="30" rows="10" placeholder="Présentation du bien">
+                    {{- advertisement.description -}}
+                </textarea>
             </div>
             <button class="btn btn-purple">Ajouter</button>
             <a class="mx-2 btn btn-lightpurple" href="/adminAdvertisement/index">Retour</a>

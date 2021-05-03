@@ -16,18 +16,20 @@
         <table class="mb-5 table table-hover">
             <thead>
                 <tr>
+                    <th>Photo</th>
                     <th>Référence</th>
                     <th>Surface</th>
-                    <th>Prix</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for property in properties %}
                     <tr>
+                        <td>
+                            <img class="property-photo" src="/uploads/{{ property.photo }}" alt=""/>
+                        </td>
                         <td>{{ property.reference }}</td>
                         <td>{{ property.surface }}</td>
-                        <td>{{ property.price }}</td>
                         <td>
                             <form method="POST" onSubmit="return confirm('Voulez-vous supprimer cette annonce ?')" action="/adminAdvertisement/delete/{{ property.id }}">
                                 <button class="btn btn-sm btn-danger">Supprimer</button>

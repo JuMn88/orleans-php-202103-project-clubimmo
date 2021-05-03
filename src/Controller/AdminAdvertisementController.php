@@ -19,6 +19,7 @@ class AdminAdvertisementController extends AbstractController
         "Autre",
     ];
     public const DIAGNOSTIC_GRADES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    public const YES_NO_ANSWERS = ['Oui', 'Non'];
 
     public function index(): string
     {
@@ -53,27 +54,35 @@ class AdminAdvertisementController extends AbstractController
             'propertyTypes' => self::PROPERTY_TYPES,
             'transactionTypes' => self::TRANSACTION_TYPES,
             'diagnosticGrades' => self::DIAGNOSTIC_GRADES,
+            'yesNoAnswers' => self::YES_NO_ANSWERS,
         ]);
     }
     //Method to ensure every fields had been filled
     public function validateInput($advertisement, $errors): array
     {
         $fieldsList = [
+            'transaction' => 'Type de transaction',
+            'propertyType' => 'Type de propriété',
             'surface' => 'Surface',
             'price' => 'Prix',
-            'propertyType' => 'Type de propriété',
-            'transaction' => 'Type de transaction',
-            'city' => 'Ville',
+            'address' => 'Adresse',
             'sector' => 'Secteur',
             'rooms' => 'Nombre de pièces',
             'bedrooms' => 'Nombre de chambres',
+            'bathrooms' => 'Nombre de salles de bain',
+            'toilets' => 'Nombre de toilettes',
+            'parkingSpace' => 'Nombre de places de stationnement',
+            'kitchen' => 'Cuisine',
+            'lift' => 'Ascenseur',
             'energyPerformance' => 'Performances énergétiques',
             'greenhouseGases' => 'GES',
+            'description' => 'Description',
         ];
+        $probableNullCriteria = ['rooms', 'bedrooms', 'bathrooms', 'toilets', 'parkingSpace'];
         foreach ($advertisement as $adKey => $adValue) {
             if (empty($adValue)) {
                 //since empty(0) = true, another condition is necessary for properties with no room or bedroom
-                if ($adValue != '0' || $adKey != 'rooms' && $adKey != 'bedrooms') {
+                if ($adValue != '0' || !in_array($adKey, $probableNullCriteria)) {
                     $errors[] = 'Le champ ' . $fieldsList[$adKey] . ' est requis.';
                 }
             }
@@ -124,6 +133,17 @@ class AdminAdvertisementController extends AbstractController
         }
         if (!in_array($advertisement['greenhouseGases'], self::DIAGNOSTIC_GRADES)) {
             $errors[] = 'L\'indice GES doit être compris entre A et G';
+        }
+        return $errors;
+    }
+    //Method to validate the "yes/no inputs" (kitchen and lift)
+    public function validateYNInput($advertisement, $errors): array
+    {
+        if (!in_array($advertisement['kitchen'], self::YES_NO_ANSWERS)) {
+            $errors[] = 'La réponse au champ Cuisine doit être oui ou non.';
+        }
+        if (!in_array($advertisement['lift'], self::YES_NO_ANSWERS)) {
+            $errors[] = 'La réponse au champ Ascenseur doit être oui ou non';
         }
         return $errors;
     }
