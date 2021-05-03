@@ -31,7 +31,6 @@ class PropertyController extends AbstractController
     public function show(int $idProperty)
     {
         $features = [];
-
         if (!empty($idProperty)) {
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectOneById($idProperty);

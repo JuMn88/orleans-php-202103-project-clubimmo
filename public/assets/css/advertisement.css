@@ -1,5 +1,3 @@
-
-
 .btn_advert_contact {
     color: var(--light);
     background-color: var(--primary);
@@ -7,5 +5,10 @@
     width:fit-content;
 }
 
+.back {
+    text-decoration: none;
+} 
 
-
+.back:hover {
+    text-decoration: underline;
+} 
