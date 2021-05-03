@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\PropertyManager;
 use App\Model\PhotoManager;
+use App\Model\PropertyTypeManager;
 
 class PropertyController extends AbstractController
 {
@@ -50,8 +51,12 @@ class PropertyController extends AbstractController
                 }
             }
         }
+        $propertyTypeManager = new PropertyTypeManager();
+        $propertyType = $propertyTypeManager->selectOneById($property['property_type_id']);
+
         return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos,
                                                                     'property' => $property,
-                                                                    'features' => $features]);
+                                                                    'features' => $features,
+                                                                    'propertyType' => $propertyType]);
     }
 }
