@@ -8,10 +8,14 @@ use App\Model\PhotoManager;
 class PropertyController extends AbstractController
 {
     public const FEATURES = [
-        ["flaticon-bedroom", "chambres", "bedrooms"],
-        ["flaticon-room", "pièces", "rooms"],
+        ["flaticon-bedrooms", "chambres", "bedrooms"],
+        ["flaticon-rooms", "pièces", "rooms"],
         ["flaticon-surface", "m²", "surface"],
-        ["flaticon-bathroom", "salle de bain", "bathrooms"]];
+        ["flaticon-bathrooms", "salle de bains", "bathrooms"],
+        ["flaticon-toilets", "wc", "toilets"],
+        ["flaticon-kitchen", "cuisine", "kitchen"],
+        ["flaticon-lift", "ascenseur", "lift"],
+        ["flaticon-parking-space", "parking", "parking-space"]];
 
     /**
      * this will list the photo

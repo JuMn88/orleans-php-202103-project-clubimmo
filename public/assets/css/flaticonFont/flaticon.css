@@ -1,10 +1,10 @@
 @font-face {
     font-family: "flaticon";
-    src: url("./flaticon.ttf?37a564e0229a6503ef09fb6c86a11003") format("truetype"),
-url("./flaticon.woff?37a564e0229a6503ef09fb6c86a11003") format("woff"),
-url("./flaticon.woff2?37a564e0229a6503ef09fb6c86a11003") format("woff2"),
-url("./flaticon.eot?37a564e0229a6503ef09fb6c86a11003#iefix") format("embedded-opentype"),
-url("./flaticon.svg?37a564e0229a6503ef09fb6c86a11003#flaticon") format("svg");
+    src: url("./flaticon.ttf?65203055340b825b6dcd5d247b70c259") format("truetype"),
+url("./flaticon.woff?65203055340b825b6dcd5d247b70c259") format("woff"),
+url("./flaticon.woff2?65203055340b825b6dcd5d247b70c259") format("woff2"),
+url("./flaticon.eot?65203055340b825b6dcd5d247b70c259#iefix") format("embedded-opentype"),
+url("./flaticon.svg?65203055340b825b6dcd5d247b70c259#flaticon") format("svg");
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -18,7 +18,7 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.flaticon-room:before {
+.flaticon-rooms:before {
     content: "\f101";
     font-size: 200%;
 }
@@ -38,15 +38,31 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
     content: "\f105";
     font-size: 200%;
 }
-.flaticon-bedroom:before {
+.flaticon-bedrooms:before {
     content: "\f106";
     font-size: 200%;
 }
-.flaticon-bathroom:before {
+.flaticon-bathrooms:before {
     content: "\f107";
     font-size: 200%;
 }
-.flaticon-wc:before {
+.flaticon-toilets:before {
     content: "\f108";
+    font-size: 200%;
+}
+.flaticon-home2:before {
+    content: "\f109";
+    font-size: 200%;
+}
+.flaticon-lift:before {
+    content: "\f10a";
+    font-size: 200%;
+}
+.flaticon-kitchen:before {
+    content: "\f10b";
+    font-size: 200%;
+}
+.flaticon-parking-space:before {
+    content: "\f10c";
     font-size: 200%;
 }

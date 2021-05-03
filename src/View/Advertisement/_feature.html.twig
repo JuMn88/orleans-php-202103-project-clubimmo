@@ -24,6 +24,13 @@
                 <h6 class="small">
                     {{ property.property_type }}
                 </h6>
+            {% else %}
+                <div>
+                    <i class="flaticon-home2"></i>
+                </div>
+                <h6 class="small">
+                    {{ property.property_type }}
+                </h6>
             {% endif %}
         </div>
         {% for feature in features %}
@@ -42,6 +49,6 @@
 
     <!-- Button trigger modal -->
     <div class="row justify-content-center mt-0 mt-md-5">
-        <button type="button" class="btn btn_advert_contact" data-bs-toggle="modal" data-bs-target="#contactModal">Envoyez un Mail</button>
+        <a href="/Contact/index/{{ property.id }}" class="btn-property btn text-light btn_advert_contact">Envoyez un Mail</a>
     </div>
 </div>

@@ -2,11 +2,11 @@ $flaticon-font: "flaticon";
 
 @font-face {
     font-family: $flaticon-font;
-    src: url("./flaticon.ttf?37a564e0229a6503ef09fb6c86a11003") format("truetype"),
-url("./flaticon.woff?37a564e0229a6503ef09fb6c86a11003") format("woff"),
-url("./flaticon.woff2?37a564e0229a6503ef09fb6c86a11003") format("woff2"),
-url("./flaticon.eot?37a564e0229a6503ef09fb6c86a11003#iefix") format("embedded-opentype"),
-url("./flaticon.svg?37a564e0229a6503ef09fb6c86a11003#flaticon") format("svg");
+    src: url("./flaticon.ttf?65203055340b825b6dcd5d247b70c259") format("truetype"),
+url("./flaticon.woff?65203055340b825b6dcd5d247b70c259") format("woff"),
+url("./flaticon.woff2?65203055340b825b6dcd5d247b70c259") format("woff2"),
+url("./flaticon.eot?65203055340b825b6dcd5d247b70c259#iefix") format("embedded-opentype"),
+url("./flaticon.svg?65203055340b825b6dcd5d247b70c259#flaticon") format("svg");
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
@@ -21,18 +21,22 @@ i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
 }
 
 $flaticon-map: (
-    "room": "\f101",
+    "rooms": "\f101",
     "surface": "\f102",
     "building": "\f103",
     "appartement": "\f104",
     "home": "\f105",
-    "bedroom": "\f106",
-    "bathroom": "\f107",
-    "wc": "\f108",
+    "bedrooms": "\f106",
+    "bathrooms": "\f107",
+    "toilets": "\f108",
+    "home2": "\f109",
+    "lift": "\f10a",
+    "kitchen": "\f10b",
+    "parking-space": "\f10c",
 );
 
-.flaticon-room:before {
-    content: map-get($flaticon-map, "room");
+.flaticon-rooms:before {
+    content: map-get($flaticon-map, "rooms");
 }
 .flaticon-surface:before {
     content: map-get($flaticon-map, "surface");
@@ -46,12 +50,24 @@ $flaticon-map: (
 .flaticon-home:before {
     content: map-get($flaticon-map, "home");
 }
-.flaticon-bedroom:before {
-    content: map-get($flaticon-map, "bedroom");
+.flaticon-bedrooms:before {
+    content: map-get($flaticon-map, "bedrooms");
 }
-.flaticon-bathroom:before {
-    content: map-get($flaticon-map, "bathroom");
+.flaticon-bathrooms:before {
+    content: map-get($flaticon-map, "bathrooms");
 }
-.flaticon-wc:before {
-    content: map-get($flaticon-map, "wc");
+.flaticon-toilets:before {
+    content: map-get($flaticon-map, "toilets");
+}
+.flaticon-home2:before {
+    content: map-get($flaticon-map, "home2");
+}
+.flaticon-lift:before {
+    content: map-get($flaticon-map, "lift");
+}
+.flaticon-kitchen:before {
+    content: map-get($flaticon-map, "kitchen");
+}
+.flaticon-parking-space:before {
+    content: map-get($flaticon-map, "parking-space");
 }
