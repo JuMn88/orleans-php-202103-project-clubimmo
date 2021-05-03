@@ -50,38 +50,18 @@ class ContactController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $client = array_map('trim', $_POST);
             $errors =  $this->validateForm($client, $errors);
-            $propertyRef = "";
             if (empty($errors)) {
-                $name = "Je me presente " . $client['firstname'] . " " . $client['lastname'] . "<br/>";
-                if (!empty($idProperty)) {
-                    $propertyRef = "Je suis interessé par un bien, la ref : " . $idProperty . "<br/>";
-                }
-                $mailPart1 = "";
-                $mailPart2 = "";
-                $mailPart3 = "";
-                $mailPart4 = "";
-                if ($client['topic'] != self::TOPICS[0] || $client['topic'] != self::TOPICS[1]) {
-                    if (!empty($client['propertyType'])) {
-                        $mailPart1 = "Je voudrais déposer un dossier pour un bien, de type : ";
-                        $mailPart2 = $client['propertyType'];
-                        $mailPart3 = " qui se situe au " . $client['address'] . ", ";
-                        $mailPart4 = $client['city'] . " " . $client['postalcode'] . "<br/>";
-                    }
-                }
-                $message = $client['message'] . "<br/>";
-                $contactPart1 = "Vous pouvez me contacter par mail " . $client['email'];
-                $contactPart2 = " ou par téléphone " . $client['phone'];
-                $mailBody = "";
-                $mail = $mailPart1 . $mailPart2 . $mailPart3 . $mailPart4;
-                $mailBody = $name . $propertyRef . $mail . $message . $contactPart1 . $contactPart2;
                 $transport = new GmailSmtpTransport(MAIL_LOGIN, MAIL_PASS);
                 $mailer = new Mailer($transport);
-
+                $emailBody = $this->twig->render('Contact/email.html.twig', ['client' => $client,
+                                                                            'topic' => self::TOPICS,
+                                                                            'idProperty' => $idProperty,
+                                                                            ]);
                 $email = (new Email())
                     ->from(MAIL_FROM)
                     ->to(MAIL_TO)
                     ->subject($client['topic'])
-                    ->html($mailBody);
+                    ->html($emailBody);
                 $mailer->send($email);
                 header('Location: /contact/index');
             }
