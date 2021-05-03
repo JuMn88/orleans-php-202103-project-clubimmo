@@ -7,6 +7,7 @@
  * Time: 14:01
  */
 
+require_once __DIR__ . '/../config/mail.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
 if (getenv('ENV') === false) {

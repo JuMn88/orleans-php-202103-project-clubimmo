@@ -13,3 +13,5 @@
 
 define('MAIL_LOGIN', 'example@mail.com');
 define('MAIL_PASS', 'password');
+define('MAIL_FROM', 'example@mail.com');
+define('MAIL_TO', 'example@mail.com');

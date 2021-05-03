@@ -15,8 +15,6 @@ use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 
-//require_once __DIR__ . '/../../config/mail.php';
-
 class ContactController extends AbstractController
 {
     /**
@@ -52,8 +50,12 @@ class ContactController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $client = array_map('trim', $_POST);
             $errors =  $this->validateForm($client, $errors);
+            $propertyRef = "";
             if (empty($errors)) {
                 $name = "Je me presente " . $client['firstname'] . " " . $client['lastname'] . "<br/>";
+                if (!empty($idProperty)) {
+                    $propertyRef = "Je suis interessé par un bien, la ref : " . $idProperty . "<br/>";
+                }
                 $mailPart1 = "";
                 $mailPart2 = "";
                 $mailPart3 = "";
@@ -67,19 +69,21 @@ class ContactController extends AbstractController
                     }
                 }
                 $message = $client['message'] . "<br/>";
-                $contact = "Vous pouvez me contacter par mail " . $client['email'] . " ou par téléphone ";
+                $contactPart1 = "Vous pouvez me contacter par mail " . $client['email'];
+                $contactPart2 = " ou par téléphone " . $client['phone'];
                 $mailBody = "";
-                $mailBody = $name . $mailPart1 . $mailPart2 . $mailPart3 . $mailPart4 . $message . $contact;
+                $mail = $mailPart1 . $mailPart2 . $mailPart3 . $mailPart4;
+                $mailBody = $name . $propertyRef . $mail . $message . $contactPart1 . $contactPart2;
                 $transport = new GmailSmtpTransport(MAIL_LOGIN, MAIL_PASS);
                 $mailer = new Mailer($transport);
 
                 $email = (new Email())
-                    ->from('grialazurabi222@gmail.com')
-                    ->to('grialazurabi222@gmail.com')
+                    ->from(MAIL_FROM)
+                    ->to(MAIL_TO)
                     ->subject($client['topic'])
                     ->html($mailBody);
                 $mailer->send($email);
-                header('Location: /contact/index/');
+                header('Location: /contact/index');
             }
         }
         return $this->twig->render('Contact/index.html.twig', [
