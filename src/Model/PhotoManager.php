@@ -21,4 +21,6 @@ class PhotoManager extends AbstractManager
         $query .= 'ORDER BY PR.ID DESC LIMIT 3;';
         return $this->pdo->query($query)->fetchAll();
     }
+
+    
 }

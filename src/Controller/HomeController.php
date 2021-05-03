@@ -20,7 +20,7 @@ class HomeController extends AbstractController
         to be displayed on homepage-based 3-fold eye-catcher slider */
         foreach ($photoManager->selectLastProperties() as $value) {
             $photos[$recordCounter] = $photoManager->selectByPropertyId($value["ID"]);
-            $properties[$recordCounter] = $propertyManager->selectOneById($value["ID"]);
+            $properties[$recordCounter] = $propertyManager->selectHomeSliderInfo($value["ID"]);
             $recordCounter++;
         }
         return $this->twig->render('Home/index.html.twig', ['photos' => $photos, 'properties' => $properties]);
