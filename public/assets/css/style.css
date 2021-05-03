@@ -1,11 +1,11 @@
 :root {
     --primary: #6B36AE;
-    --secondary: #DDDDDD55;
+    --secondary:lightgrey;
     --light: white;
     --dark: black;
     --transparent-light: rgba(255, 255, 255, 0.514);
-    --intermediary: #AA9BBE;
-    --card-color: #DDDDDD30;
+    --intermediary: #8846df;
+    --card-color: rgb(93, 86, 100);
     --main-font: 'Roboto, Sans-serif';
     --title-font: 'Lato';
     --title-size: 64px;
@@ -34,4 +34,13 @@ h2 {
 
 .footer {
     background-color: var(--secondary);
+}
+
+/* Add new class */
+.bg-purple{
+background-color: var(--primary);
+}
+
+.text-purple{
+    color:var(--primary);
 }

@@ -1,22 +1,14 @@
-.bg-purple{
-    background-color: var(--primary);
-    }
-    
-.text-purple{
-        color:var(--primary);
-    }
-
 .container-property{
     --height-card: 300px;
     margin: calc(var(--height-card)/5) auto;
 }
 
 .container-searchBar{
-    height: calc(var(--height-card)/2);
+    height: calc(var(--height-card)/1.2);
     background-color: var(--secondary);
 }
-.empty-page{
-    color:var(--primary);
+form button{
+    width: 200px;
 }
 .card-price-property,
 .card-property-type {
@@ -24,11 +16,19 @@
 }
 .property-card{
     min-height: var(--height-card);
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
 }
 .property-card img{
     min-height: var(--height-card);
     object-fit: cover;
 }
+
 .btn-property{
     background-color: var(--primary);
+}
+.badge{
+    width:calc(var(--height-card)/4);
+    height: calc(var(--height-card)/9);
+    background-color: var(--secondary);
 }

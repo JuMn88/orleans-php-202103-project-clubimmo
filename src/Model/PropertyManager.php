@@ -17,25 +17,56 @@ class PropertyManager extends AbstractManager
         $statement->execute();
     }
 
-    public function selectAll(string $orderBy = '', string $direction = 'ASC'): array
-    {
-        $query = 'SELECT p.*, pt.name AS property_type FROM ' . self::TABLE . ' p INNER JOIN ';
-        $query .= PropertyTypeManager::TABLE . ' pt ON pt.id = p.propertyType_id';
-        if ($orderBy) {
-            $query .= ' ORDER BY ' . $orderBy . ' ' . $direction;
-        }
-        return $this->pdo->query($query)->fetchAll();
-    }
-
-    public function selectAllByType(int $id)
+    public function selectProperties(?string $transaction, ?int $propertyTypeId, ?int $sectorId, ?int $budget)
     {
         // prepared request
-        $query = 'SELECT p.*, pt.name AS property_type FROM ' . self::TABLE . ' p INNER JOIN ';
-        $query .= PropertyTypeManager::TABLE . ' pt ON pt.id = p.propertyType_id WHERE p.propertyType_id =:id';
+        $query = 'SELECT p.*, pt.name AS property_type, s.name AS sector_name, min(photo.url)';
+        $query .= ' AS property_photo FROM ' . self::TABLE . ' p JOIN ' . PropertyTypeManager::TABLE;
+        $query .= ' pt ON pt.id = p.property_type_id JOIN '  . SectorManager::TABLE . ' s ON s.id = p.sector_id';
+        $query .= ' JOIN '  . PhotoManager::TABLE . ' ON photo.property_id = p.id';
+        $conditions = null;
+        // Make the request that shows all the properties that correspond to the selected transaction type
+        $conditions = $this->buildCondition($conditions, $transaction, 'transaction', 'transaction');
+        // Make the request that shows all the properties that correspond to the selected property type
+        $conditions = $this->buildCondition($conditions, strval($propertyTypeId), 'property_type_id', 'propertyTypeId');
+         // Make the request that shows all the properties that correspond to the selected sector
+        $conditions = $this->buildCondition($conditions, strval($sectorId), 'sector_id', 'sectorId');
+         // Make the request that shows all the properties of which prices are less than or equal to the input price
+        if ($budget) {
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "p.price <= :budget";
+        }
+        if (!empty($conditions)) {
+            $query .= " WHERE " .  $conditions;
+        }
+        $query .= " group by p.id";
         $statement = $this->pdo->prepare($query);
-        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        if ($transaction) {
+            $statement->bindValue('transaction', $transaction, \PDO::PARAM_STR);
+        }
+        if ($propertyTypeId) {
+            $statement->bindValue('propertyTypeId', $propertyTypeId, \PDO::PARAM_INT);
+        }
+        if ($sectorId) {
+            $statement->bindValue('sectorId', $sectorId, \PDO::PARAM_INT);
+        }
+        if ($budget) {
+            $statement->bindValue('budget', $budget, \PDO::PARAM_INT);
+        }
         $statement->execute();
-
         return $statement->fetchAll();
+    }
+    // Created a method that add the conditions corresponding to the different search types into the origin request.
+    public function buildCondition(?string $conditions, ?string $filter, ?string $tableColumn, ?string $paramId)
+    {
+        if ($filter) {
+            if (!empty($conditions)) {
+                $conditions .= " AND ";
+            }
+            $conditions .= "p." . $tableColumn . "=:" . $paramId;
+        }
+        return $conditions;
     }
 }
