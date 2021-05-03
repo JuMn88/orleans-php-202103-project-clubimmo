@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Model\PropertyManager;
+
 use App\Model\PropertyTypeManager;
 use App\Model\SectorManager;
+
+
 use App\Model\PhotoManager;
 
 class PropertyController extends AbstractController
@@ -15,6 +18,7 @@ class PropertyController extends AbstractController
     public function index()
     {
         $propertyManager = new PropertyManager();
+
         // class PropertyTypeManger
         $propertyTypeManager = new PropertyTypeManager();
         $propertyTypes = $propertyTypeManager->selectAll('name', 'ASC');

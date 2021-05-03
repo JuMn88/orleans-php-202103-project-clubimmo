@@ -28,7 +28,11 @@
                         <td>{{ property.reference }}</td>
                         <td>{{ property.surface }}</td>
                         <td>{{ property.price }}</td>
-                        <td><!-- TO DO Edit and Delete buttons--></td>
+                        <td>
+                            <form method="POST" onSubmit="return confirm('Voulez-vous supprimer cette annonce ?')" action="/adminAdvertisement/delete/{{ property.id }}">
+                                <button class="btn btn-sm btn-danger">Supprimer</button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
