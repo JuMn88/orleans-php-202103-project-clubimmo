@@ -155,4 +155,13 @@ class AdminAdvertisementController extends AbstractController
         }
         return $errors;
     }
+    public function delete(int $id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $propertyManager = new PropertyManager();
+            $propertyManager->delete($id);
+
+            header('Location: /adminAdvertisement/index');
+        }
+    }
 }
