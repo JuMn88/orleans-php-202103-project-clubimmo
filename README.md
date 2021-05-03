@@ -46,5 +46,8 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 
 ### method carousel will be used in 3 pages ###
 ### By importing the database.sql file, you can find SQL requests, for add photos and test ###
+### By importing the property.sql file, you can find SQL requests, for the page Recherche ###
+
+
 
 
