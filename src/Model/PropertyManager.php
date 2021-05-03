@@ -18,8 +18,6 @@ class PropertyManager extends AbstractManager
         $statement->execute();
     }
 
-
-  
     public function selectHomeSliderInfo(int $id)
     {
         // Retrieve data to be displayed right below estate info card in home 3-fold slider
@@ -33,6 +31,4 @@ class PropertyManager extends AbstractManager
 
         return $statement->fetch();
     }
-
-
 }
