@@ -6,8 +6,8 @@ use App\Model\PropertyManager;
 
 class AdminAdvertisementController extends AbstractController
 {
-    public const MAX_TEXT_LENGTH = 50;
-    public const MAX_TRANSACTION_LENGTH = 25;
+    public const MAX_TEXT_LENGTH = 255;
+    public const SHORT_TEXT_LENGTH = 25;
     public const PROPERTY_TYPES = [
         "Maison",
         "Appartement",
@@ -92,20 +92,14 @@ class AdminAdvertisementController extends AbstractController
     //Method to check strings' length
     public function validateTextSizeInput($advertisement, $errors): array
     {
-        if (strlen($advertisement['reference']) > self::MAX_TEXT_LENGTH) {
-            $errors[] = 'Le champ Référence doit faire moins de ' . self::MAX_TEXT_LENGTH . ' caractères.';
+        if (strlen($advertisement['reference']) > self::SHORT_TEXT_LENGTH) {
+            $errors[] = 'Le champ Référence doit faire moins de ' . self::SHORT_TEXT_LENGTH . ' caractères.';
         }
-        if (strlen($advertisement['propertyType']) > self::MAX_TEXT_LENGTH) {
-            $errors[] = 'Le champ Type de propriété doit faire moins de ' . self::MAX_TEXT_LENGTH . ' caractères.';
+        if (strlen($advertisement['transaction']) > self::SHORT_TEXT_LENGTH) {
+            $errors[] = 'Le champ Transaction doit faire moins de ' . self::SHORT_TEXT_LENGTH . ' caractères.';
         }
-        if (strlen($advertisement['city']) > self::MAX_TEXT_LENGTH) {
-            $errors[] = 'Le champ Ville doit faire moins de ' . self::MAX_TEXT_LENGTH . ' caractères.';
-        }
-        if (strlen($advertisement['sector']) > self::MAX_TEXT_LENGTH) {
-            $errors[] = 'Le champ Secteur doit faire moins de ' . self::MAX_TEXT_LENGTH . ' caractères.';
-        }
-        if (strlen($advertisement['transaction']) > self::MAX_TEXT_LENGTH) {
-            $errors[] = 'Le champ Transaction doit faire moins de ' . self::MAX_TRANSACTION_LENGTH . ' caractères.';
+        if (strlen($advertisement['address']) > self::MAX_TEXT_LENGTH) {
+            $errors[] = 'Le champ Adresse doit faire moins de ' . self::MAX_TEXT_LENGTH . ' caractères.';
         }
         return $errors;
     }
