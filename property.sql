@@ -2,7 +2,7 @@
 CREATE TABLE property (
 id INT AUTO_INCREMENT NOT NULL,
 reference VARCHAR(25),
-property_type_id VARCHAR(50),
+property_type_id INT,
 transaction VARCHAR(25),
 sector_id INT,
 address VARCHAR(255),

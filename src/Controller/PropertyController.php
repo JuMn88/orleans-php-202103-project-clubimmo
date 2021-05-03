@@ -11,7 +11,6 @@ class PropertyController extends AbstractController
     /**
      * this will list the photo
      */
-        
     public function index()
     {
         $propertyManager = new PropertyManager();
@@ -20,28 +19,32 @@ class PropertyController extends AbstractController
         $propertyTypes = $propertyTypeManager->selectAll('name', 'ASC');
          // class SectorManger
         $sectorManager = new SectorManager();
-        $sectors= $sectorManager->selectAll('name', 'ASC');
+        $sectors = $sectorManager->selectAll('name', 'ASC');
         //Initialize the varaibles used for stocking the input data
-        $propertyTypeId = $sectorId = $budget= $transaction = null;
+        $propertyTypeId = $sectorId = $budget = $transaction = null;
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
             $searchType = array_map('trim', $_GET);
 
-            if ($searchType['propertyType']!=""){
-                $propertyTypeId = $searchType['propertyType'];  
-            } 
-
-            if ($searchType['sector']!=""){
-                $sectorId = $searchType['sector'];  
+            if ($searchType['propertyType'] != "") {
+                $propertyTypeId = $searchType['propertyType'];
             }
 
-            if ($searchType['transaction']!=""){
-                $transaction = $searchType['transaction'];  
+            if ($searchType['sector'] != "") {
+                $sectorId = $searchType['sector'];
             }
-            if (!empty($searchType['budget'])){
-                $budget = $searchType['budget'];  
+
+            if ($searchType['transaction'] != "") {
+                $transaction = $searchType['transaction'];
+            }
+
+            if (!empty($searchType['budget'])) {
+                $budget = $searchType['budget'];
             }
         }
-
+        $propertyTypeId = intval($propertyTypeId);
+        $sectorId = intval($sectorId);
+        $sectorId = intval($sectorId);
+        $budget = intval($budget);
         $properties = $propertyManager->selectProperties($transaction, $propertyTypeId, $sectorId, $budget);
         return $this->twig->render('Property/index.html.twig', [
             'properties' => $properties,
