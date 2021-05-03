@@ -32,9 +32,14 @@ h2 {
     font-family: var(--main-font);
 }
 
+h3 {
+    color: var(--primary);
+    font-family: var(--main-font);
+}
 
 .footer {
     background-color: var(--secondary);
+
 }
 
 
