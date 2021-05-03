@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Model\PropertyManager;
+
 use App\Model\PropertyTypeManager;
 use App\Model\SectorManager;
+
+use App\Model\PhotoManager;
+
 
 class PropertyController extends AbstractController
 {
@@ -14,6 +18,7 @@ class PropertyController extends AbstractController
     public function index()
     {
         $propertyManager = new PropertyManager();
+
         // class PropertyTypeManger
         $propertyTypeManager = new PropertyTypeManager();
         $propertyTypes = $propertyTypeManager->selectAll('name', 'ASC');
@@ -55,5 +60,22 @@ class PropertyController extends AbstractController
             'transaction' => $transaction,
             'budget' => $budget,
         ]);
+        $properties = $propertyManager->selectAll();
+        return $this->twig->render('Property/index.html.twig', ['properties' => $properties]);
+    }
+
+    public function show(int $idProperty)
+    {
+        if (!empty($idProperty)) {
+            $propertyManager = new PropertyManager();
+            $property = $propertyManager->selectOneById($idProperty);
+        } else {
+            $property = null;
+        }
+
+        $photoManager = new PhotoManager();
+        $photos = $photoManager->selectAll();
+
+        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos, 'property' => $property]);
     }
 }
