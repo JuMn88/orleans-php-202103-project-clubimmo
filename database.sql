@@ -10,6 +10,7 @@ INSERT INTO propertyType (name)
 VALUES ('Maison'),('Appartement'),('Villa'),('Terrain'), ('Studio'),('Autre');
 
 
+
 /* Create sector */
 CREATE TABLE sector(
 id INT NOT NULL AUTO_INCREMENT,
