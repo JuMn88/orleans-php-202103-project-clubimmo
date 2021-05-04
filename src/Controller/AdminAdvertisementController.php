@@ -19,6 +19,8 @@ class AdminAdvertisementController extends AbstractController
         "Autre",
     ];
     public const DIAGNOSTIC_GRADES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    public const MAX_UPLOAD_FILE = 1000000;
+    public const ALLOWED_MIMES = ['image/jpeg', 'image/png'];
 
     public function index(): string
     {
@@ -39,7 +41,14 @@ class AdminAdvertisementController extends AbstractController
             $errors = $this->validateTextSizeInput($advertisement, $errors);
             $errors = $this->validatePositiveInput($advertisement, $errors);
             $errors = $this->validateGradeInput($advertisement, $errors);
+            $errors = $this->validateImageFormat($_FILES['photo'], $errors);
             if (empty($errors)) {
+                $fileName = uniqid() . '_' . $_FILES['photo']['name'];
+                $advertisement['photo'] = $fileName;
+                move_uploaded_file(
+                    $_FILES['photo']['tmp_name'],
+                    __DIR__ . '/../../public/uploads/' . $fileName
+                );
                 //insert in database
                 $advertisementManager = new PropertyManager();
                 $advertisementManager->insert($advertisement);
@@ -56,7 +65,7 @@ class AdminAdvertisementController extends AbstractController
         ]);
     }
     //Method to ensure every fields had been filled
-    public function validateInput($advertisement, $errors): array
+    public function validateInput(array $advertisement, array $errors): array
     {
         $fieldsList = [
             'surface' => 'Surface',
@@ -82,7 +91,7 @@ class AdminAdvertisementController extends AbstractController
         return $errors;
     }
     //Method to check strings' length
-    public function validateTextSizeInput($advertisement, $errors): array
+    public function validateTextSizeInput(array $advertisement, array $errors): array
     {
         if (strlen($advertisement['reference']) > self::MAX_TEXT_LENGTH) {
             $errors[] = 'Le champ Référence doit faire moins de ' . self::MAX_TEXT_LENGTH . ' caractères.';
@@ -102,7 +111,7 @@ class AdminAdvertisementController extends AbstractController
         return $errors;
     }
     //Method to ensure positive values had been filled in the proper fields
-    public function validatePositiveInput($advertisement, $errors): array
+    public function validatePositiveInput(array $advertisement, array $errors): array
     {
         $integerFieldsList = [
             'surface' => 'Surface',
@@ -118,13 +127,32 @@ class AdminAdvertisementController extends AbstractController
         return $errors;
     }
     //Method to validate the "grades inputs" (energy performance and greenhouse gases)
-    public function validateGradeInput($advertisement, $errors): array
+    public function validateGradeInput(array $advertisement, array $errors): array
     {
         if (!in_array($advertisement['energyPerformance'], self::DIAGNOSTIC_GRADES)) {
             $errors[] = 'Les Performances énergétiques doivent être comprises entre A et G.';
         }
         if (!in_array($advertisement['greenhouseGases'], self::DIAGNOSTIC_GRADES)) {
-            $errors[] = 'L\'indice GES doit être compris entre A et G';
+            $errors[] = 'L\'indice GES doit être compris entre A et G.';
+        }
+        return $errors;
+    }
+    //Method to validate files MIME
+    public function validateImageFormat(array $file, array $errors): array
+    {
+        if ($file['error'] != 0) {
+            $errors[] = 'Problème dans l\'envoi de fichier.';
+        } else {
+            if ($file['size'] > self::MAX_UPLOAD_FILE) {
+                $errors[] = 'Le fichier doit faire moins de ' . self::MAX_UPLOAD_FILE / 1000000 . 'Mo.';
+            }
+            if (!empty($file['tmp_name'])) {
+                if (!in_array(mime_content_type($file['tmp_name']), self::ALLOWED_MIMES)) {
+                    $errors[] = 'Le fichier doit être de type ' . implode(', ', self::ALLOWED_MIMES);
+                }
+            } else {
+                $errors[] = 'Pas de photo sélectionnée';
+            }
         }
         return $errors;
     }
