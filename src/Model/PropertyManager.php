@@ -17,7 +17,7 @@ class PropertyManager extends AbstractManager
 
 
         $statement->bindValue('description', $property['description'], \PDO::PARAM_STR);
-
+    }
 
     public function selectProperties(?string $transaction, ?int $propertyTypeId, ?int $sectorId, ?int $budget)
     {
