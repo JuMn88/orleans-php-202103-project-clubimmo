@@ -5,7 +5,7 @@ namespace App\Model;
 class PropertyManager extends AbstractManager
 {
     public const TABLE = 'property';
-https://github.com/WildCodeSchool/orleans-php-202103-project-clubimmo/blob/S03US17_advertisement_details_icons/src/Model/PropertyManager.php
+
     public function insert(array $property): void
     {
         $query = "INSERT INTO " . self::TABLE . " (`reference`, `surface`, `price`, `description`)
@@ -19,7 +19,6 @@ https://github.com/WildCodeSchool/orleans-php-202103-project-clubimmo/blob/S03US
         $statement->execute();
     }
 
-
     public function selectHomeSliderInfo(int $id)
     {
         // Retrieve data to be displayed right below estate info card in home 3-fold slider
@@ -27,6 +26,11 @@ https://github.com/WildCodeSchool/orleans-php-202103-project-clubimmo/blob/S03US
         $query .= 'INNER JOIN ' . SectorManager::TABLE . ' S ON PR.sector_id = S.id ';
         $query .= 'INNER JOIN ' . PropertyTypeManager::TABLE . '  P on PR.property_type_id = P.id ';
         $query .= 'WHERE PR.id=:id';
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
     }
 
     public function selectPropertyTypeByPropertyId(int $id)
