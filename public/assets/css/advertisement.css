@@ -5,6 +5,11 @@
     width:fit-content;
 }
 
+.map {
+    height : 400px;
+
+}
+
 .back {
     text-decoration: none;
 } 

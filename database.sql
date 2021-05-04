@@ -1,5 +1,3 @@
-
-
 /* CREATE TABLES AND INSERT FOR TEST */
 
 /* Create feature */
@@ -19,7 +17,8 @@ name VARCHAR(50) NOT NULL,
 CONSTRAINT C4 PRIMARY KEY (id));
 
 INSERT INTO propertyType (name)
-VALUES ('Maison'),('Appartement'),('Vila'),('Terrain'), ('Studio'),('Autre');
+VALUES ('Maison'),('Appartement'),('Villa'),('Terrain'), ('Studio'),('Autre');
+
 
 
 /* Create sector */

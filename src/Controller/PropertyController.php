@@ -6,6 +6,7 @@ use App\Model\PropertyManager;
 use App\Model\PhotoManager;
 use App\Model\PropertyTypeManager;
 use App\Model\PropertyFeatureManager;
+use App\Model\SectorManager;
 
 class PropertyController extends AbstractController
 {
@@ -31,10 +32,14 @@ class PropertyController extends AbstractController
             $propertyFeatures = null;
         }
         $photoManager = new PhotoManager();
-        $photos = $photoManager->selectAll();
+        $photos = $photoManager->selectByPropertyId($idProperty);
+
+        $sectorManager = new SectorManager();
+        $sector = $sectorManager->selectOneById($property['sector_id']);
 
         return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos,
                                                                     'property' => $property,
-                                                                    'propertyFeatures' => $propertyFeatures]);
+                                                                    'propertyFeatures' => $propertyFeatures,
+                                                                    'sector' => $sector]);
     }
 }
