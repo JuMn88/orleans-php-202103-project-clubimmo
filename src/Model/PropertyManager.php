@@ -8,14 +8,17 @@ class PropertyManager extends AbstractManager
 
     public function insert(array $property): void
     {
-        $query = "INSERT INTO " . self::TABLE . " (`reference`, `surface`, `price`, `description`)
-                VALUES (:reference, :surface, :price, :description)";
+        $query = "INSERT INTO " . self::TABLE . " (`reference`, `transaction`, `property_type`, `surface`, `price`,
+        `city`, `sector`, `rooms`, `bedrooms`, `energy_performance`, `greenhouse_gases`, `photo`, `description`)
+                VALUES (:reference, :transaction, :propertyType, :surface, :price, :city,
+                :sector, :rooms, :bedrooms, :energyPerformance, :greenhouseGases, :photo, :description)";
+
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('reference', $property['reference'], \PDO::PARAM_STR);
+        $statement->bindValue('transaction', $property['transaction'], \PDO::PARAM_STR);
+        $statement->bindValue('propertyType', $property['propertyType'], \PDO::PARAM_STR);
         $statement->bindValue('surface', $property['surface'], \PDO::PARAM_INT);
         $statement->bindValue('price', $property['price'], \PDO::PARAM_INT);
-
-
         $statement->bindValue('description', $property['description'], \PDO::PARAM_STR);
     }
 
@@ -54,6 +57,7 @@ class PropertyManager extends AbstractManager
         if ($budget) {
             $statement->bindValue('budget', $budget, \PDO::PARAM_INT);
         }
+
         $statement->execute();
         return $statement->fetchAll();
     }

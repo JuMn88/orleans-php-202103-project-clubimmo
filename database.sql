@@ -7,17 +7,20 @@ name VARCHAR(50) NOT NULL,
 CONSTRAINT C4 PRIMARY KEY (id));
 
 INSERT INTO propertyType (name)
-VALUES ('Maison'),('Appartement'),('Vila'),('Terrain'), ('Studio'),('Autre');
+VALUES ('Maison'),('Appartement'),('Villa'),('Terrain'), ('Studio'),('Autre');
+
 
 
 /* Create sector */
 CREATE TABLE sector(
 id INT NOT NULL AUTO_INCREMENT,
 name VARCHAR(255),
+lat FLOAT,
+lon FLOAT,
 CONSTRAINT C5 PRIMARY KEY (id));
 
-INSERT INTO  sector (name) 
-VALUES ('Dunois'),('Madeleine'),('Orléans Centre'),('Orléans Nord'), ('Argonne'),('Saint-Marceau'), ('La Source');
+INSERT INTO sector (name, lat, lon) VALUES ('Dunois', 47.9080, 1.8943), ('Madeleine', 47.8999, 1.8812), ('Orléans Centre', 47.9029, 1.9039),
+('Orléans Nord', 47.9466, 1.8906), ('Argonne', 47.9115, 1.9283), ('Saint-Marceau', 47.8869, 1.9069), ('La Source', 47.8457, 1.9234);
 
 
 /* Create property */
