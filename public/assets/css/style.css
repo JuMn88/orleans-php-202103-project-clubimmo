@@ -41,3 +41,14 @@ h3 {
     background-color: var(--secondary);
 
 }
+
+
+.card {
+    color: var(--primary);
+}
+
+.badge {
+    background-color: var(--primary);
+    display:flex;
+    justify-content:center
+}
