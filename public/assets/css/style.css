@@ -41,7 +41,7 @@ h3 {
 
 }
 
-/* Add new class */
+
 .bg-purple{
 background-color: var(--primary);
 }
@@ -49,3 +49,15 @@ background-color: var(--primary);
 .text-purple{
     color:var(--primary);
 }
+
+
+.card {
+    color: var(--primary);
+}
+
+.badge {
+    background-color: var(--primary);
+    display:flex;
+    justify-content:center
+}
+
