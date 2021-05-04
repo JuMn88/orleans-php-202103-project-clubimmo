@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Model\PropertyManager;
 use App\Model\PropertyTypeManager;
 use App\Model\SectorManager;
@@ -23,13 +24,12 @@ class PropertyController extends AbstractController
         $propertyTypeManager = new PropertyTypeManager();
         $propertyTypes = $propertyTypeManager->selectAll('name', 'ASC');
         $sectorManager = new SectorManager();
-        $sectors = $sectorManager->selectAll('name', 'ASC');   
+        $sectors = $sectorManager->selectAll('name', 'ASC');
         // Validate the input data by calling the method correspondant
         $errors = $searchType = [];
-        $searchType = array_map('trim', $_GET);   
-        $propertyTypeId = $sectorId =  $budget = null; 
+        $searchType = array_map('trim', $_GET);
+        $propertyTypeId = $sectorId =  $budget = null;
         $transaction = null;
-        
         if (!empty($searchType)) {
             $errors = $this->validateSearchTypes($searchType, $propertyTypes, $sectors);
         }
@@ -51,7 +51,7 @@ class PropertyController extends AbstractController
         ]);
     }
 
-    // Create a method to validate the input and selected fields 
+    // Create a method to validate the input and selected fields
     private function validateSearchTypes($searchType, $propertyTypes, $sectors): array
     {
         $errors = [];
@@ -61,7 +61,7 @@ class PropertyController extends AbstractController
         $errors = $this->validateBudget($searchType, $errors);
         return $errors;
     }
-    
+
     private function validateTransaction($searchType, $errors): array
     {
         if (!empty($searchType['transaction']) && !in_array($searchType['transaction'], self::TRANSACTIONS)) {
