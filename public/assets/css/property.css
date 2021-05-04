@@ -1,15 +1,13 @@
 .container-property{
     --height-card: 300px;
-    margin: calc(var(--height-card)/5) auto;
+    margin: calc(var(--height-card)/6) auto;
 }
 
 .container-searchBar{
-    height: calc(var(--height-card)/1.2);
+    height: calc(var(--height-card)/3);
     background-color: var(--secondary);
 }
-form button{
-    width: 200px;
-}
+
 .card-price-property,
 .card-property-type {
     color:var(--primary);
@@ -32,3 +30,20 @@ form button{
     height: calc(var(--height-card)/9);
     background-color: var(--secondary);
 }
+.btn-search{
+    margin-top: 40px;
+}
+
+.error{
+    background-color: var(--secondary);
+    color:red;
+}
+
+@media and (max-width:768px){
+    #propertyType{
+        margin-top:20%;
+    }
+}
+
+
+

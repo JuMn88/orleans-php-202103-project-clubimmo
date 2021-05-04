@@ -24,22 +24,19 @@ class PropertyManager extends AbstractManager
         $query .= ' AS property_photo FROM ' . self::TABLE . ' p JOIN ' . PropertyTypeManager::TABLE;
         $query .= ' pt ON pt.id = p.property_type_id JOIN '  . SectorManager::TABLE . ' s ON s.id = p.sector_id';
         $query .= ' JOIN '  . PhotoManager::TABLE . ' ON photo.property_id = p.id';
-        $conditions = null;
+        $queryParts = [];
         // Make the request that shows all the properties that correspond to the selected transaction type
-        $conditions = $this->buildCondition($conditions, $transaction, 'transaction', 'transaction');
+        $queryParts = $this->buildCondition($queryParts, $transaction, 'transaction', 'transaction');
         // Make the request that shows all the properties that correspond to the selected property type
-        $conditions = $this->buildCondition($conditions, strval($propertyTypeId), 'property_type_id', 'propertyTypeId');
+        $queryParts = $this->buildCondition($queryParts, strval($propertyTypeId), 'property_type_id', 'propertyTypeId');
          // Make the request that shows all the properties that correspond to the selected sector
-        $conditions = $this->buildCondition($conditions, strval($sectorId), 'sector_id', 'sectorId');
+        $queryParts = $this->buildCondition($queryParts, strval($sectorId), 'sector_id', 'sectorId');
          // Make the request that shows all the properties of which prices are less than or equal to the input price
         if ($budget) {
-            if (!empty($conditions)) {
-                $conditions .= " AND ";
-            }
-            $conditions .= "p.price <= :budget";
+            $queryParts[] = "p.price <= :budget";
         }
-        if (!empty($conditions)) {
-            $query .= " WHERE " .  $conditions;
+        if (!empty($queryParts)) {
+            $query .= " WHERE " . implode(" AND ", $queryParts);
         }
         $query .= " group by p.id";
         $statement = $this->pdo->prepare($query);
@@ -59,14 +56,11 @@ class PropertyManager extends AbstractManager
         return $statement->fetchAll();
     }
     // Created a method that add the conditions corresponding to the different search types into the origin request.
-    public function buildCondition(?string $conditions, ?string $filter, ?string $tableColumn, ?string $paramId)
+    private function buildCondition(array $queryParts, ?string $filter, ?string $tableColumn, ?string $paramId): array
     {
         if ($filter) {
-            if (!empty($conditions)) {
-                $conditions .= " AND ";
-            }
-            $conditions .= "p." . $tableColumn . "=:" . $paramId;
+            $queryParts[] = "p." . $tableColumn . " =:" . $paramId;
         }
-        return $conditions;
+        return $queryParts;
     }
 }

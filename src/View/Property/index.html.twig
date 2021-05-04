@@ -6,53 +6,81 @@
 
 {% block content %}
 
-{# Search bar #}
+{# Search bar #}       
+
 <div class="container-fluid container-searchBar my-5">
-  <form class="container col-lg-9 my-5 text-purple pt-5 pb-3" action="/property/index/" method="GET">
+      {#  Show the errors #}
+        {% if errors is not empty %}             
+            <ul class ="error alert text-danger container text-center col-12">
+                {% for error in errors %} 
+                    <li class="list-unstyled"> {{ error }} </li>
+                {% endfor %}
+            </ul>
+        {% endif %} 
+      {#  Showing the errors ends here  #}
+
+ 
+ <div class="container col-lg-9 col-12 mt-3 mb-5 text-purple py-3 px-xs-2 col-xs-12">
+  <form action="/property/index/" method="GET">
+     
      <fieldset class="container" >    
       <div class="input-group my-5">
         <!-- Search by property types -->
-        <div class="col-lg-3 col-md-4 col-6 mb-3">
-          <select id="transaction" name="transaction" class="form-control fs-6 py-2 px-lg-0 mr-2 text-purple rounded">
-            <option  value="">Type de transaction</option> 
-            <option  value="Achat">Achat</option> 
-            <option  value="Location">Location</option>          
+        <div class="col-lg-3 col-6 mb-3">
+          <label class="col-form-label" for="transaction">Type de transaction</label>
+          <select id="transaction" name="transaction" class="form-control fs-6 py-2 px-lg-0 mr-2 text-purple border border-4 rounded">
+            <option  value="">Choisissez</option> 
+            {% for transaction in transactions %}
+            <option {% if searchType.transaction == transaction %} selected 
+                    {% endif %} 
+                    value="{{ transaction }}">
+                      {{ transaction }}
+            </option>
+            {% endfor %}  
           </select>
         </div>
         <!-- Search by property types -->
-        <div class="col-lg-2 col-md-4 col-6 mb-3">
-          <select id="propertyType" name="propertyType" class="form-control custom-select fs-6 py-2 text-purple rounded"> 
-            <option  value="">Type de bien</option> 
+        <div class="col-lg-2 col-6 mb-3">
+          <label class="col-form-label" for="propertyType">Type de bien</label>
+          <select id="propertyType" name="propertyType" class="form-control custom-select fs-6 py-2 text-purple border border-4 rounded"> 
+            <option value="">Choisissez</option> 
             {% for propertyType in propertyTypes %}
-            <option  value="{{ propertyType.id }}">
-              {{ propertyType.name }}
-              </option> 
+            <option {% if searchType.propertyType == propertyType.id %} selected 
+                    {% endif %} 
+                    value="{{ propertyType.id }}">
+                    {{ propertyType.name }}
+            </option> 
             {% endfor %}                 
           </select>
         </div>              
         <!-- Search by sector -->
-        <div class="col-lg-2 col-md-4 col-6 border-1 ">
-          <select id="sector" name="sector" class="form-control custom-select fs-6 py-2 text-purple rounded">
-            <option  value="">Sector</option> 
+        <div class="col-lg-2 col-6 border-1 ">
+          <label class="col-form-label" for="sector">Secteur</label>
+          <select id="sector" name="sector" class="form-control custom-select fs-6 py-2 text-purple border border-4 rounded">
+            <option value="">Choisissez</option> 
             {% for sector in sectors %}
-            <option value="{{ sector.id }}">
-              {{ sector.name }}
+            <option {% if searchType.sector == sector.id %} selected 
+                    {% endif %} 
+                    value="{{ sector.id }}">
+                    {{ sector.name }}
             </option> 
             {% endfor %}
           </select> 
         </div>
         <!-- Search by price -->
-        <div class="col-lg-3 col-md-4 col-6">
-          <input id="budget" name="budget" class="form-control text-purple fs-6 py-2 rounded" placeholder="Quel est votre budget?"/>
+        <div class="col-lg-3 col-6">
+          <label class="col-form-label" for="budget">Votre budget</label>
+          <input id="budget" name="budget" class="form-control text-purple fs-6 py-2 border border-4 rounded" placeholder="200000" value="{{ searchType.budget }}" />
         </div>
 
         <!-- Button submit -->
-        <div class="col-2">
-          <button class="btn bg-purple text-light p-2 rounded" type="submit">Recherche</button>
+        <div class="col-lg-2 col-12">
+          <button class="col-12 btn btn-search bg-purple text-light rounded py-2 border-2 rounded" type="submit">Recherche</button>
         </div>
       </div>
       </fieldset>
   </form>
+ </div>
 </div>
 {# Showing list of properties ...#}
 <div class="container-property container col-lg-9 col-md-9 col-12 mb-3">
