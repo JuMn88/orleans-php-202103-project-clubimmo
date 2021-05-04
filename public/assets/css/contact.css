@@ -1,5 +1,7 @@
 .container-contact {
-  margin: 100px auto;
+  margin: 0 auto;
+  padding:100px 0;
+  background-color: var(--secondary);
 }
 
 .title-contactform,
