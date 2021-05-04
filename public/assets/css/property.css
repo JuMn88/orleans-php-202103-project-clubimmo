@@ -38,6 +38,14 @@
     background-color: var(--secondary);
     color:red;
 }
+/* Add new class */
+.bg-purple{
+    background-color: var(--primary);
+}
+    
+.text-purple{
+    color:var(--primary);
+}
 
 @media and (max-width:768px){
     #propertyType{
