@@ -12,16 +12,14 @@ class HomeController extends AbstractController
     {
         $photos = [];
         $properties = [];
-        $recordCounter = 0;
         $photoManager = new PhotoManager();
         $propertyManager = new PropertyManager();
 
         /*Retrieve the last 3 houses for sale opr rent fed into the database
         to be displayed on homepage-based 3-fold eye-catcher slider */
-        foreach ($photoManager->selectLastProperties() as $value) {
-            $photos[$recordCounter] = $photoManager->selectByPropertyId($value["ID"]);
-            $properties[$recordCounter] = $propertyManager->selectHomeSliderInfo($value["ID"]);
-            $recordCounter++;
+        foreach ($photoManager->selectLastProperties() as $index => $property) {
+            $photos[$index] = $photoManager->selectByPropertyId($property["id"]);
+            $properties[$index ] = $propertyManager->selectHomeSliderInfo($property["id"]);
         }
         return $this->twig->render('Home/index.html.twig', ['photos' => $photos, 'properties' => $properties]);
     }

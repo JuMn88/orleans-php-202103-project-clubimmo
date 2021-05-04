@@ -16,9 +16,9 @@ class PhotoManager extends AbstractManager
 
     public function selectLastProperties(): array
     {
-        $query =  'SELECT DISTINCT PR.ID AS ID FROM ' . static::TABLE . ' PH  ';
-        $query .= 'INNER JOIN property PR ON PH.PROPERTY_ID = PR.ID  ';
-        $query .= 'ORDER BY PR.ID DESC LIMIT 3;';
+        $query =  'SELECT DISTINCT pr.id AS id FROM ' . static::TABLE . ' ph ';
+        $query .= 'INNER JOIN property pr ON ph.property_id = pr.id ';
+        $query .= 'ORDER BY pr.id DESC LIMIT 3;';
         return $this->pdo->query($query)->fetchAll();
     }
 }
