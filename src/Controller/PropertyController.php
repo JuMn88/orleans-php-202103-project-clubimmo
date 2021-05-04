@@ -88,7 +88,7 @@ class PropertyController extends AbstractController
 
     private function validateBudget($searchType, $errors): array
     {
-        if (empty($searchType['budget']) || !is_numeric($searchType['budget'])) {
+        if (!empty($searchType['budget']) && !is_numeric($searchType['budget'])) {
             $errors[] = 'Veuillez entrer un nombre';
         } elseif (intval($searchType['budget']) < 0) {
             $errors[] = 'Veuillez entrer un nombre positif';
