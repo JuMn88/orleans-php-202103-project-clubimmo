@@ -10,6 +10,10 @@
 namespace App\Controller;
 
 use App\Model\ClientManager;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 
 class ContactController extends AbstractController
 {
@@ -39,7 +43,7 @@ class ContactController extends AbstractController
     public const MAX_NAME_LENGTH = 100;
     public const MAX_MESSAGE_LENGTH = 255;
 
-    public function index()
+    public function index($idProperty = null)
     {
         $errors = [];
         $client = [];
@@ -47,7 +51,19 @@ class ContactController extends AbstractController
             $client = array_map('trim', $_POST);
             $errors =  $this->validateForm($client, $errors);
             if (empty($errors)) {
-                header('Location: /contact/index/');
+                $transport = new GmailSmtpTransport(MAIL_LOGIN, MAIL_PASS);
+                $mailer = new Mailer($transport);
+                $emailBody = $this->twig->render('Contact/email.html.twig', ['client' => $client,
+                                                                            'topic' => self::TOPICS,
+                                                                            'idProperty' => $idProperty,
+                                                                            ]);
+                $email = (new Email())
+                    ->from(MAIL_FROM)
+                    ->to(MAIL_TO)
+                    ->subject($client['topic'])
+                    ->html($emailBody);
+                $mailer->send($email);
+                header('Location: /contact/index');
             }
         }
         return $this->twig->render('Contact/index.html.twig', [
@@ -55,6 +71,7 @@ class ContactController extends AbstractController
             'propertyTypes' => self::PROPERTY_TYPES,
             'errors' => $errors,
             'client' => $client,
+            'idProperty' => $idProperty,
         ]);
     }
 

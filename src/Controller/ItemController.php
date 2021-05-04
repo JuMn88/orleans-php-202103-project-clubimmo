@@ -75,7 +75,6 @@ class ItemController extends AbstractController
         return $this->twig->render('Item/add.html.twig');
     }
 
-
     /**
      * Delete a specific item
      */
