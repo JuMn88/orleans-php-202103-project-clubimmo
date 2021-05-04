@@ -56,4 +56,4 @@ class PropertyManager extends AbstractManager
 
         return $this->pdo->query($query)->fetchAll();
     }
-}             
+}
