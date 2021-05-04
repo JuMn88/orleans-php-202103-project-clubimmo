@@ -13,7 +13,7 @@ class PropertyController extends AbstractController
     public function index()
     {
         $propertyManager = new PropertyManager();
-        $properties = $propertyManager->selectAll();
+        $properties = $propertyManager->selectProperty();
         return $this->twig->render('Property/index.html.twig', ['properties' => $properties]);
     }
 

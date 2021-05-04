@@ -18,4 +18,17 @@ class PropertyManager extends AbstractManager
 
         $statement->execute();
     }
+
+    public function selectProperty()
+    {
+        $query =  'SELECT PR.*, S.name as city, P.name as property_type, im.name as photo FROM ' . static::TABLE . ' PR  ';
+        $query .= 'INNER JOIN ' . SectorManager::TABLE . ' S ON PR.sector_id = S.id ';
+        $query .= 'INNER JOIN ' . PropertyTypeManager::TABLE . '  P on PR.property_type_id = P.id ';
+        $query .= 'INNER JOIN ' . PhotoManager::TABLE . '  im on PR.id = im.property_id ';
+
+        return $this->pdo->query($query)->fetchAll();
+     
+    }
+
+
 }
