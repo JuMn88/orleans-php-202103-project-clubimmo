@@ -69,6 +69,7 @@ class AdminAdvertisementController extends AbstractController
             'bedrooms' => 'Nombre de chambres',
             'energyPerformance' => 'Performances énergétiques',
             'greenhouseGases' => 'GES',
+            'description' => 'Description',
         ];
         foreach ($advertisement as $adKey => $adValue) {
             if (empty($adValue)) {
@@ -126,5 +127,14 @@ class AdminAdvertisementController extends AbstractController
             $errors[] = 'L\'indice GES doit être compris entre A et G';
         }
         return $errors;
+    }
+    public function delete(int $id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $propertyManager = new PropertyManager();
+            $propertyManager->delete($id);
+
+            header('Location: /adminAdvertisement/index');
+        }
     }
 }
