@@ -1,4 +1,5 @@
 
+
 /* CREATE TABLES AND INSERT FOR TEST */
 
 /* Create feature */
@@ -15,10 +16,11 @@ VALUES ("flaticon-rooms", "pièces"),("flaticon-surface", "m²"),("flaticon-bath
 CREATE TABLE propertyType (
 id INT NOT NULL AUTO_INCREMENT,
 name VARCHAR(50) NOT NULL,
-CONSTRAINT C8 PRIMARY KEY (id));
+CONSTRAINT C4 PRIMARY KEY (id));
 
 INSERT INTO propertyType (name)
-VALUES ('Maison'),('Appartement'),('Villa'),('Terrain'), ('Studio'),('Autre');
+VALUES ('Maison'),('Appartement'),('Vila'),('Terrain'), ('Studio'),('Autre');
+
 
 /* Create sector */
 CREATE TABLE sector(
@@ -30,7 +32,6 @@ CONSTRAINT C5 PRIMARY KEY (id));
 
 INSERT INTO sector (name, lat, lon) VALUES ('Dunois', 47.9080, 1.8943), ('Madeleine', 47.8999, 1.8812), ('Orléans Centre', 47.9029, 1.9039),
 ('Orléans Nord', 47.9466, 1.8906), ('Argonne', 47.9115, 1.9283), ('Saint-Marceau', 47.8869, 1.9069), ('La Source', 47.8457, 1.9234);
-
 
 /* Create property */
 CREATE TABLE property (
@@ -47,7 +48,6 @@ sector_id INT,
 CONSTRAINT C2 FOREIGN KEY (sector_id) REFERENCES sector(id),
 CONSTRAINT C3 FOREIGN KEY (property_type_id) REFERENCES propertyType(id),
 CONSTRAINT C1 PRIMARY KEY (id));
-
 
 INSERT INTO property (property_type_id, sector_id, price, transaction, energy_performance, greenhouse_gases, address) VALUES 
 (2, 1, 850, "A Louer", "A", "B", "10 Rue de la Chaussure"), 
