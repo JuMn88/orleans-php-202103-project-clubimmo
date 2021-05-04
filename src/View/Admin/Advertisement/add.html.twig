@@ -117,6 +117,13 @@
                     Fichier de type .jpeg, .jpg, .png inférieur à 1Mo.
                 </small>
             </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="description"
+                    cols="30" rows="10" placeholder="Présentation du bien">
+                    {{- advertisement.description -}}
+                </textarea>
+            </div>
             <button class="btn btn-purple">Ajouter</button>
             <a class="mx-2 btn btn-lightpurple" href="/adminAdvertisement/index">Retour</a>
         </form>
