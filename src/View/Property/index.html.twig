@@ -9,22 +9,22 @@
 {# Search bar #}       
 
 <div class="container-fluid container-searchBar my-5">
+  <div class="container col-lg-9 col-12 pt-5 text-purple px-xs-2 col-xs-12">
+  
       {#  Show the errors #}
-        {% if errors is not empty %}             
-            <ul class ="error alert text-danger container text-center col-12">
-                {% for error in errors %} 
-                    <li class="list-unstyled"> {{ error }} </li>
-                {% endfor %}
-            </ul>
-        {% endif %} 
-      {#  Showing the errors ends here  #}
-
- 
- <div class="container col-lg-9 col-12 mt-3 mb-5 text-purple py-3 px-xs-2 col-xs-12">
+      {% if errors is not empty %} 
+      <ul class="error alert text-danger container text-center col-12 pt-3 pb-0">
+      {% for error in errors %} 
+        <li class="list-unstyled"> {{ error }} </li>
+      {% endfor %}
+      </ul>
+      {% endif %} 
+      {#  Showing the errors ends here  #} 
+    
   <form action="/property/index/" method="GET">
      
      <fieldset class="container" >    
-      <div class="input-group my-5">
+      <div class="input-group mb-5">
         <!-- Search by property types -->
         <div class="col-lg-3 col-6 mb-3">
           <label class="col-form-label" for="transaction">Type de transaction</label>
@@ -101,12 +101,8 @@
                     </div>
                     <div class="col-lg-6 col-sm-12 col-12 d-flex align-items-center">
                         <div class="card-body col-lg-12 col-sm-12 col-12">
-                          <span class="col-4 float-end badge text-dark pt-2">  
-                                {% if property.transaction == "Achat" %}  
-                                  A vendre
-                                {% else %}
-                                  A louer 
-                                {% endif %}
+                          <span class="col-4 float-end badge text-purple pt-2">  
+                                {{property.transaction}}
                           </span>
                           <h5 class="card-title col-md-12 col-xs-8 offset-xs-2 card-property-type">
                                 <strong>
@@ -119,7 +115,6 @@
                             <h6 class="card-price-property col-lg-12 col-sm-12 col-12 font-weight-bold font-italic">
                                 <strong><i>{{ property.price|number_format(0, '.', ' ') }} € </i></strong>
                             </h6>
-
 
                             <p class="card-text">
                                 {{ property.rooms }} pièces {{ property.surface }} m2

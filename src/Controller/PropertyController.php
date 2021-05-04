@@ -14,8 +14,8 @@ class PropertyController extends AbstractController
      */
 
     public const TRANSACTIONS = [
-        "Achat",
-        "Location",
+        "A Vendre",
+        "A Louer",
         ];
 
     public function index()
@@ -48,6 +48,7 @@ class PropertyController extends AbstractController
             'sectors' => $sectors,
             'searchType' => $searchType,
             'transactions' => self::TRANSACTIONS,
+            'errors' => $errors,
         ]);
     }
 
