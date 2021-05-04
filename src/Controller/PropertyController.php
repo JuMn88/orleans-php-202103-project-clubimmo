@@ -6,7 +6,6 @@ use App\Model\PropertyManager;
 use App\Model\PropertyTypeManager;
 use App\Model\SectorManager;
 use App\Model\PhotoManager;
-use App\Model\SectorManager;
 
 class PropertyController extends AbstractController
 {
