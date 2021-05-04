@@ -30,7 +30,26 @@
             <div class ="col-12 text-center px-0">
                 <h3>VOIR SUR LA CARTE</h3>
             </div>
-            <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=1.9006723165512087%2C47.902902812019065%2C1.9039767980575564%2C47.90435207926523&amp;layer=mapnik&amp;marker=47.903627450714154%2C1.9023245573043823" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=47.90363&amp;mlon=1.90232#map=19/47.90363/1.90232&amp;layers=N">Afficher une carte plus grande</a></small>
+            <div id="map" class="map"></div>
+               <script >
+                    var lat = {{ sector.lat }};
+                    var lon = {{ sector.lon }};
+                    var sectorName = "{{ sector.name }}";
+
+                    var map = L.map('map').setView([lat, lon], 15);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                        minZoom: 1,
+                        maxZoom: 20
+                    }).addTo(map);
+
+                    L.marker([lat, lon]).addTo(map)
+                        .bindPopup(sectorName)
+                        .openPopup();
+                </script>
+            </div>
         </div>
     </div>
 </div>
+<div>
