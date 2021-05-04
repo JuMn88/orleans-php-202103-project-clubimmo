@@ -32,7 +32,23 @@ h2 {
     font-family: var(--main-font);
 }
 
+h3 {
+    color: var(--primary);
+    font-family: var(--main-font);
+}
+
 .footer {
     background-color: var(--secondary);
 
+}
+
+
+.card {
+    color: var(--primary);
+}
+
+.badge {
+    background-color: var(--primary);
+    display:flex;
+    justify-content:center
 }
