@@ -1,47 +1,64 @@
-/* CREATE TABLE AND INSERT PHOTOS FOR TEST */
+/* CREATE TABLES AND INSERT FOR TEST */
 
-/* Create table Photo */
-CREATE TABLE photo (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255),
-    url VARCHAR(255),
-    CONSTRAINT C8 PRIMARY KEY (id));
+/* Create propertyType */
+CREATE TABLE propertyType (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+CONSTRAINT C4 PRIMARY KEY (id));
 
-insert into photo (name, url) values ("exemple_photo_1", "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80");
-insert into photo (name, url) values ("exemple_photo_2", "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80");
-insert into photo (name, url) values ("exemple_photo_3", "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80");
-insert into photo (name, url) values ("exemple_photo_4", "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80");
+INSERT INTO propertyType (name)
+VALUES ('Maison'),('Appartement'),('Villa'),('Terrain'), ('Studio'),('Autre');
 
-/* Create table property */
+
+/* Create sector */
+CREATE TABLE sector(
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(255),
+lat FLOAT,
+lon FLOAT,
+CONSTRAINT C5 PRIMARY KEY (id));
+
+INSERT INTO sector (name, lat, lon) VALUES ('Dunois', 47.9080, 1.8943), ('Madeleine', 47.8999, 1.8812), ('Orléans Centre', 47.9029, 1.9039),
+('Orléans Nord', 47.9466, 1.8906), ('Argonne', 47.9115, 1.9283), ('Saint-Marceau', 47.8869, 1.9069), ('La Source', 47.8457, 1.9234);
+
+
+/* Create property */
 CREATE TABLE property (
-    id INT NOT NULL AUTO_INCREMENT,
-    energy_performance CHAR(1),
-    greenhouse_gases CHAR(1),
-    property_type VARCHAR(50),
-    price INT,
-    surface INT,
-    rooms INT,
-    bedrooms INT,
-    sector VARCHAR(50),
-    city VARCHAR(50),
-    transaction VARCHAR(25),
-    photo VARCHAR(255),
-    description TEXT,
-    reference VARCHAR(25) NOT NULL,
-    CONSTRAINT C5 UNIQUE (reference),
-    CONSTRAINT C6 PRIMARY KEY (id));
+id INT AUTO_INCREMENT NOT NULL,
+reference VARCHAR(25),
+transaction VARCHAR(25),
+address VARCHAR(255),
+surface INT,
+price INT,
+rooms INT,
+bedrooms INT,
+bathrooms INT,
+toilets INT,
+parking_space INT,
+lift BOOL,
+kitchen BOOL,
+energy_performance CHAR(1),
+greenhouse_gases CHAR(1),
+description TEXT,
+property_type_id INT,
+sector_id INT,
+CONSTRAINT C2 FOREIGN KEY (sector_id) REFERENCES sector(id),
+CONSTRAINT C3 FOREIGN KEY (property_type_id) REFERENCES propertyType(id),
+CONSTRAINT C1 PRIMARY KEY (id));
 
-INSERT INTO property (property_type, price, surface, rooms, bedrooms, transaction,  photo, sector, city, energy_performance, greenhouse_gases, reference) VALUES 
-("Maison", 850, 100, 4, 2, "A Louer", "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",'Cigogne','Orleans', "A", "B", "REF0150508"), 
-("Maison", 975, 120, 5, 3, "A Louer", "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Moulière','Olivet', "", "A", "REF0579654"), 
-("Appartement", 370000, 140, 6, 4, "A Vendre", "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Ardon','Olivet', "A", "", "REF2479587"),
-("Appartement", 750, 110, 4, 2, "A Louer", "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",'Vilpot','Saran', "B", "B", "REF0125798"), 
-("Vila", 500000, 240, 7, 4, "A Vendre", "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Orée de Sologne','Orleans Sud', "H", "B", "REF0159657"),
-("Maison", 170000, 80, 4, 2, "A Vendre", "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Ardon','Olivet', "", "B", "REF0325796"),
-("Maison", 1100, 140, 6, 3, "A Louer", "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Moulière','Olivet', "D", "D", "REF0154875"),
-("Maison", 220000, 110, 4, 2, "A Vendre", "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Les Sablonnières','Saran', "A", "D", "REF4879015"),
-("Maison", 1350, 140, 6, 3, "A Louer", "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",'Moulière','Olivet', "A", "B", "REF0657908"),
-("Maison", 1000, 110, 4, 2, "A Louer", "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80",'Vilpot','Saran', "C", "B", "REF3698751"); 
+
+INSERT INTO property (property_type_id, sector_id, price, surface, rooms, bedrooms, bathrooms, toilets, lift, kitchen, parking_space, transaction, energy_performance, greenhouse_gases, address) VALUES 
+(2, 1, 850, 100, 4, 2, 1, 1, true, true, 1, "A Louer", "A", "B", "10 Rue de la Chaussure"), 
+(1, 2, 975, 120, 5, 3, 1, 1, false, false, 1, "A Louer", "", "A", "5 Rue de Patay"),  
+(2, 3, 370000, 140, 6, 4, 1, 1, true, true, 1, "A Vendre", "A", "C", "2 Rue de la Pompe"),
+(2, 4, 750, 110, 4, 2, 1, 1, true, false, 1, "A Louer", "B", "B", "10 Rue de Verneuil"), 
+(3, 5, 500000, 240, 7, 4, 2, 2, false, true, 1, "A Vendre", "D", "B", "9 Rue des Boulets"),
+(1, 4, 170000, 80, 4, 2, 1, 1, false, true, 1, "A Vendre", "", "B", "20 Rue du Commerce"),
+(1, 2, 1100, 140, 6, 3, 1, 1, false, true, 1, "A Louer", "D", "D", "3 Rue du Commerce"),
+(1, 3, 220000, 110, 4, 2, 1, 1, false, true, 1, "A Vendre", "A", "D", "7 Rue de Patay"),
+(1, 4, 1350, 140, 6, 3, 1, 1, false, true, 1, "A Louer", "A", "B", "8 Rue des Boulets"),
+(1, 2, 1000, 110, 4, 2, 1, 1, false, true, 1, "A Louer", "C", "B", "15 Rue de la Chaussure"); 
+
 
 
 Update property
@@ -83,3 +100,35 @@ WHERE id = 9;
 Update property
 SET description = "15 minutes à pieds de petits commerces, dans un environnement calme et privilégié, charmante maison en chaûme du 19ème siècle. Cette chaumière comprend au rdc, 1 entrée, 1 salle à mangé très lumineuse, 1 salon et sa cheminée en pierre ainsi que sa cuisine et son coin lingerie, wc. Au 1er étage, 3 chambres, 1 salle de bain et un wc. Un sous sol partiel, 1 cave et un vide sanitaire. Le tout posé sur un bel écrin de verdure d'environ 1200m². 1 garage avec arrivée d'eau et électricité. Votre agence terres et demeures de normandie reste à votre disposition pour la visite de ce joli bien! Nous vous rappelons que suite à l'article l.561-5 du code monétaire et financier, la copie de la pièce d'identité de tous les visiteurs vous sera demandée avant la visite."
 WHERE id = 10;
+
+/* Create photo */
+CREATE TABLE photo(
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(255),
+property_id INT,
+CONSTRAINT C6 PRIMARY KEY (id),
+CONSTRAINT C7 FOREIGN KEY (property_id) REFERENCES property(id));
+
+INSERT INTO photo (property_id, name) 
+VALUES (1, "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"),
+(2, "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(3, "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(4, "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(5, "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"),
+(6, "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(7, "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(8, "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(9, "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(10, "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80");
+
+INSERT INTO photo (property_id, name) 
+VALUES (1, "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"),
+(2, "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(3, "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(4, "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(5, "https://images.unsplash.com/photo-1565437383733-25a07431f131?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"),
+(6, "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(7, "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(8, "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(9, "https://images.unsplash.com/photo-1542321204-23959c19158b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80"),
+(10, "https://images.unsplash.com/photo-1595256858804-ad34bc0ce444?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80");
