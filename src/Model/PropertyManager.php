@@ -29,7 +29,7 @@ class PropertyManager extends AbstractManager
         $query .= 'WHERE PR.id=:id';
         $statement = $this->pdo->prepare($query);
     }
-  
+
     public function selectPropertyTypeByPropertyId(int $id)
     {
         $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE .
