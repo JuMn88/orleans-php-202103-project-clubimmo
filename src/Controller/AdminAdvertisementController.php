@@ -11,6 +11,7 @@ class AdminAdvertisementController extends AbstractController
 {
     public const MAX_TEXT_LENGTH = 255;
     public const SHORT_TEXT_LENGTH = 25;
+
     public const TRANSACTION_TYPES = [
         "A vendre",
         "A louer",
@@ -29,6 +30,7 @@ class AdminAdvertisementController extends AbstractController
             'properties' => $properties,
         ]);
     }
+
     public function add(): string
     {
         $errors = $advertisement = [];

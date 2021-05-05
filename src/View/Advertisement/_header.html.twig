@@ -1,16 +1,20 @@
 <div class="container col-12 p-0">
     <div class="row col-12">
-
         <div class="col-12">
             <a class='link-dark fw-bold back'href="/Property/index">Revenir en arrière</a>
         </div>
         <div class="col-12 px-4 mt-5">
             {% if property is not null %}
                 <div class="col-12">
-                    <h2 class="fw-bold">{{ property.property_type }}, {{ property.city }}</h2>
+                    <h2 class="fw-bold">{{ property.transaction }} {{ property.name }}, {{ sector.name }}</h2>
                 </div>
                 <div>
-                    <h3>{{ property.transaction }} {{ property.property_type }}, {{ property.rooms }} pièces, {{ property.bedrooms }} chambres, surface : {{ property.surface }}m² </h3>
+                    <h3>
+
+                    {% for propertyFeature in propertyFeatures %}
+                        {{ propertyFeature.number }} {{ propertyFeature.name }}.
+                    {% endfor %}
+                    </h3>
                 </div>
             {% endif %}
         </div>

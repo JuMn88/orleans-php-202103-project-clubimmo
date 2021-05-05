@@ -31,7 +31,6 @@ CONSTRAINT C5 PRIMARY KEY (id));
 INSERT INTO sector (name, lat, lon) VALUES ('Dunois', 47.9080, 1.8943), ('Madeleine', 47.8999, 1.8812), ('Orléans Centre', 47.9029, 1.9039),
 ('Orléans Nord', 47.9466, 1.8906), ('Argonne', 47.9115, 1.9283), ('Saint-Marceau', 47.8869, 1.9069), ('La Source', 47.8457, 1.9234);
 
-
 /* Create property */
 CREATE TABLE property (
 id INT AUTO_INCREMENT NOT NULL,

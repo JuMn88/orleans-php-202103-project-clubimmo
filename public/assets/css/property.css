@@ -1,6 +1,11 @@
 .container-property{
     --height-card: 300px;
-    margin: calc(var(--height-card)/2.5) auto;
+    margin: calc(var(--height-card)/6) auto;
+}
+
+.container-searchBar{
+    height: calc(var(--height-card)/3);
+    background-color: var(--secondary);
 }
 
 .card-price-property,
@@ -9,11 +14,44 @@
 }
 .property-card{
     min-height: var(--height-card);
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
 }
 .property-card img{
     min-height: var(--height-card);
     object-fit: cover;
 }
+
 .btn-property{
     background-color: var(--primary);
 }
+.badge{
+    width:calc(var(--height-card)/4);
+    height: calc(var(--height-card)/9);
+    background-color: var(--secondary);
+}
+.btn-search{
+    margin-top: 40px;
+}
+
+.error{
+    background-color: var(--secondary);
+    color:red;
+}
+/* Add new class */
+.bg-purple{
+    background-color: var(--primary);
+}
+    
+.text-purple{
+    color:var(--primary);
+}
+
+@media and (max-width:768px){
+    #propertyType{
+        margin-top:20%;
+    }
+}
+
+
+
