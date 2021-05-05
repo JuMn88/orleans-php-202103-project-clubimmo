@@ -27,7 +27,7 @@ class PhotoManager extends AbstractManager
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('photo', $property['photo'], \PDO::PARAM_STR);
-        $statement->bindValue('propertyId', $property[$propertyId], \PDO::PARAM_INT);
+        $statement->bindValue('propertyId', $propertyId, \PDO::PARAM_INT);
 
         $statement->execute();
     }
