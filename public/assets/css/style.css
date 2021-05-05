@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
 :root {
     --primary: #6B36AE;
     --secondary: #DDDDDD55;
@@ -7,11 +9,10 @@
     --intermediary: #AA9BBE;
     --card-color: #DDDDDD30;
 /* Change the font- family and font size*/
-    
-    --main-font: 'Veranda, Sans-serif';
-    --title-font: 'Helvetica, Sans-serif';
-    --title-size: 50px;
-    --subtitle-size: 32px;
+    --main-font: 'Varela Round', sans-serif;
+    --title-font:  'Snell Roundhand', cursive;
+    --title-size: 64px;
+    --subtitle-size: 48px;
     --larger-text-size: 24px;
     --text-size: 18px;
 }
@@ -27,7 +28,7 @@ h1 {
     color: var(--primary);
     font-size: var(--title-size);
     font-family: var(--title-font);
-    font-weight: bold;
+    font-weight: 900;
 /* Add new property to make the title more visible  */
     text-shadow: 5px 5px 10px var(--light), 5px 5px 1em var(--light),
     5px 5px 1em var(--light);    

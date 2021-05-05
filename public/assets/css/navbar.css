@@ -5,9 +5,20 @@
 .navbar-brand p{
    font-family: var(--main-font);
    font-weight: bold;
+   margin-left:10px;
 }
 
 /* Le bouton active de navbar */
 .navbar-light .navbar-collapse .navbar-nav > .active {
     color: var(--primary);
+}
+
+.nav-link:hover{
+    color: var(--primary)!important;
+    transition: 0.5s;
+}
+.navbar-nav a{
+    font-style: italic;
+    font-weight: 580;
+    font-style: 16px;
 }
