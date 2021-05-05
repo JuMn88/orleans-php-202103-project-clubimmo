@@ -5,44 +5,129 @@
 {% endblock %}
 
 {% block content %}
+
+{# Search bar #}       
+
+<div class="container-fluid container-searchBar my-5">
+  <div class="container col-lg-9 col-12 pt-5 text-purple px-xs-2 col-xs-12">
+  
+      {#  Show the errors #}
+      {% if errors is not empty %} 
+      <ul class="error alert text-danger container text-center col-12 pt-3 pb-0">
+      {% for error in errors %} 
+        <li class="list-unstyled"> {{ error }} </li>
+      {% endfor %}
+      </ul>
+      {% endif %} 
+      {#  Showing the errors ends here  #} 
+    
+  <form action="/property/index/" method="GET">
+     
+     <fieldset class="container" >    
+      <div class="input-group mb-5">
+        <!-- Search by property types -->
+        <div class="col-lg-3 col-6 mb-3">
+          <label class="col-form-label" for="transaction">Type de transaction</label>
+          <select id="transaction" name="transaction" class="form-control fs-6 py-2 px-lg-0 mr-2 text-purple border border-4 rounded">
+            <option  value="">Choisissez</option> 
+            {% for transaction in transactions %}
+            <option {% if searchType.transaction == transaction %} selected 
+                    {% endif %} 
+                    value="{{ transaction }}">
+                      {{ transaction }}
+            </option>
+            {% endfor %}  
+          </select>
+        </div>
+        <!-- Search by property types -->
+        <div class="col-lg-2 col-6 mb-3">
+          <label class="col-form-label" for="propertyType">Type de bien</label>
+          <select id="propertyType" name="propertyType" class="form-control custom-select fs-6 py-2 text-purple border border-4 rounded"> 
+            <option value="">Choisissez</option> 
+            {% for propertyType in propertyTypes %}
+            <option {% if searchType.propertyType == propertyType.id %} selected 
+                    {% endif %} 
+                    value="{{ propertyType.id }}">
+                    {{ propertyType.name }}
+            </option> 
+            {% endfor %}                 
+          </select>
+        </div>              
+        <!-- Search by sector -->
+        <div class="col-lg-2 col-6 border-1 ">
+          <label class="col-form-label" for="sector">Secteur</label>
+          <select id="sector" name="sector" class="form-control custom-select fs-6 py-2 text-purple border border-4 rounded">
+            <option value="">Choisissez</option> 
+            {% for sector in sectors %}
+            <option {% if searchType.sector == sector.id %} selected 
+                    {% endif %} 
+                    value="{{ sector.id }}">
+                    {{ sector.name }}
+            </option> 
+            {% endfor %}
+          </select> 
+        </div>
+        <!-- Search by price -->
+        <div class="col-lg-3 col-6">
+          <label class="col-form-label" for="budget">Votre budget</label>
+          <input id="budget" name="budget" class="form-control text-purple fs-6 py-2 border border-4 rounded" placeholder="200000" value="{{ searchType.budget }}" />
+        </div>
+
+        <!-- Button submit -->
+        <div class="col-lg-2 col-12">
+          <button class="col-12 btn btn-search bg-purple text-light rounded py-2 border-2 rounded" type="submit">Recherche</button>
+        </div>
+      </div>
+      </fieldset>
+  </form>
+ </div>
+</div>
+{# Showing list of properties ...#}
 <div class="container-property container col-lg-9 col-md-9 col-12 mb-3">
-      <div class="row">
+    <div class="row">
+        {% if properties is empty %}
+        <h5 class="empty-page text-purple container text-center alert mb-5 col-lg-9 col-md-9 col-12"><strong><i>Nous
+                    sommes désolés. Les annonces correspondent au type de bien que vous cherchez ne sont pas encore
+                    déposées sur la page.</i></strong></h5>
+
+        {% else %}
+
         {% for property in properties %}
         <div class="col-md-6 col-12">
-          <div class="property-card card mb-5">
-            <div class="row g-0">
-              <div class="col-lg-6 col-sm-12 col-12">
-                <img
-                  class="w-100"
-                  src="{{ property.photo }}"
-                  alt="{{ property.property_type }}"
-                />
-              </div>
-              <div class="col-lg-6 col-sm-12 col-12 d-flex align-items-center">
-                <div class="card-body">
-                  
-                  <h5 class="card-title col-lg-7 col-sm-12 col-6 card-property-type">
-                    <strong>{{ property.property_type }}</strong>
-                  </h5>
+            <div class="property-card card mb-5">
+                <div class="row g-0">
+                    <div class="col-lg-6 col-sm-12 col-12">
+                        <img class="w-100" src="{{ property.property_photo }}" alt="{{ property.property_type }}" />
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-12 d-flex align-items-center">
+                        <div class="card-body col-lg-12 col-sm-12 col-12">
+                          <span class="col-4 float-end badge text-purple pt-2">  
+                                {{property.transaction}}
+                          </span>
+                          <h5 class="card-title col-md-12 col-xs-8 offset-xs-2 card-property-type">
+                                <strong>
+                                    {{ property.property_type }}
+                                </strong>
+                            </h5>
+                            <h6 class="card-text">
+                                {{ property.sector_name }}
+                            </h6>
+                            <h6 class="card-price-property col-lg-12 col-sm-12 col-12 font-weight-bold font-italic">
+                                <strong><i>{{ property.price|number_format(0, '.', ' ') }} € </i></strong>
+                            </h6>
 
-                  <h6 class="card-text">
-                    {{ property.city }} ({{ property.sector }})
-                  </h6>
-
-                  <h6 class="col-lg-5 col-sm-12 card-price-property font-weight-bold font-italic">
-                    <strong><i>{{ property.price|number_format(0, '.', ' ')  }} € </i></strong>
-                  </h6>
-                  
-                  <p class="card-text">
-                    {{ property.nb_pieces }} pièces {{ property.surface }} m2
-                  </p>
-                  <a href="/property/show/{{ property.id }}" class="btn-property btn text-light">Voir l'annonce</a>
+                            <p class="card-text">
+                                {{ property.rooms }} pièces {{ property.surface }} m2
+                            </p>
+                            <a href="/Advertisement/index" class="btn-property btn text-light col-6 offset-3 my-3">Voir l'annonce</a>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
         {% endfor %}
-      </div>
+        {% endif %}
+    </form>
+</div>
 </div>
 {% endblock %}
