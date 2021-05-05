@@ -60,7 +60,6 @@ INSERT INTO property (property_type_id, sector_id, price, transaction, energy_pe
 (1, 4, 1350, "A Louer", "A", "B", "8 Rue des Boulets"),
 (1, 2, 1000, "A Louer", "C", "B", "15 Rue de la Chaussure"); 
 
-
 /* Create property_feature */
 CREATE TABLE property_feature (
 property_id INT,

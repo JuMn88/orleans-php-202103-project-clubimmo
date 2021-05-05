@@ -1,15 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
 :root {
     --primary: #6B36AE;
     --secondary:lightgrey;
     --light: white;
     --dark: black;
     --transparent-light: rgba(255, 255, 255, 0.514);
-    --intermediary: #8846df;
-    --card-color: rgb(93, 86, 100);
-    --main-font: 'Roboto, Sans-serif';
-    --title-font: 'Lato';
+
+    --intermediary: #AA9BBE;
+    --card-color: #DDDDDD30;
+/* Change the font- family and font size*/
+    --main-font: 'Varela Round', sans-serif;
+    --title-font:  'Snell Roundhand', cursive;
+
+   
     --title-size: 64px;
-    --subtitle-size: 36px;
+    --subtitle-size: 48px;
     --larger-text-size: 24px;
     --text-size: 18px;
 }
@@ -20,15 +26,22 @@ body {
     font: var(--main-font);
 }
 
+
 h1 {
     color: var(--primary);
     font-size: var(--title-size);
     font-family: var(--title-font);
+    font-weight: 900;
+/* Add new property to make the title more visible  */
+    text-shadow: 5px 5px 10px var(--light), 5px 5px 1em var(--light),
+    5px 5px 1em var(--light);    
 }
 
 h2 {
     color: var(--primary);
-    font-family: var(--main-font);
+    font-family: var(--title-font);
+    font-size: var(--subtitle-size);
+    font-weight: bold;
 }
 
 h3 {
@@ -37,6 +50,14 @@ h3 {
 }
 
 .footer {
-    background-color: var(--secondary);
+    background-color: var(--primary);
+}
 
+/* Add new classes that are used in different pages  */
+.text-purple{
+    color:var(--primary);
+}
+
+.bg-purple{
+    background-color: var(--primary);
 }
