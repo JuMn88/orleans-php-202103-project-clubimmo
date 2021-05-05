@@ -21,4 +21,14 @@ class PhotoManager extends AbstractManager
         $query .= 'ORDER BY pr.id DESC LIMIT 3;';
         return $this->pdo->query($query)->fetchAll();
     }
+    public function insert(array $property, int $propertyId): void
+    {
+        $query = "INSERT INTO " . self::TABLE . " (`name`, `property_id`)  VALUES (:photo, :propertyId)";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('photo', $property['photo'], \PDO::PARAM_STR);
+        $statement->bindValue('propertyId', $property[$propertyId], \PDO::PARAM_INT);
+
+        $statement->execute();
+    }
 }

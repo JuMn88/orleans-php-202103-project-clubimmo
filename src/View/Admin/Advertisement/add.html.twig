@@ -40,12 +40,12 @@
                 <select class="form-control" id="propertyType" name="propertyType" required>
                     {% for propertyType in propertyTypes %}
                         <option
-                            {% if advertisement.propertyType == propertyType %}
+                            {% if advertisement.propertyType == propertyType.id %}
                                 selected
                             {% endif %}
-                            value="{{ propertyType }}"
+                            value="{{ propertyType.id }}"
                         >
-                            {{ propertyType }}
+                            {{ propertyType.name }}
                         </option>
                     {% endfor %}
                 </select>
@@ -65,11 +65,21 @@
                 <input type="text" class="form-control" id="address" 
                     name="address" placeholder="1 rue de Bellevue" value="{{ advertisement.address }}">
             </div>
-            <!--<div class="mb-3">
+            <div class="mb-3">
                 <label for="sector" class="form-label">Secteur</label>
-                <input type="text" class="form-control" id="sector" 
-                    name="sector" placeholder="Centre" value="{{ advertisement.sector }}" required>
-            </div>-->
+                <select class="form-control" id="sector" name="sector" required>
+                    {% for sector in sectors %}
+                        <option
+                            {% if advertisement.sector == sector.id %}
+                                selected
+                            {% endif %}
+                            value="{{ sector.id }}"
+                        >
+                            {{ sector.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="rooms" class="form-label">Nombre de pièces</label>
                 <input type="text" class="form-control" id="rooms" 
@@ -97,33 +107,13 @@
             </div>
             <div class="mb-3">
                 <label for="kitchen" class="form-label">Cuisine</label>
-                <select class="form-control" id="kitchen" name="kitchen" required>
-                    {% for answer in yesNoAnswers %}
-                        <option
-                            {% if advertisement.kitchen == answer %}
-                                selected
-                            {% endif %}
-                            value="{{ answer }}"
-                        >
-                            {{ answer }}
-                        </option>
-                    {% endfor %}
-                </select>
+                <input type="text" class="form-control" id="kitchen" 
+                    name="kitchen" placeholder="0" value="{{ advertisement.kitchen }}" required>
             </div>
             <div class="mb-3">
                 <label for="lift" class="form-label">Ascenseur</label>
-                <select class="form-control" id="lift" name="lift" required>
-                    {% for answer in yesNoAnswers %}
-                        <option
-                            {% if advertisement.lift == answer %}
-                                selected
-                            {% endif %}
-                            value="{{ answer }}"
-                        >
-                            {{ answer }}
-                        </option>
-                    {% endfor %}
-                </select>
+                <input type="text" class="form-control" id="lift" 
+                    name="lift" placeholder="0" value="{{ advertisement.lift }}" required>
             </div>
             <div class="mb-3">
                 <label for="energyPerformance" class="form-label">Performances énergétiques</label>

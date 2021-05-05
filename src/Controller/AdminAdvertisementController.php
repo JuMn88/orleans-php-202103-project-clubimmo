@@ -3,23 +3,20 @@
 namespace App\Controller;
 
 use App\Model\PropertyManager;
+use App\Model\SectorManager;
+use App\Model\PropertyTypeManager;
+use App\Model\PhotoManager;
 
 class AdminAdvertisementController extends AbstractController
 {
     public const MAX_TEXT_LENGTH = 255;
     public const SHORT_TEXT_LENGTH = 25;
-    public const PROPERTY_TYPES = [
-        "Maison",
-        "Appartement",
-        "Autre",
-    ];
     public const TRANSACTION_TYPES = [
         "A vendre",
         "A louer",
         "Autre",
     ];
     public const DIAGNOSTIC_GRADES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-    public const YES_NO_ANSWERS = ['Oui', 'Non'];
     public const MAX_UPLOAD_FILE = 1000000;
     public const ALLOWED_MIMES = ['image/jpeg', 'image/png'];
 
@@ -35,12 +32,16 @@ class AdminAdvertisementController extends AbstractController
     public function add(): string
     {
         $errors = $advertisement = [];
+        $sectorManager = new SectorManager();
+        $sectors = $sectorManager->selectAll();
+        $propertyTypeManager = new PropertyTypeManager();
+        $propertyTypes = $propertyTypeManager->selectAll();
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $advertisement = array_map('trim', $_POST);
             $advertisement['reference'] = uniqid();
             $errors = $this->validateInput($advertisement, $errors);
             $errors = $this->validateTextSizeInput($advertisement, $errors);
-            $errors = $this->validatePositiveInput($advertisement, $errors);
+            $errors = $this->validatePositiveInt($advertisement, $errors);
             $errors = $this->validateGradeInput($advertisement, $errors);
             $errors = $this->validateImageFormat($_FILES['photo'], $errors);
             if (empty($errors)) {
@@ -50,9 +51,12 @@ class AdminAdvertisementController extends AbstractController
                     $_FILES['photo']['tmp_name'],
                     __DIR__ . '/../../public/uploads/' . $fileName
                 );
-                //insert in database
-                $advertisementManager = new PropertyManager();
-                $advertisementManager->insert($advertisement);
+                //insert in table property
+                $propertyManager = new PropertyManager();
+                $propertyId = $propertyManager->insert($advertisement);
+                //insert in table photo
+                $photoManager = new PhotoManager();
+                $photoManager->insert($advertisement, $propertyId);
                 //redirection
                 header('Location: /adminAdvertisement/index');
             }
@@ -60,10 +64,10 @@ class AdminAdvertisementController extends AbstractController
         return $this->twig->render('Admin/Advertisement/add.html.twig', [
             'errors' => $errors,
             'advertisement' => $advertisement,
-            'propertyTypes' => self::PROPERTY_TYPES,
+            'sectors' => $sectors,
+            'propertyTypes' => $propertyTypes,
             'transactionTypes' => self::TRANSACTION_TYPES,
             'diagnosticGrades' => self::DIAGNOSTIC_GRADES,
-            'yesNoAnswers' => self::YES_NO_ANSWERS,
         ]);
     }
     //Method to ensure every fields had been filled
@@ -113,18 +117,24 @@ class AdminAdvertisementController extends AbstractController
         return $errors;
     }
     //Method to ensure positive values had been filled in the proper fields
-    public function validatePositiveInput(array $advertisement, array $errors): array
+    public function validatePositiveInt(array $advertisement, array $errors): array
     {
         $integerFieldsList = [
             'surface' => 'Surface',
             'price' => 'Prix',
             'rooms' => 'Nombre de pièces',
             'bedrooms' => 'Nombre de chambres',
+            'kitchen' => 'Cuisine',
+            'lift' => 'Ascenseur',
         ];
         foreach ($advertisement as $adKey => $adValue) {
+            //if (is_numeric($adValue)) {
             if ($adValue < 0) {
-                $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être positive.';
+                    $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être positive.';
             }
+            /**} else {
+                $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être un nombre.';
+            }*/
         }
         return $errors;
     }
@@ -155,17 +165,6 @@ class AdminAdvertisementController extends AbstractController
             } else {
                 $errors[] = 'Pas de photo sélectionnée';
             }
-        }
-        return $errors;
-    }
-    //Method to validate the "yes/no inputs" (kitchen and lift)
-    public function validateYNInput($advertisement, $errors): array
-    {
-        if (!in_array($advertisement['kitchen'], self::YES_NO_ANSWERS)) {
-            $errors[] = 'La réponse au champ Cuisine doit être oui ou non.';
-        }
-        if (!in_array($advertisement['lift'], self::YES_NO_ANSWERS)) {
-            $errors[] = 'La réponse au champ Ascenseur doit être oui ou non';
         }
         return $errors;
     }
