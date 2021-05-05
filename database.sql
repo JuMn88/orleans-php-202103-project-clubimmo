@@ -7,7 +7,7 @@ name VARCHAR(50) NOT NULL,
 flaticonName VARCHAR(50) NOT NULL,
 CONSTRAINT C12 PRIMARY KEY (id));
 
-INSERT INTO  feature (flaticonName, name) 
+INSERT INTO  feature (flaticonName, name)
 VALUES ("flaticon-rooms", "pièces"),("flaticon-surface", "m²"),("flaticon-bathrooms", "salle de bains"),("flaticon-toilets", "wc"), ("flaticon-kitchen", "cuisine"),("flaticon-lift", "ascenseur"), ("flaticon-parking-space", "parking"), ("flaticon-bedrooms", "chambres");
 
 /* Create propertyType */
@@ -18,7 +18,6 @@ CONSTRAINT C4 PRIMARY KEY (id));
 
 INSERT INTO propertyType (name)
 VALUES ('Maison'),('Appartement'),('Villa'),('Terrain'), ('Studio'),('Autre');
-
 
 
 /* Create sector */
@@ -48,17 +47,18 @@ CONSTRAINT C2 FOREIGN KEY (sector_id) REFERENCES sector(id),
 CONSTRAINT C3 FOREIGN KEY (property_type_id) REFERENCES propertyType(id),
 CONSTRAINT C1 PRIMARY KEY (id));
 
-INSERT INTO property (property_type_id, sector_id, price, transaction, energy_performance, greenhouse_gases, address) VALUES 
-(2, 1, 850, "A Louer", "A", "B", "10 Rue de la Chaussure"), 
+
+INSERT INTO property (property_type_id, sector_id, price, transaction, energy_performance, greenhouse_gases, address) VALUES
+(2, 1, 850, "A Louer", "A", "B", "10 Rue de la Chaussure"),
 (1, 2, 975, "A Louer", "", "A", "5 Rue de Patay"),  
 (2, 3, 370000, "A Vendre", "A", "C", "2 Rue de la Pompe"),
-(2, 4, 750, "A Louer", "B", "B", "10 Rue de Verneuil"), 
+(2, 4, 750, "A Louer", "B", "B", "10 Rue de Verneuil"),
 (3, 5, 500000, "A Vendre", "D", "B", "9 Rue des Boulets"),
 (1, 4, 170000, "A Vendre", "", "B", "20 Rue du Commerce"),
 (1, 2, 1100, "A Louer", "D", "D", "3 Rue du Commerce"),
 (1, 3, 220000, "A Vendre", "A", "D", "7 Rue de Patay"),
 (1, 4, 1350, "A Louer", "A", "B", "8 Rue des Boulets"),
-(1, 2, 1000, "A Louer", "C", "B", "15 Rue de la Chaussure");
+(1, 2, 1000, "A Louer", "C", "B", "15 Rue de la Chaussure"); 
 
 
 /* Create property_feature */
@@ -70,8 +70,7 @@ CONSTRAINT C13 PRIMARY KEY (property_id,feature_id),
 CONSTRAINT C14 FOREIGN KEY (property_id) REFERENCES property(id),
 CONSTRAINT C15 FOREIGN KEY (feature_id) REFERENCES feature(id));
 
-
-INSERT INTO property_feature (property_id, feature_id, number) 
+INSERT INTO property_feature (property_id, feature_id, number)
 VALUES
 (1,1,4),(1,2,50),(1,3,1),(1,4,1),(1,5,1),(1,6,1),(1,7,1),(1,8,3),               
 (2,1,5),(2,2,50),(2,3,1),(2,4,1),(2,5,1),(2,6,0),(2,7,1),(2,8,3),
