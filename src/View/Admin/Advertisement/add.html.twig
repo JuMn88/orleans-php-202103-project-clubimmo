@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <main class="container">
-        <h2 class="mt-5 pb-2 text-center">
+    <main class="container adminAdvertisement">
+        <h2 class="pb-2 text-center">
             Ajout d'une annonce
         </h2>
         <ul class="alert alert-danger list-unstyled empty">
@@ -40,12 +40,12 @@
                 <select class="form-control" id="propertyType" name="propertyType" required>
                     {% for propertyType in propertyTypes %}
                         <option
-                            {% if advertisement.propertyType == propertyType %}
+                            {% if advertisement.propertyType == propertyType.id %}
                                 selected
                             {% endif %}
-                            value="{{ propertyType }}"
+                            value="{{ propertyType.id }}"
                         >
-                            {{ propertyType }}
+                            {{ propertyType.name }}
                         </option>
                     {% endfor %}
                 </select>
@@ -61,14 +61,24 @@
                     name="price" placeholder="0" value="{{ advertisement.price }}" required>
             </div>
             <div class="mb-3">
-                <label for="city" class="form-label">Ville</label>
-                <input type="text" class="form-control" id="city" 
-                    name="city" placeholder="Orléans" value="{{ advertisement.city }}" required>
+                <label for="address" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="address" 
+                    name="address" placeholder="1 rue de Bellevue" value="{{ advertisement.address }}">
             </div>
             <div class="mb-3">
                 <label for="sector" class="form-label">Secteur</label>
-                <input type="text" class="form-control" id="sector" 
-                    name="sector" placeholder="Centre" value="{{ advertisement.sector }}" required>
+                <select class="form-control" id="sector" name="sector" required>
+                    {% for sector in sectors %}
+                        <option
+                            {% if advertisement.sector == sector.id %}
+                                selected
+                            {% endif %}
+                            value="{{ sector.id }}"
+                        >
+                            {{ sector.name }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="mb-3">
                 <label for="rooms" class="form-label">Nombre de pièces</label>
@@ -79,6 +89,31 @@
                 <label for="bedrooms" class="form-label">Nombre de chambres</label>
                 <input type="text" class="form-control" id="bedrooms" 
                     name="bedrooms" placeholder="0" value="{{ advertisement.bedrooms }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="bathrooms" class="form-label">Nombre de salles de bain</label>
+                <input type="text" class="form-control" id="bathrooms" 
+                    name="bathrooms" placeholder="0" value="{{ advertisement.bathrooms }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="toilets" class="form-label">Nombre de toilettes</label>
+                <input type="text" class="form-control" id="toilets" 
+                    name="toilets" placeholder="0" value="{{ advertisement.toilets }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="parkingSpace" class="form-label">Nombre de places de stationnement</label>
+                <input type="text" class="form-control" id="parkingSpace" 
+                    name="parkingSpace" placeholder="0" value="{{ advertisement.parkingSpace }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="kitchen" class="form-label">Cuisine</label>
+                <input type="text" class="form-control" id="kitchen" 
+                    name="kitchen" placeholder="0" value="{{ advertisement.kitchen }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="lift" class="form-label">Ascenseur</label>
+                <input type="text" class="form-control" id="lift" 
+                    name="lift" placeholder="0" value="{{ advertisement.lift }}" required>
             </div>
             <div class="mb-3">
                 <label for="energyPerformance" class="form-label">Performances énergétiques</label>

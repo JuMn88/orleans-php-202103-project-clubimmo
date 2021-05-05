@@ -6,20 +6,26 @@ class PropertyManager extends AbstractManager
 {
     public const TABLE = 'property';
 
-    public function insert(array $property): void
+    public function insert(array $property): int
     {
-        $query = "INSERT INTO " . self::TABLE . " (`reference`, `transaction`, `property_type`, `surface`, `price`,
-        `city`, `sector`, `rooms`, `bedrooms`, `energy_performance`, `greenhouse_gases`, `photo`, `description`)
-                VALUES (:reference, :transaction, :propertyType, :surface, :price, :city,
-                :sector, :rooms, :bedrooms, :energyPerformance, :greenhouseGases, :photo, :description)";
+        $query = "INSERT INTO " . self::TABLE . " (`reference`, `transaction`, `address`, `price`,
+        `energy_performance`, `greenhouse_gases`, `description`, `sector_id`, `property_type_id`)
+                VALUES (:reference, :transaction, :address, :price,
+                :energyPerformance, :greenhouseGases, :description, :sector, :propertyType)";
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('reference', $property['reference'], \PDO::PARAM_STR);
         $statement->bindValue('transaction', $property['transaction'], \PDO::PARAM_STR);
-        $statement->bindValue('propertyType', $property['propertyType'], \PDO::PARAM_STR);
-        $statement->bindValue('surface', $property['surface'], \PDO::PARAM_INT);
+        $statement->bindValue('address', $property['address'], \PDO::PARAM_STR);
         $statement->bindValue('price', $property['price'], \PDO::PARAM_INT);
+        $statement->bindValue('energyPerformance', $property['energyPerformance'], \PDO::PARAM_STR);
+        $statement->bindValue('greenhouseGases', $property['greenhouseGases'], \PDO::PARAM_STR);
         $statement->bindValue('description', $property['description'], \PDO::PARAM_STR);
+        $statement->bindValue('sector', $property['sector'], \PDO::PARAM_INT);
+        $statement->bindValue('propertyType', $property['propertyType'], \PDO::PARAM_INT);
+
+        $statement->execute();
+        return (int)$this->pdo->lastInsertId();
     }
 
     public function selectProperties(?string $transaction, ?int $propertyTypeId, ?int $sectorId, ?int $budget)

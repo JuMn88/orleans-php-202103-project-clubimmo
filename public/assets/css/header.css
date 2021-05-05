@@ -1,7 +1,14 @@
-/* header */
-header {
-    background-image: url('../images/accueil.jpg');
+header img{
+    max-width: 100%;
     height: 100vh;
-    background-size: cover;
-    padding-top: 20%;
+}
+
+@media only screen and (max-width: 1200px)  {
+    h1 {
+        font-size: var(--subtitle-size);
+    }
+    header img{
+        padding: 10px;
+        height: auto;
+    }
 }
