@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\PropertyManager;
 use App\Model\PhotoManager;
+use App\Model\SectorManager;
 
 class PropertyController extends AbstractController
 {
@@ -19,7 +20,7 @@ class PropertyController extends AbstractController
 
     public function show(int $idProperty)
     {
-        if (!empty($idProperty) && $idProperty) {
+        if (!empty($idProperty)) {
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectOneById($idProperty);
         } else {
@@ -27,8 +28,13 @@ class PropertyController extends AbstractController
         }
 
         $photoManager = new PhotoManager();
-        $photos = $photoManager->selectAll();
+        $photos = $photoManager->selectByPropertyId($idProperty);
 
-        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos, 'property' => $property]);
+        $sectorManager = new SectorManager();
+        $sector = $sectorManager->selectOneById($property['sector_id']);
+
+        return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos,
+                                                                    'property' => $property,
+                                                                    'sector' => $sector]);
     }
 }

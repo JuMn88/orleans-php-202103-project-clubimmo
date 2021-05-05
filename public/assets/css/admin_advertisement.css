@@ -1,8 +1,5 @@
-.adminAdvertisement h2{
-    margin-top:130px;
-}
+.property-photo {
 
-.property-image {
     --size: 40px;
     width: var(--size);
     height: var(--size);

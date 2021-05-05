@@ -42,6 +42,11 @@ h2 {
     font-weight: bold;
 }
 
+h3 {
+    color: var(--primary);
+    font-family: var(--main-font);
+}
+
 .footer {
     background-color: var(--primary);
 }
@@ -53,4 +58,15 @@ h2 {
 
 .bg-purple{
     background-color: var(--primary);
+}
+
+
+.card {
+    color: var(--primary);
+}
+
+.badge {
+    background-color: var(--primary);
+    display:flex;
+    justify-content:center
 }
