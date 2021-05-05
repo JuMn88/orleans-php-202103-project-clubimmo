@@ -83,4 +83,14 @@ class PropertyManager extends AbstractManager
 
         return $statement->fetch();
     }
+
+    public function selectPropertyTypeByPropertyId(int $id)
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM " . static::TABLE .
+        " INNER JOIN propertyType ON propertyType.id=:id");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
 }

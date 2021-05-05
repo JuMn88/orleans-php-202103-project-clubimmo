@@ -31,7 +31,6 @@ CONSTRAINT C5 PRIMARY KEY (id));
 INSERT INTO sector (name, lat, lon) VALUES ('Dunois', 47.9080, 1.8943), ('Madeleine', 47.8999, 1.8812), ('Orléans Centre', 47.9029, 1.9039),
 ('Orléans Nord', 47.9466, 1.8906), ('Argonne', 47.9115, 1.9283), ('Saint-Marceau', 47.8869, 1.9069), ('La Source', 47.8457, 1.9234);
 
-
 /* Create property */
 CREATE TABLE property (
 id INT AUTO_INCREMENT NOT NULL,
@@ -60,6 +59,7 @@ INSERT INTO property (property_type_id, sector_id, price, transaction, energy_pe
 (1, 3, 220000, "A Vendre", "A", "D", "7 Rue de Patay"),
 (1, 4, 1350, "A Louer", "A", "B", "8 Rue des Boulets"),
 (1, 2, 1000, "A Louer", "C", "B", "15 Rue de la Chaussure"); 
+
 
 /* Create property_feature */
 CREATE TABLE property_feature (
