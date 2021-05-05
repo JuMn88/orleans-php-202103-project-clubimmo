@@ -6,6 +6,7 @@ use App\Model\PropertyManager;
 
 class AdminAdvertisementController extends AbstractController
 {
+
     public const MAX_TEXT_LENGTH = 50;
     public const MAX_TRANSACTION_LENGTH = 25;
     public const PROPERTY_TYPES = [
@@ -31,6 +32,7 @@ class AdminAdvertisementController extends AbstractController
             'properties' => $properties,
         ]);
     }
+
     public function add(): string
     {
         $errors = $advertisement = [];
