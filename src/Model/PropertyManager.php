@@ -40,7 +40,7 @@ class PropertyManager extends AbstractManager
         $query .= ' JOIN '  . PhotoManager::TABLE . ' ON photo.property_id = p.id';
         $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' surface ON surface.property_id = p.id';
         $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' room ON room.property_id = p.id';
-        $query .= ' and room.feature_id = ' . self::SURFACE . ' and surface.feature_id = '. self::ROOMS;
+        $query .= ' and room.feature_id = ' . self::SURFACE . ' and surface.feature_id = ' . self::ROOMS;
         $queryParts = [];
         // Make the request that shows all the properties that correspond to the selected transaction type
         $queryParts = $this->buildCondition($queryParts, $transaction, 'transaction', 'transaction');
