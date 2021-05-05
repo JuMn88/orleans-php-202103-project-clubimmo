@@ -2,15 +2,18 @@
 
 :root {
     --primary: #6B36AE;
-    --secondary: #DDDDDD55;
+    --secondary:lightgrey;
     --light: white;
     --dark: black;
     --transparent-light: rgba(255, 255, 255, 0.514);
+
     --intermediary: #AA9BBE;
     --card-color: #DDDDDD30;
 /* Change the font- family and font size*/
     --main-font: 'Varela Round', sans-serif;
     --title-font:  'Snell Roundhand', cursive;
+
+   
     --title-size: 64px;
     --subtitle-size: 48px;
     --larger-text-size: 24px;
@@ -32,7 +35,6 @@ h1 {
 /* Add new property to make the title more visible  */
     text-shadow: 5px 5px 10px var(--light), 5px 5px 1em var(--light),
     5px 5px 1em var(--light);    
-
 }
 
 h2 {
@@ -58,15 +60,4 @@ h3 {
 
 .bg-purple{
     background-color: var(--primary);
-}
-
-
-.card {
-    color: var(--primary);
-}
-
-.badge {
-    background-color: var(--primary);
-    display:flex;
-    justify-content:center
 }
