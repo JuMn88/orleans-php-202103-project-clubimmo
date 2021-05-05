@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Model\PropertyManager;
-use App\Model\PropertyTypeManager;
-use App\Model\SectorManager;
 use App\Model\PhotoManager;
+use App\Model\PropertyTypeManager;
+use App\Model\PropertyFeatureManager;
+use App\Model\SectorManager;
 
 class PropertyController extends AbstractController
 {
@@ -111,12 +112,14 @@ class PropertyController extends AbstractController
     public function show(int $idProperty)
     {
         if (!empty($idProperty)) {
-            $propertyManager = new PropertyManager();
-            $property = $propertyManager->selectOneById($idProperty);
+            $pFeaturesManager = new PropertyFeatureManager();
+            $propertyFeatures = $pFeaturesManager->selectFeaturesByPropertyId($idProperty);
+            $property = new PropertyManager();
+            $property = $property->selectPropertyTypeByPropertyId($idProperty);
         } else {
             $property = null;
+            $propertyFeatures = null;
         }
-
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectByPropertyId($idProperty);
 
@@ -125,6 +128,7 @@ class PropertyController extends AbstractController
 
         return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos,
                                                                     'property' => $property,
+                                                                    'propertyFeatures' => $propertyFeatures,
                                                                     'sector' => $sector]);
     }
 }
