@@ -24,7 +24,7 @@ class AdminAdvertisementController extends AbstractController
     public function index(): string
     {
         $propertyManager = new PropertyManager();
-        $properties = $propertyManager->selectAll();
+        $properties = $propertyManager->selectPropertiesForAdmin();
 
         return $this->twig->render('Admin/Advertisement/index.html.twig', [
             'properties' => $properties,
