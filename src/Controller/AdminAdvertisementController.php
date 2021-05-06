@@ -36,12 +36,14 @@ class AdminAdvertisementController extends AbstractController
     public function add(): string
     {
         $errors = $advertisement = [];
+        $propertyManager = new PropertyManager();
         $sectorManager = new SectorManager();
         $sectors = $sectorManager->selectAll();
         $propertyTypeManager = new PropertyTypeManager();
         $propertyTypes = $propertyTypeManager->selectAll();
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $advertisement = array_map('trim', $_POST);
+            $advertisement['reference'] = $propertyManager->newPropertyId();
             $errors = $this->validateInput($advertisement, $errors);
             $errors = $this->validateTextSizeInput($advertisement, $errors);
             $errors = $this->validatePositiveInt($advertisement, $errors);
