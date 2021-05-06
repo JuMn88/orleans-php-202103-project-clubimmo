@@ -5,7 +5,6 @@ namespace App\Model;
 class FeatureManager extends AbstractManager
 {
     public const TABLE = 'feature';
-
     public function selectOneByName(string $name)
     {
         $statement = $this->pdo->prepare("SELECT id FROM " . self::TABLE . " WHERE flaticonName=:name");
