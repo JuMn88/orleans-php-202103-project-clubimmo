@@ -5,7 +5,7 @@
 
 .container-searchBar{
     height: calc(var(--height-card)/3);
-    background-color: var(--secondary);
+    background-color: var(--intermediary);
 }
 
 .property-card{
