@@ -5,8 +5,8 @@ namespace App\Model;
 class PropertyManager extends AbstractManager
 {
     public const TABLE = 'property';
-    private const SURFACE = 2;
-    private const ROOMS = 1;
+    private const SURFACE = 1;
+    private const ROOMS = 2;
 
     public function insert(array $property): int
     {
