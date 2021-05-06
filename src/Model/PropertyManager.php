@@ -5,9 +5,12 @@ namespace App\Model;
 class PropertyManager extends AbstractManager
 {
     public const TABLE = 'property';
+    private const SURFACE = "flaticon-surface";
+    private const ROOMS = 'flaticon-rooms';
 
     public function insert(array $property): int
     {
+        //$property['reference'] = ((int)$this->pdo->lastInsertId()) + 2;
         $query = "INSERT INTO " . self::TABLE . " (`reference`, `transaction`, `address`, `price`,
         `energy_performance`, `greenhouse_gases`, `description`, `sector_id`, `property_type_id`)
                 VALUES (:reference, :transaction, :address, :price,
@@ -32,9 +35,16 @@ class PropertyManager extends AbstractManager
     {
         // prepared request
         $query = 'SELECT p.*, pt.name AS property_type, s.name AS sector_name, min(photo.name)';
-        $query .= ' AS property_photo FROM ' . self::TABLE . ' p JOIN ' . PropertyTypeManager::TABLE;
+        $query .= ' AS property_photo, surface.number as surface, room.number as rooms ';
+        $query .= ' FROM ' . self::TABLE . ' p JOIN ' . PropertyTypeManager::TABLE;
         $query .= ' pt ON pt.id = p.property_type_id JOIN '  . SectorManager::TABLE . ' s ON s.id = p.sector_id';
         $query .= ' JOIN '  . PhotoManager::TABLE . ' ON photo.property_id = p.id';
+        $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' surface ON surface.property_id = p.id';
+        $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' room ON room.property_id = p.id';
+        $query .= ' and room.feature_id  in';
+        $query .= ' (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::ROOMS . '")';
+        $query .=  ' and surface.feature_id in ';
+        $query .= ' (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::SURFACE . '")';
         $queryParts = [];
         // Make the request that shows all the properties that correspond to the selected transaction type
         $queryParts = $this->buildCondition($queryParts, $transaction, 'transaction', 'transaction');
@@ -49,7 +59,7 @@ class PropertyManager extends AbstractManager
         if (!empty($queryParts)) {
             $query .= " WHERE " . implode(" AND ", $queryParts);
         }
-        $query .= " group by p.id";
+        $query .= " group by p.id, rooms, surface";
         $statement = $this->pdo->prepare($query);
         if ($transaction) {
             $statement->bindValue('transaction', $transaction, \PDO::PARAM_STR);
@@ -98,5 +108,27 @@ class PropertyManager extends AbstractManager
         $statement->execute();
 
         return $statement->fetch();
+    }
+
+    public function newPropertyId()
+    {
+        $statement = $this->pdo->query("SELECT MAX(id) FROM " . static::TABLE);
+        $propertyId = $statement->fetchAll();
+        $newPropertyId = (int)$propertyId[0]['MAX(id)'];
+        $newPropertyId++;
+
+        return $newPropertyId;
+    }
+
+    public function selectPropertiesForAdmin(): array
+    {
+        $query = "SELECT photo.name, " . self::TABLE . ".reference, property_feature.number FROM photo 
+        INNER JOIN " . self::TABLE . " ON photo.property_id = " . self::TABLE . ".id 
+        INNER JOIN property_feature ON property.id = property_feature.property_id 
+        INNER JOIN feature ON property_feature.feature_id = feature.id WHERE feature.name = \"m²\"
+        ORDER BY " . self::TABLE . ".id DESC";
+        $statement = $this->pdo->query($query);
+
+        return $statement->fetchAll();
     }
 }

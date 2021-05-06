@@ -4,5 +4,4 @@
 *.cache
 db.php
 .idea
-public/uploads
 mail.php
