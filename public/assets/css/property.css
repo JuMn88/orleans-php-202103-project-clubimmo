@@ -5,52 +5,36 @@
 
 .container-searchBar{
     height: calc(var(--height-card)/3);
-    background-color: var(--secondary);
+    background-color: var(--intermediary);
 }
 
-.card-price-property,
-.card-property-type {
-    color:var(--primary);
-}
 .property-card{
     min-height: var(--height-card);
     border: 1px solid var(--secondary);
     border-radius: 5px;
+}
+
+.card-body{
+    margin: 0 auto!important;
 }
 .property-card img{
     min-height: var(--height-card);
     object-fit: cover;
 }
 
-.btn-property{
-    background-color: var(--primary);
-}
-.badge{
-    width:calc(var(--height-card)/4);
+.property-card .badge{
     height: calc(var(--height-card)/9);
     background-color: var(--secondary);
 }
 .btn-search{
-    margin-top: 40px;
+    margin-top: 43px;
 }
-
+.btn-search button{
+    margin-left:15px;
+}
 .error{
     background-color: var(--secondary);
     color:red;
-}
-/* Add new class */
-.bg-purple{
-    background-color: var(--primary);
-}
-    
-.text-purple{
-    color:var(--primary);
-}
-
-@media and (max-width:768px){
-    #propertyType{
-        margin-top:20%;
-    }
 }
 
 

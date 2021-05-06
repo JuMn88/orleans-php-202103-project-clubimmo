@@ -48,17 +48,17 @@ CONSTRAINT C3 FOREIGN KEY (property_type_id) REFERENCES propertyType(id),
 CONSTRAINT C1 PRIMARY KEY (id));
 
 
-INSERT INTO property (property_type_id, sector_id, price, transaction, energy_performance, greenhouse_gases, address) VALUES
-(2, 1, 850, "A Louer", "A", "B", "10 Rue de la Chaussure"),
-(1, 2, 975, "A Louer", "", "A", "5 Rue de Patay"),  
-(2, 3, 370000, "A Vendre", "A", "C", "2 Rue de la Pompe"),
-(2, 4, 750, "A Louer", "B", "B", "10 Rue de Verneuil"),
-(3, 5, 500000, "A Vendre", "D", "B", "9 Rue des Boulets"),
-(1, 4, 170000, "A Vendre", "", "B", "20 Rue du Commerce"),
-(1, 2, 1100, "A Louer", "D", "D", "3 Rue du Commerce"),
-(1, 3, 220000, "A Vendre", "A", "D", "7 Rue de Patay"),
-(1, 4, 1350, "A Louer", "A", "B", "8 Rue des Boulets"),
-(1, 2, 1000, "A Louer", "C", "B", "15 Rue de la Chaussure"); 
+INSERT INTO property (reference, property_type_id, sector_id, price, transaction, energy_performance, greenhouse_gases, address) VALUES
+(1, 2, 1, 850, "A Louer", "A", "B", "10 Rue de la Chaussure"),
+(2, 1, 2, 975, "A Louer", "", "A", "5 Rue de Patay"),  
+(3, 2, 3, 370000, "A Vendre", "A", "C", "2 Rue de la Pompe"),
+(4, 2, 4, 750, "A Louer", "B", "B", "10 Rue de Verneuil"),
+(5, 3, 5, 500000, "A Vendre", "D", "B", "9 Rue des Boulets"),
+(6, 1, 4, 170000, "A Vendre", "", "B", "20 Rue du Commerce"),
+(7, 1, 2, 1100, "A Louer", "D", "D", "3 Rue du Commerce"),
+(8, 1, 3, 220000, "A Vendre", "A", "D", "7 Rue de Patay"),
+(9, 1, 4, 1350, "A Louer", "A", "B", "8 Rue des Boulets"),
+(10, 1, 2, 1000, "A Louer", "C", "B", "15 Rue de la Chaussure"); 
 
 /* Create property_feature */
 CREATE TABLE property_feature (
