@@ -43,6 +43,26 @@ h2 {
     font-size: var(--subtitle-size);
 }
 
+
+h3 {
+    color: var(--primary);
+    font-family: var(--main-font);
+}
+
+
+h4 {
+    color: var(--primary);
+}
+
+
+h5 {
+    color: var(--primary);
+}
+
+h6 {
+    color: var(--primary);
+}
+
 @media only screen and (max-width: 768px)  {
     h1 {
         font-size: 52px;
