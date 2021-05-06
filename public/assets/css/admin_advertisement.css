@@ -27,3 +27,7 @@ table td {
 .empty:empty {
     display: none;
 }
+
+.container {
+    margin-top: var(--navbar-size);
+}
