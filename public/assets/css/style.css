@@ -70,9 +70,15 @@ h3 {
     background-color: var(--primary);
 }
 
-
+/* Carousel 3 biens mis en avant*/
+.badge{
+    height: calc(var(--height-card)/9);
+    background-color: var(--secondary);
+}
 .card {
-    color: var(--primary);
+    min-height: var(--height-card);
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
 }
 
 

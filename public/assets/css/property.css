@@ -27,18 +27,14 @@
     background-color: var(--secondary);
 }
 .btn-search{
-    margin-top: 40px;
+    margin-top: 43px;
 }
-
+.btn-search button{
+    margin-left:15px;
+}
 .error{
     background-color: var(--secondary);
     color:red;
-}
-
-@media and (max-width:768px){
-    #propertyType{
-        margin-top:20%;
-    }
 }
 
 
