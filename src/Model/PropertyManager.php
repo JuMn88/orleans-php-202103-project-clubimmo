@@ -32,11 +32,6 @@ class PropertyManager extends AbstractManager
 
     public function selectProperties(?string $transaction, ?int $propertyTypeId, ?int $sectorId, ?int $budget)
     {
-
-        //$query .= ' and room.feature_id  in (select id from feature where flaticonName  =  "' . self::ROOMS . '")';
-        //$query .=  ' and surface.feature_id in (select id from feature where flaticonName  =  "' . self::SURFACE . '")';
-   
-
         // prepared request
         $query = 'SELECT p.*, pt.name AS property_type, s.name AS sector_name, min(photo.name)';
         $query .= ' AS property_photo, surface.number as surface, room.number as rooms ';
@@ -45,8 +40,10 @@ class PropertyManager extends AbstractManager
         $query .= ' JOIN '  . PhotoManager::TABLE . ' ON photo.property_id = p.id';
         $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' surface ON surface.property_id = p.id';
         $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' room ON room.property_id = p.id';
-        $query .= ' and room.feature_id  in (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::ROOMS . '")';
-        $query .=  ' and surface.feature_id in (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::SURFACE . '")';
+        $query .= ' and room.feature_id  in';
+        $query .= ' (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::ROOMS . '")';
+        $query .=  ' and surface.feature_id in ';
+        $query .= ' (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::SURFACE . '")';
         $queryParts = [];
         // Make the request that shows all the properties that correspond to the selected transaction type
         $queryParts = $this->buildCondition($queryParts, $transaction, 'transaction', 'transaction');
