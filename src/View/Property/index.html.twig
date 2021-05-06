@@ -75,7 +75,7 @@
 
         <!-- Button submit -->
         <div class="col-lg-2 col-12">
-          <button class="col-12 btn btn-search bg-purple text-light rounded py-2 border-2 rounded" type="submit">Recherche</button>
+          <button class="col-12 btn btn-search bg-purple text-light rounded py-2 border-4 rounded" type="submit">Recherche</button>
         </div>
       </div>
       </fieldset>
@@ -100,26 +100,33 @@
                         <img class="w-100" src="{{ property.property_photo }}" alt="{{ property.property_type }}" />
                     </div>
                     <div class="col-lg-6 col-sm-12 col-12 d-flex align-items-center">
-                        <div class="card-body col-lg-12 col-sm-12 col-12">
-                          <span class="col-4 float-end badge text-purple pt-2">  
-                                {{property.transaction}}
-                          </span>
-                          <h5 class="card-title col-md-12 col-xs-8 offset-xs-2 card-property-type">
-                                <strong>
-                                    {{ property.property_type }}
-                                </strong>
-                            </h5>
-                            <h6 class="card-text">
+                        <div class="card-body col-12">
+                          <div class="row mb-4">
+                            <span class="col-4 offset-8 badge pt-2 text-center text-purple">  
+                              {{property.transaction}}
+                            </span>
+                          </div>
+                          <div class="row mt-xs-5 mt-md-0">
+                            <div class="col-6"> 
+                                <h6 class="card-title text-dark">
+                                  {{ property.property_type }} </br>
+                                  <strong class="text-purple"> {{ property.rooms }} pièces {{ property.surface }} m2 </strong>
+                                </h6>
+                            </div> 
+                            <div class="col-6"> 
+                                <h5 class="col-12 text-purple">
+                                  <strong class="float-end"><i>{{ property.price|number_format(0, '.', ' ') }} € </i></strong>
+                                </h5>
+                            </div>
+                          </div> 
+                          <div class="row mt-md-3 mt-xs-0">
+                            <h5 class="card-text">
                                 {{ property.sector_name }}
-                            </h6>
-                            <h6 class="card-price-property col-lg-12 col-sm-12 col-12 font-weight-bold font-italic">
-                                <strong><i>{{ property.price|number_format(0, '.', ' ') }} € </i></strong>
-                            </h6>
-
-                            <p class="card-text">
-                                {{ property.surface }} pièces {{ property.rooms }} m2
-                            </p>
-                            <a href="/property/show/{{ property.id }}" class="btn-property btn text-light col-6 offset-3 my-3">Voir l'annonce</a>
+                            </h5>
+                          </div>
+                          <div class="row mt-md-4 mt-xs-0">
+                            <a href="/property/show/{{ property.id }}" class="btn bg-purple text-light col-6 offset-3 mt-3 border-2 rounded">Voir l'annonce</a>
+                          </div>
                         </div>
                     </div>
                 </div>
