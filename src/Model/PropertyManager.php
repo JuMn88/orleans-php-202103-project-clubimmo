@@ -5,8 +5,8 @@ namespace App\Model;
 class PropertyManager extends AbstractManager
 {
     public const TABLE = 'property';
-    private const SURFACE = 1;
-    private const ROOMS = 2;
+    private const SURFACE = "flaticon-surface";
+    private const ROOMS = 'flaticon-rooms';
 
     public function insert(array $property): int
     {
@@ -32,6 +32,11 @@ class PropertyManager extends AbstractManager
 
     public function selectProperties(?string $transaction, ?int $propertyTypeId, ?int $sectorId, ?int $budget)
     {
+
+        //$query .= ' and room.feature_id  in (select id from feature where flaticonName  =  "' . self::ROOMS . '")';
+        //$query .=  ' and surface.feature_id in (select id from feature where flaticonName  =  "' . self::SURFACE . '")';
+   
+
         // prepared request
         $query = 'SELECT p.*, pt.name AS property_type, s.name AS sector_name, min(photo.name)';
         $query .= ' AS property_photo, surface.number as surface, room.number as rooms ';
@@ -40,7 +45,8 @@ class PropertyManager extends AbstractManager
         $query .= ' JOIN '  . PhotoManager::TABLE . ' ON photo.property_id = p.id';
         $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' surface ON surface.property_id = p.id';
         $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' room ON room.property_id = p.id';
-        $query .= ' and room.feature_id = ' . self::SURFACE . ' and surface.feature_id = ' . self::ROOMS;
+        $query .= ' and room.feature_id  in (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::ROOMS . '")';
+        $query .=  ' and surface.feature_id in (select id from '  . FeatureManager::TABLE . ' where flaticonName  =  "' . self::SURFACE . '")';
         $queryParts = [];
         // Make the request that shows all the properties that correspond to the selected transaction type
         $queryParts = $this->buildCondition($queryParts, $transaction, 'transaction', 'transaction');
@@ -55,7 +61,7 @@ class PropertyManager extends AbstractManager
         if (!empty($queryParts)) {
             $query .= " WHERE " . implode(" AND ", $queryParts);
         }
-        $query .= " group by p.id";
+        $query .= " group by p.id, rooms, surface";
         $statement = $this->pdo->prepare($query);
         if ($transaction) {
             $statement->bindValue('transaction', $transaction, \PDO::PARAM_STR);
