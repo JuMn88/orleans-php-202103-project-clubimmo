@@ -10,6 +10,7 @@ class PropertyManager extends AbstractManager
 
     public function insert(array $property): int
     {
+        //$property['reference'] = ((int)$this->pdo->lastInsertId()) + 2;
         $query = "INSERT INTO " . self::TABLE . " (`reference`, `transaction`, `address`, `price`,
         `energy_performance`, `greenhouse_gases`, `description`, `sector_id`, `property_type_id`)
                 VALUES (:reference, :transaction, :address, :price,

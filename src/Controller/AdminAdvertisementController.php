@@ -6,6 +6,8 @@ use App\Model\PropertyManager;
 use App\Model\SectorManager;
 use App\Model\PropertyTypeManager;
 use App\Model\PhotoManager;
+use App\Model\PropertyFeatureManager;
+use App\Model\FeatureManager;
 
 class AdminAdvertisementController extends AbstractController
 {
@@ -40,7 +42,6 @@ class AdminAdvertisementController extends AbstractController
         $propertyTypes = $propertyTypeManager->selectAll();
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $advertisement = array_map('trim', $_POST);
-            $advertisement['reference'] = uniqid();
             $errors = $this->validateInput($advertisement, $errors);
             $errors = $this->validateTextSizeInput($advertisement, $errors);
             $errors = $this->validatePositiveInt($advertisement, $errors);
@@ -59,6 +60,9 @@ class AdminAdvertisementController extends AbstractController
                 //insert in table photo
                 $photoManager = new PhotoManager();
                 $photoManager->insert($advertisement, $propertyId);
+                //insert in table photo
+                $pptyFeatureManager = new PropertyFeatureManager();
+                $pptyFeatureManager->insert($advertisement, $propertyId);
                 //redirection
                 header('Location: /adminAdvertisement/index');
             }
@@ -86,14 +90,15 @@ class AdminAdvertisementController extends AbstractController
             'bedrooms' => 'Nombre de chambres',
             'bathrooms' => 'Nombre de salles de bain',
             'toilets' => 'Nombre de toilettes',
-            'parkingSpace' => 'Nombre de places de stationnement',
+            'parking-space' => 'Nombre de places de stationnement',
             'kitchen' => 'Cuisine',
             'lift' => 'Ascenseur',
             'energyPerformance' => 'Performances énergétiques',
             'greenhouseGases' => 'GES',
             'description' => 'Description',
         ];
-        $probableNullCriteria = ['rooms', 'bedrooms', 'bathrooms', 'toilets', 'parkingSpace'];
+        $probableNullCriteria = ['surface', 'rooms', 'bedrooms', 'bathrooms',
+        'toilets', 'kitchen', 'lift', 'parking-space'];
         foreach ($advertisement as $adKey => $adValue) {
             if (empty($adValue)) {
                 //since empty(0) = true, another condition is necessary for properties with no room or bedroom
@@ -107,9 +112,6 @@ class AdminAdvertisementController extends AbstractController
     //Method to check strings' length
     public function validateTextSizeInput(array $advertisement, array $errors): array
     {
-        if (strlen($advertisement['reference']) > self::SHORT_TEXT_LENGTH) {
-            $errors[] = 'Le champ Référence doit faire moins de ' . self::SHORT_TEXT_LENGTH . ' caractères.';
-        }
         if (strlen($advertisement['transaction']) > self::SHORT_TEXT_LENGTH) {
             $errors[] = 'Le champ Transaction doit faire moins de ' . self::SHORT_TEXT_LENGTH . ' caractères.';
         }
@@ -130,13 +132,15 @@ class AdminAdvertisementController extends AbstractController
             'lift' => 'Ascenseur',
         ];
         foreach ($advertisement as $adKey => $adValue) {
-            //if (is_numeric($adValue)) {
-            if ($adValue < 0) {
-                    $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être positive.';
+            if (array_key_exists($adKey, $integerFieldsList)) {
+                if (is_numeric($adValue)) {
+                    if ($adValue < 0) {
+                            $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être positive.';
+                    }
+                } else {
+                    $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être un nombre.';
+                }
             }
-            /**} else {
-                $errors[] = 'La valeur ' . $integerFieldsList[$adKey] . ' doit être un nombre.';
-            }*/
         }
         return $errors;
     }

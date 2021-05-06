@@ -16,11 +16,6 @@
         </ul>
         <form method="POST" class="mb-5" enctype="multipart/form-data" novalidate>
             <div class="mb-3">
-                <label for="reference" class="form-label">Référence</label>
-                <input type="text" readonly class="form-control" id="reference" 
-                    name="reference" placeholder="Généré automatiquement" value="{{ advertisement.reference }}">
-            </div>
-            <div class="mb-3">
                 <label for="transaction" class="form-label">Type de transaction</label>
                 <select class="form-control" id="transaction" name="transaction" required>
                     {% for transactionType in transactionTypes %}
@@ -103,7 +98,7 @@
             <div class="mb-3">
                 <label for="parkingSpace" class="form-label">Nombre de places de stationnement</label>
                 <input type="text" class="form-control" id="parkingSpace" 
-                    name="parkingSpace" placeholder="0" value="{{ advertisement.parkingSpace }}" required>
+                    name="parking-space" placeholder="0" value="{{ advertisement.parkingSpace }}" required>
             </div>
             <div class="mb-3">
                 <label for="kitchen" class="form-label">Cuisine</label>
