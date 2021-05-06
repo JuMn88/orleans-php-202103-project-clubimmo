@@ -81,23 +81,23 @@ class ContactController extends AbstractController
         if (empty($client['firstname'])) {
             $errors[] = 'Veuillez entrer votre prénom.';
         } elseif (strlen($client['firstname']) > self::MAX_NAME_LENGTH) {
-            $errors[] = 'Votre prénom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . ' characters';
+            $errors[] = 'Votre prénom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . ' caractères.';
         }
 
         if (empty($client['lastname'])) {
             $errors[] = 'Veuillez entrer votre nom.';
         } elseif (strlen($client['lastname']) > self::MAX_NAME_LENGTH) {
-            $errors[] = 'Votre nom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . '  characters';
+            $errors[] = 'Votre nom ne doit pas dépasser ' . self::MAX_NAME_LENGTH . '  caractères.';
         }
 
         if (!in_array($client['topic'], self::TOPICS)) {
-            $errors[] = 'Veuillez choisir un sujet';
+            $errors[] = 'Veuillez choisir un sujet.';
         }
 
         if (empty($client['message'])) {
             $errors[] = 'Veuillez écrire votre message.';
         } elseif (strlen($client['message']) > self::MAX_MESSAGE_LENGTH) {
-            $errors[] = 'Votre message ne doit pas dépasser' . self::MAX_MESSAGE_LENGTH . ' characters';
+            $errors[] = 'Votre message ne doit pas dépasser' . self::MAX_MESSAGE_LENGTH . ' caractères.';
         }
         $errors = $this->validatePhoneEmail($client, $errors);
         return $errors;
@@ -107,13 +107,13 @@ class ContactController extends AbstractController
     public function validatePhoneEmail($client, $errors): array
     {
         if (empty($client['phone'])) {
-            $errors[] = 'Veuillez entrer votre numéro de téléphone';
+            $errors[] = 'Veuillez entrer votre numéro de téléphone.';
         } else {
             //eliminate every characters except 0-9
             $justNumbers = preg_replace("/[^0-9]/", '', $client['phone']);
             // The input data is only valid if there are 10 numbers left.
             if (strlen($justNumbers) !== 10) {
-                $errors[] = 'Votre numéro de téléphone est invalide';
+                $errors[] = 'Votre numéro de téléphone est invalide.';
             }
         }
         if (empty($client['email'])) {

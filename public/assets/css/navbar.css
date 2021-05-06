@@ -1,6 +1,7 @@
 /* La navbar */
 .navbar {
     background: var(--light);
+    height: var(--navbar-size);
 }
 .navbar-brand p{
    font-family: var(--main-font);
