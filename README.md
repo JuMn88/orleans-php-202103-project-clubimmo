@@ -46,4 +46,3 @@ An example (a basic list of items) is provided (you can load the *simple-mvc.sql
 
 
 ## Project 2 - Club de l'immo - Import the sql file: database.sql 
-
