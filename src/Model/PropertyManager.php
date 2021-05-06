@@ -100,4 +100,14 @@ class PropertyManager extends AbstractManager
 
         return $statement->fetch();
     }
+
+    public function newPropertyId()
+    {
+        $statement = $this->pdo->query("SELECT MAX(id) FROM " . static::TABLE);
+        $propertyId = $statement->fetchAll();
+        $newPropertyId = (int)$propertyId[0]['MAX(id)'];
+        $newPropertyId++;
+
+        return $newPropertyId;
+    }
 }
