@@ -5,6 +5,8 @@ namespace App\Model;
 class PropertyManager extends AbstractManager
 {
     public const TABLE = 'property';
+    private const SURFACE = 2;
+    private const ROOMS = 1;
 
     public function insert(array $property): int
     {
@@ -32,9 +34,13 @@ class PropertyManager extends AbstractManager
     {
         // prepared request
         $query = 'SELECT p.*, pt.name AS property_type, s.name AS sector_name, min(photo.name)';
-        $query .= ' AS property_photo FROM ' . self::TABLE . ' p JOIN ' . PropertyTypeManager::TABLE;
+        $query .= ' AS property_photo, surface.number as surface, room.number as rooms ';
+        $query .= ' FROM ' . self::TABLE . ' p JOIN ' . PropertyTypeManager::TABLE;
         $query .= ' pt ON pt.id = p.property_type_id JOIN '  . SectorManager::TABLE . ' s ON s.id = p.sector_id';
         $query .= ' JOIN '  . PhotoManager::TABLE . ' ON photo.property_id = p.id';
+        $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' surface ON surface.property_id = p.id';
+        $query .= ' JOIN '  . PropertyFeatureManager::TABLE . ' room ON room.property_id = p.id';
+        $query .= ' and room.feature_id = ' . self::SURFACE . ' and surface.feature_id = ' . self::ROOMS;
         $queryParts = [];
         // Make the request that shows all the properties that correspond to the selected transaction type
         $queryParts = $this->buildCondition($queryParts, $transaction, 'transaction', 'transaction');
