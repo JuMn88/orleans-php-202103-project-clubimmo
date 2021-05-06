@@ -117,7 +117,7 @@ class PropertyController extends AbstractController
             $propertyFeatures = [];
             /* associative array */
             foreach ($propertyFeaturesById as $propertyFeature) {
-                $propertyFeatures[$propertyFeature['flaticonName']]=$propertyFeature;
+                $propertyFeatures[$propertyFeature['flaticonName']] = $propertyFeature;
             }
             $propertyManager = new PropertyManager();
             $property = $propertyManager->selectPropertyTypeByPropertyId($idProperty);
