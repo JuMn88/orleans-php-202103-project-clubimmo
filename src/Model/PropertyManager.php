@@ -10,6 +10,7 @@ class PropertyManager extends AbstractManager
 
     public function insert(array $property): int
     {
+        //$property['reference'] = ((int)$this->pdo->lastInsertId()) + 2;
         $query = "INSERT INTO " . self::TABLE . " (`reference`, `transaction`, `address`, `price`,
         `energy_performance`, `greenhouse_gases`, `description`, `sector_id`, `property_type_id`)
                 VALUES (:reference, :transaction, :address, :price,
@@ -107,5 +108,27 @@ class PropertyManager extends AbstractManager
         $statement->execute();
 
         return $statement->fetch();
+    }
+
+    public function newPropertyId()
+    {
+        $statement = $this->pdo->query("SELECT MAX(id) FROM " . static::TABLE);
+        $propertyId = $statement->fetchAll();
+        $newPropertyId = (int)$propertyId[0]['MAX(id)'];
+        $newPropertyId++;
+
+        return $newPropertyId;
+    }
+
+    public function selectPropertiesForAdmin(): array
+    {
+        $query = "SELECT photo.name, " . self::TABLE . ".reference, property_feature.number FROM photo 
+        INNER JOIN " . self::TABLE . " ON photo.property_id = " . self::TABLE . ".id 
+        INNER JOIN property_feature ON property.id = property_feature.property_id 
+        INNER JOIN feature ON property_feature.feature_id = feature.id WHERE feature.flaticonName = \"flaticon_surface\"
+        ORDER BY " . self::TABLE . ".id DESC";
+        $statement = $this->pdo->query($query);
+
+        return $statement->fetchAll();
     }
 }
