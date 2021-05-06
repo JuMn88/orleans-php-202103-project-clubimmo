@@ -113,18 +113,25 @@ class PropertyController extends AbstractController
     {
         if (!empty($idProperty)) {
             $pFeaturesManager = new PropertyFeatureManager();
-            $propertyFeatures = $pFeaturesManager->selectFeaturesByPropertyId($idProperty);
-            $property = new PropertyManager();
-            $property = $property->selectPropertyTypeByPropertyId($idProperty);
+            $propertyFeaturesById = $pFeaturesManager->selectFeaturesByPropertyId($idProperty);
+            $propertyFeatures = [];
+            /* associative array */
+            foreach ($propertyFeaturesById as $propertyFeature) {
+                $propertyFeatures[$propertyFeature['flaticonName']]=$propertyFeature;
+            }
+            $propertyManager = new PropertyManager();
+            $property = $propertyManager->selectPropertyTypeByPropertyId($idProperty);
+            $oneProperty = $propertyManager->selectOneById($idProperty);
         } else {
             $property = null;
+            $oneProperty = null;
             $propertyFeatures = null;
         }
         $photoManager = new PhotoManager();
         $photos = $photoManager->selectByPropertyId($idProperty);
 
         $sectorManager = new SectorManager();
-        $sector = $sectorManager->selectOneById($property['sector_id']);
+        $sector = $sectorManager->selectOneById($oneProperty['sector_id']);
 
         return $this->twig->render('Advertisement/index.html.twig', ['photos' => $photos,
                                                                     'property' => $property,
