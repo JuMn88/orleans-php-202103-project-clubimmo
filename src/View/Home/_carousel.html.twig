@@ -1,5 +1,5 @@
 <section>
-  <h2 class="font-weight-bold text-center m-4">Nos biens</h2>
+  <h2 class="font-weight-bold text-center mt-3 py-3">Nos biens</h2>
   <div class="container">
     <div class="row mx-lg-n5">
       {% for sliderCount in 0..2 %}
@@ -29,9 +29,35 @@
               <span class="visually-hidden">SUIVANT</span>
             </button>
           </div>
-          <h5 class="card-titl"><strong>{{ properties[sliderCount].property_type }}</strong></h5>
-          <h6 class="card-subtitle mb-2">Secteur {{ properties[sliderCount].city }} </h6>
-          <p class="card-text badge text-wrap">{{ properties[sliderCount].price |number_format(2, '.', ' ')  }} &euro;</p>
+
+          <div class="card-body col-12">
+                          <div class="row">
+                            <span class="col-12 badge pt-2 text-center text-purple">  
+                              {{property.transaction}}
+                            </span>
+                          </div>
+                          <div class="row mt-xs-5 mt-md-0">
+                            <div class="col-6"> 
+                                <h6 class="card-title text-dark">
+                                  {{ properties[sliderCount].property_type }} </br>
+                                  <strong class="text-purple"> {{ property.rooms }} pièces {{ property.surface }} m2 </strong>
+                                </h6>
+                            </div> 
+                            <div class="col-6"> 
+                                <h5 class="col-12 text-purple">
+                                  <strong class="float-end"><i>{{ properties[sliderCount].price |number_format(2, '.', ' ') }} € </i></strong>
+                                </h5>
+                            </div>
+                          </div> 
+                          <div class="row mt-md-3 mt-xs-0">
+                            <h5 class="card-text">
+                                {{ properties[sliderCount].city }}
+                            </h5>
+                          </div>
+                          <div class="row mt-md-4 mt-xs-0">
+                            <a href="/property/show/{{ property.id }}" class="btn bg-purple text-light col-6 offset-3 mt-3 border-2 rounded">Voir l'annonce</a>
+                          </div>
+                        </div>
         </div>
       {% endfor %}
     </div>
