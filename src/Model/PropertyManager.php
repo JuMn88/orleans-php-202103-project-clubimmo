@@ -125,7 +125,7 @@ class PropertyManager extends AbstractManager
         $query = "SELECT photo.name, " . self::TABLE . ".reference, property_feature.number FROM photo 
         INNER JOIN " . self::TABLE . " ON photo.property_id = " . self::TABLE . ".id 
         INNER JOIN property_feature ON property.id = property_feature.property_id 
-        INNER JOIN feature ON property_feature.feature_id = feature.id WHERE feature.flaticonName = \"flaticon_surface\"
+        INNER JOIN feature ON property_feature.feature_id = feature.id WHERE feature.name = \"m²\"
         ORDER BY " . self::TABLE . ".id DESC";
         $statement = $this->pdo->query($query);
 
