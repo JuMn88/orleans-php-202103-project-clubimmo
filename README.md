@@ -1,3 +1,15 @@
+# Projet 2 Wild Code School
+
+## Réalisation d'un site vitrine à partir d'un site existant
+
+##### - Projet réalisé par 4 élèves en parallèle des cours sur 5 semaines (Semaines 6 à 10 de la formation)
+##### - Conception d'une application web pour une agence immobilière respectant le format d'affichage de l'utilisateur (écran de smartphone ou d'ordinateur)
+##### - Programmation Orientée Objet selon la structure MVC en appliquant la méthode SCRUM (1 sprint par semaine avec rotation des Scrum Master et Product Owner)
+##### - Utilisation des langages HTML/CSS/PHP/MySQL // Utilisation de GIT
+##### - Restructuration et refonte graphique complète du site
+
+
+
 # Simple MVC
 
 ## Description
